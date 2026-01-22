@@ -87,9 +87,28 @@
             scroll-behavior: smooth;
         }
 
+        /* Performance optimizations */
+        .orb, .floating-emoji, .toran-piece, .confetti, .sparkle, .heart-burst, .floating-heart {
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        section {
+            contain: layout style;
+        }
+
         body {
-            background: linear-gradient(135deg, #0a0a15 0%, #0f172a 50%, #0a1020 100%);
+            background: linear-gradient(135deg, #0a0a15 0%, #1a0a20 25%, #0f172a 50%, #0a1a1a 75%, #150a15 100%);
             background-attachment: fixed;
+            animation: bg-color-shift 15s ease-in-out infinite;
+        }
+
+        @keyframes bg-color-shift {
+            0%, 100% { background: linear-gradient(135deg, #0a0a15 0%, #1a0a20 25%, #0f172a 50%, #0a1a1a 75%, #150a15 100%); }
+            25% { background: linear-gradient(135deg, #150a15 0%, #0a1520 25%, #1a0a1a 50%, #0a0a20 75%, #0f1520 100%); }
+            50% { background: linear-gradient(135deg, #0a1015 0%, #150a1a 25%, #0a1a20 50%, #1a0f15 75%, #0a1520 100%); }
+            75% { background: linear-gradient(135deg, #1a0a15 0%, #0a1a15 25%, #150a20 50%, #0a1520 75%, #1a1010 100%); }
         }
 
         /* Grid pattern overlay - disabled for cleaner look */
@@ -159,25 +178,111 @@
             text-shadow: 0 0 20px rgba(250, 204, 21, 0.5), 0 0 40px rgba(239, 68, 68, 0.3);
         }
 
-        /* Floating orbs */
+        /* Floating orbs - more vibrant */
         .orb {
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.4;
+            opacity: 0.5;
             animation: orbFloat 10s ease-in-out infinite;
             pointer-events: none;
         }
 
-        .orb-red { background: rgba(239, 68, 68, 0.5); }
-        .orb-yellow { background: rgba(250, 204, 21, 0.4); }
-        .orb-green { background: rgba(34, 197, 94, 0.4); }
+        .orb-red { background: rgba(239, 68, 68, 0.6); }
+        .orb-yellow { background: rgba(250, 204, 21, 0.5); }
+        .orb-green { background: rgba(34, 197, 94, 0.5); }
+        .orb-pink { background: rgba(236, 72, 153, 0.5); }
+        .orb-purple { background: rgba(168, 85, 247, 0.4); }
+        .orb-orange { background: rgba(251, 146, 60, 0.5); }
 
         @keyframes orbFloat {
             0%, 100% { transform: translate(0, 0) scale(1); }
             25% { transform: translate(30px, -40px) scale(1.1); }
             50% { transform: translate(-20px, -20px) scale(0.9); }
             75% { transform: translate(40px, 30px) scale(1.05); }
+        }
+
+        @keyframes orbPulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        /* Animated color wave overlay */
+        .color-wave {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 20% 30%, rgba(239, 68, 68, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(250, 204, 21, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 10% 70%, rgba(236, 72, 153, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 60%, rgba(168, 85, 247, 0.06) 0%, transparent 50%);
+            animation: colorWaveMove 20s ease-in-out infinite;
+        }
+
+        @keyframes colorWaveMove {
+            0%, 100% {
+                background-position: 0% 0%, 100% 0%, 50% 100%, 0% 50%, 100% 50%;
+            }
+            25% {
+                background-position: 50% 20%, 80% 50%, 20% 80%, 30% 70%, 70% 30%;
+            }
+            50% {
+                background-position: 100% 50%, 0% 100%, 80% 20%, 60% 10%, 40% 90%;
+            }
+            75% {
+                background-position: 30% 80%, 50% 30%, 100% 60%, 90% 40%, 10% 70%;
+            }
+        }
+
+        /* Aurora effect - Soft Rose, Gold & Blush */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60vh;
+            pointer-events: none;
+            z-index: 0;
+            background: linear-gradient(180deg,
+                rgba(251, 191, 36, 0.1) 0%,
+                rgba(253, 224, 182, 0.08) 20%,
+                rgba(251, 207, 172, 0.06) 40%,
+                rgba(252, 182, 159, 0.04) 60%,
+                transparent 100%);
+            animation: auroraShift 15s ease-in-out infinite;
+        }
+
+        @keyframes auroraShift {
+            0%, 100% {
+                opacity: 0.8;
+                transform: translateY(0);
+                background: linear-gradient(180deg,
+                    rgba(251, 191, 36, 0.1) 0%,
+                    rgba(253, 224, 182, 0.08) 25%,
+                    rgba(252, 182, 159, 0.05) 50%,
+                    transparent 100%);
+            }
+            33% {
+                opacity: 1;
+                transform: translateY(-5px);
+                background: linear-gradient(180deg,
+                    rgba(253, 224, 182, 0.1) 0%,
+                    rgba(251, 191, 36, 0.08) 25%,
+                    rgba(255, 192, 203, 0.05) 50%,
+                    transparent 100%);
+            }
+            66% {
+                opacity: 0.9;
+                transform: translateY(-10px);
+                background: linear-gradient(180deg,
+                    rgba(255, 218, 185, 0.1) 0%,
+                    rgba(255, 192, 203, 0.07) 25%,
+                    rgba(251, 191, 36, 0.05) 50%,
+                    transparent 100%);
+            }
         }
 
         /* Card hover with 3D */
@@ -492,6 +597,406 @@
 
         .emoji { font-size: 1.2em; }
         .emoji-lg { font-size: 1.5em; }
+
+        /* Fun Animations */
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        @keyframes bounce-fun {
+            0%, 100% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-15px) scale(1.1); }
+            50% { transform: translateY(-5px) scale(0.95); }
+            75% { transform: translateY(-10px) scale(1.05); }
+        }
+
+        @keyframes wiggle-fun {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg) scale(1.2); }
+            75% { transform: rotate(15deg) scale(1.2); }
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px) rotate(-5deg); }
+            75% { transform: translateX(5px) rotate(5deg); }
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+            25% { transform: translateY(25vh) rotate(180deg) scale(1.1); opacity: 0.9; }
+            50% { transform: translateY(50vh) rotate(360deg) scale(0.9); opacity: 0.7; }
+            75% { transform: translateY(75vh) rotate(540deg) scale(1); opacity: 0.5; }
+            100% { transform: translateY(110vh) rotate(720deg) scale(0.8); opacity: 0; }
+        }
+
+        @keyframes float-around {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -10px) rotate(90deg); }
+            50% { transform: translate(-5px, 5px) rotate(180deg); }
+            75% { transform: translate(-10px, -5px) rotate(270deg); }
+        }
+
+        /* Emoji hover effects */
+        .emoji-bounce:hover {
+            display: inline-block;
+            animation: bounce-fun 0.6s ease;
+        }
+
+        .emoji-wiggle:hover {
+            display: inline-block;
+            animation: wiggle-fun 0.5s ease;
+        }
+
+        .emoji-spin:hover {
+            display: inline-block;
+            animation: spin-slow 0.8s ease;
+        }
+
+        .emoji-pop:hover {
+            display: inline-block;
+            animation: pop 0.3s ease;
+        }
+
+        /* Rainbow text effect */
+        .rainbow-text {
+            animation: rainbow 3s linear infinite;
+        }
+
+        /* Fun card effects */
+        .card-fun {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-fun:hover {
+            transform: translateY(-10px) rotate(2deg) scale(1.02);
+            box-shadow: 0 20px 40px rgba(250, 204, 21, 0.3);
+        }
+
+        .card-fun:hover .card-emoji {
+            animation: bounce-fun 0.6s ease infinite;
+        }
+
+        /* Confetti particle */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: confetti-fall 4s linear forwards;
+        }
+
+        /* Cursor trail */
+        .cursor-trail {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: screen;
+        }
+
+        /* Floating emoji background */
+        .floating-emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.15;
+            animation: float-around 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* Tag shake on hover */
+        .tag-fun:hover {
+            animation: shake 0.4s ease;
+        }
+
+        /* Profile photo fun border */
+        .photo-fun {
+            position: relative;
+        }
+
+        .photo-fun::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #ef4444, #facc15, #22c55e, #3b82f6, #a855f7, #ef4444);
+            background-size: 400% 400%;
+            animation: rainbow-border 3s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rainbow-border {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ============================================ */
+        /* FUN CURSOR EFFECTS */
+        /* ============================================ */
+
+        /* Hide default cursor everywhere */
+        *, *::before, *::after {
+            cursor: none !important;
+        }
+
+        /* ============================================ */
+        /* INDIAN DESIGN ELEMENTS */
+        /* ============================================ */
+
+        /* Toran/Bandanwar hanging decoration */
+        .toran {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .toran-piece {
+            width: 40px;
+            height: 20px;
+            background: linear-gradient(180deg, #facc15 0%, #f59e0b 100%);
+            clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+            margin: 0 -5px;
+            animation: toranSway 3s ease-in-out infinite;
+            filter: drop-shadow(0 2px 4px rgba(250, 204, 21, 0.3));
+        }
+
+        /* Red */
+        .toran-piece:nth-child(10n+1) {
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+            filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.3));
+        }
+
+        /* Yellow/Gold */
+        .toran-piece:nth-child(10n+2) {
+            background: linear-gradient(180deg, #facc15 0%, #f59e0b 100%);
+            filter: drop-shadow(0 2px 4px rgba(250, 204, 21, 0.3));
+        }
+
+        /* Bright Green */
+        .toran-piece:nth-child(10n+3) {
+            background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+            filter: drop-shadow(0 2px 4px rgba(34, 197, 94, 0.3));
+        }
+
+        /* Orange */
+        .toran-piece:nth-child(10n+4) {
+            background: linear-gradient(180deg, #f97316 0%, #ea580c 100%);
+            filter: drop-shadow(0 2px 4px rgba(249, 115, 22, 0.3));
+        }
+
+        /* Teal Green */
+        .toran-piece:nth-child(10n+5) {
+            background: linear-gradient(180deg, #14b8a6 0%, #0d9488 100%);
+            filter: drop-shadow(0 2px 4px rgba(20, 184, 166, 0.3));
+        }
+
+        /* Pink */
+        .toran-piece:nth-child(10n+6) {
+            background: linear-gradient(180deg, #ec4899 0%, #db2777 100%);
+            filter: drop-shadow(0 2px 4px rgba(236, 72, 153, 0.3));
+        }
+
+        /* Lime Green */
+        .toran-piece:nth-child(10n+7) {
+            background: linear-gradient(180deg, #84cc16 0%, #65a30d 100%);
+            filter: drop-shadow(0 2px 4px rgba(132, 204, 22, 0.3));
+        }
+
+        /* Deep Red/Maroon */
+        .toran-piece:nth-child(10n+8) {
+            background: linear-gradient(180deg, #be123c 0%, #9f1239 100%);
+            filter: drop-shadow(0 2px 4px rgba(190, 18, 60, 0.3));
+        }
+
+        /* Emerald Green */
+        .toran-piece:nth-child(10n+9) {
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+            filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3));
+        }
+
+        /* Purple */
+        .toran-piece:nth-child(10n+10) {
+            background: linear-gradient(180deg, #a855f7 0%, #9333ea 100%);
+            filter: drop-shadow(0 2px 4px rgba(168, 85, 247, 0.3));
+        }
+
+        @keyframes toranSway {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        /* Mandala decoration */
+        .mandala-border {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: repeating-linear-gradient(
+                90deg,
+                #facc15 0px,
+                #facc15 10px,
+                #ef4444 10px,
+                #ef4444 20px,
+                #22c55e 20px,
+                #22c55e 30px
+            );
+            opacity: 0.8;
+        }
+
+        /* Navbar dark gold tint background */
+        .navbar-gold {
+            background: linear-gradient(135deg,
+                rgba(15, 15, 25, 0.97) 0%,
+                rgba(25, 20, 15, 0.97) 50%,
+                rgba(15, 15, 25, 0.97) 100%);
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.3),
+                inset 0 -1px 0 rgba(250, 204, 21, 0.15),
+                inset 0 1px 0 rgba(250, 204, 21, 0.1);
+        }
+
+        /* Rangoli pattern for navbar background */
+        .rangoli-bg {
+            background-image:
+                radial-gradient(circle at 10% 50%, rgba(250, 204, 21, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 90% 50%, rgba(250, 204, 21, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 50% 50%, rgba(250, 204, 21, 0.05) 0%, transparent 40%);
+        }
+
+        /* Marigold garland effect */
+        .marigold {
+            display: inline-block;
+            color: #f59e0b;
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+            animation: marigoldBob 2s ease-in-out infinite;
+        }
+
+        .marigold:nth-child(even) {
+            color: #ef4444;
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+            animation-delay: 0.3s;
+        }
+
+        @keyframes marigoldBob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        /* Custom emoji cursor - highest z-index */
+        .emoji-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2147483647;
+            font-size: 20px;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            isolation: isolate;
+        }
+
+        /* Ensure cursor shows above all sections */
+        section, footer, nav, header, div {
+            cursor: none !important;
+        }
+
+        /* Sparkle trail particle */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 16px;
+            animation: sparkle-fade 1s ease-out forwards;
+        }
+
+        @keyframes sparkle-fade {
+            0% { opacity: 1; transform: scale(1) translateY(0); }
+            100% { opacity: 0; transform: scale(0) translateY(-20px); }
+        }
+
+        /* Heart burst particle */
+        .heart-burst {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 20px;
+            animation: heart-burst-anim 1s ease-out forwards;
+        }
+
+        @keyframes heart-burst-anim {
+            0% { opacity: 1; transform: scale(0) translate(0, 0); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.5) translate(var(--tx), var(--ty)); }
+        }
+
+        /* Ripple effect */
+        .click-ripple {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            border: 3px solid rgba(250, 204, 21, 0.8);
+            border-radius: 50%;
+            animation: ripple-expand 0.8s ease-out forwards;
+        }
+
+        @keyframes ripple-expand {
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 150px; height: 150px; opacity: 0; margin-left: -75px; margin-top: -75px; }
+        }
+
+        /* Floating hearts from cursor */
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9997;
+            font-size: 18px;
+            animation: float-up 2s ease-out forwards;
+        }
+
+        @keyframes float-up {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-80px) scale(0.5); }
+        }
+
+        /* Cursor glow */
+        .cursor-glow {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9996;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.4) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: transform 0.05s ease-out;
+        }
+
+        /* Magnetic element effect */
+        .magnetic {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
     </style>
 </head>
 <body class="bg-dark-900 text-white font-sans grid-pattern">
@@ -509,9 +1014,9 @@
 const bioData = {
     name: "Sumit",
     tagline: "I AM ME",
-    personalEssence: "I am a grounded 🌳, open-minded 🌐, self-driven 🚀 individual who balances a high-performance professional life 💼 with a deep passion for sports 🏆 and fitness 💪. A proud IIT Bombay 🎓 alumnus and AIR 47 🏅 holder, I value authenticity ✨ and intellectual depth 🧠. I am deeply connected to my Haryanvi roots 🌾 and am committed to building a life and career within India 🇮🇳, with no intention of settling abroad.",
+    personalEssence: "I am a grounded 🌳, open-minded 🌐, cheerful 😊, self-driven 🚀 individual who balances a high-performance professional life 💼 with a deep passion for sports 🏆 and fitness 💪. A proud IIT Bombay 🎓 alumnus and AIR 47 🏅 holder, I value authenticity ✨ and intellectual depth 🧠. I am deeply connected to my Haryanvi roots 🌾 and am committed to building a life and career within India 🇮🇳, with no intention of settling abroad.",
     highlights: [
-        { emoji: "🎓", text: "IIT Bombay" },
+        { emoji: "🎓", text: "CSE IIT Bombay" },
         { emoji: "🏅", text: "AIR 47 JEE Advanced" },
         { emoji: "💼", text: "NVIDIA" }
     ],
@@ -524,8 +1029,8 @@ const bioData = {
         { emoji: "💍", label: "Marital Status", value: "Never Married" },
         { emoji: "🌱🥚", label: "Diet", value: "Eggetarian" },
         { emoji: "🍛", label: "Cuisine", value: "Haryanvi" },
-        { emoji: "🚭", label: "Smoke", value: "No" },
-        { emoji: "🚫", label: "Drink", value: "No" },
+        { emoji: "🚭", label: "Smoking", value: "No" },
+        { emoji: "🚫", label: "Drinking", value: "No" },
         { emoji: "📸", label: "Instagram", value: "jakharsumit2025", link: "https://instagram.com/jakharsumit2025" }
     ],
     career: [
@@ -727,15 +1232,403 @@ const HitCounter = () => {
 // ============================================
 // FLOATING ORBS - 3D Background Elements
 // ============================================
-const FloatingOrbs = () => (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="orb orb-red w-96 h-96 -top-48 -left-48" style={{animationDelay: '0s'}}></div>
-        <div className="orb orb-yellow w-80 h-80 top-1/4 -right-40" style={{animationDelay: '2s'}}></div>
-        <div className="orb orb-green w-72 h-72 bottom-1/4 left-1/4" style={{animationDelay: '4s'}}></div>
-        <div className="orb orb-red w-64 h-64 -bottom-32 right-1/3" style={{animationDelay: '1s'}}></div>
-        <div className="orb orb-yellow w-56 h-56 top-1/2 left-10" style={{animationDelay: '3s'}}></div>
+const FloatingOrbs = React.memo(() => (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0" style={{contain: 'layout style'}}>
+        {/* Large orbs */}
+        <div className="orb orb-red w-96 h-96 -top-48 -left-48" style={{animationDelay: '0s', willChange: 'transform'}}></div>
+        <div className="orb orb-yellow w-80 h-80 top-1/4 -right-40" style={{animationDelay: '2s', willChange: 'transform'}}></div>
+        <div className="orb orb-green w-72 h-72 bottom-1/4 left-1/4" style={{animationDelay: '4s', willChange: 'transform'}}></div>
+        <div className="orb orb-pink w-64 h-64 -bottom-32 right-1/3" style={{animationDelay: '1s', willChange: 'transform'}}></div>
+        {/* Medium orbs */}
+        <div className="orb orb-orange w-48 h-48 top-3/4 right-1/4" style={{animationDelay: '1.5s', willChange: 'transform'}}></div>
+        <div className="orb orb-purple w-40 h-40 top-1/3 right-10" style={{animationDelay: '0.5s', willChange: 'transform'}}></div>
     </div>
-);
+));
+
+// Color wave background effect (memoized)
+const ColorWave = React.memo(() => (
+    <div className="color-wave" style={{willChange: 'background-position'}}></div>
+));
+
+// Aurora effect at top (memoized)
+const Aurora = React.memo(() => (
+    <div className="aurora" style={{willChange: 'opacity, transform'}}></div>
+));
+
+// ============================================
+// CONFETTI EFFECT
+// ============================================
+const Confetti = () => {
+    const [confetti, setConfetti] = React.useState([]);
+    const colors = React.useMemo(() => ['#ef4444', '#f472b6', '#fbbf24', '#ff6b6b', '#ff85a2'], []);
+    const shapes = React.useMemo(() => ['❤️', '💕', '💗', '💖', '💘', '💝', '💞', '💍', '🥰', '😍', '💑', '🌹', '🎊', '✨'], []);
+
+    React.useEffect(() => {
+        const createConfetti = () => {
+            const newConfetti = [];
+            for (let i = 0; i < 15; i++) {
+                const isEmoji = Math.random() > 0.5;
+                newConfetti.push({
+                    id: Date.now() + i,
+                    left: Math.random() * 100,
+                    delay: Math.random() * 3,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    size: Math.random() * 12 + 8,
+                    duration: Math.random() * 4 + 5,
+                    isEmoji,
+                    emoji: shapes[Math.floor(Math.random() * shapes.length)]
+                });
+            }
+            setConfetti(newConfetti);
+        };
+        createConfetti();
+        const interval = setInterval(createConfetti, 8000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="fixed inset-0 pointer-events-none z-40 overflow-hidden">
+            {confetti.map(c => (
+                c.isEmoji ? (
+                    <span
+                        key={c.id}
+                        style={{
+                            position: 'fixed',
+                            left: `${c.left}%`,
+                            top: '-50px',
+                            fontSize: `${c.size * 2}px`,
+                            animation: `confetti-fall ${c.duration}s linear ${c.delay}s forwards`,
+                            opacity: 0.8
+                        }}
+                    >
+                        {c.emoji}
+                    </span>
+                ) : (
+                    <div
+                        key={c.id}
+                        style={{
+                            position: 'fixed',
+                            left: `${c.left}%`,
+                            top: '-20px',
+                            backgroundColor: c.color,
+                            width: `${c.size}px`,
+                            height: `${c.size}px`,
+                            borderRadius: Math.random() > 0.5 ? '50%' : '3px',
+                            animation: `confetti-fall ${c.duration}s linear ${c.delay}s forwards`
+                        }}
+                    />
+                )
+            ))}
+        </div>
+    );
+};
+
+// ============================================
+// EMOJI CURSOR
+// ============================================
+const EmojiCursor = () => {
+    const [position, setPosition] = React.useState({ x: 0, y: 0 });
+    const [isHovering, setIsHovering] = React.useState(false);
+    const [isVisible, setIsVisible] = React.useState(false);
+
+    React.useEffect(() => {
+        const handleMouseMove = (e) => {
+            setPosition({ x: e.clientX, y: e.clientY });
+            setIsVisible(true);
+        };
+
+        const handleMouseEnter = () => setIsVisible(true);
+        const handleMouseLeave = () => setIsVisible(false);
+
+        const handleHoverCheck = (e) => {
+            const target = e.target;
+            const isClickable = target.tagName === 'A' ||
+                               target.tagName === 'BUTTON' ||
+                               target.closest('a') ||
+                               target.closest('button') ||
+                               target.classList.contains('cursor-pointer') ||
+                               target.onclick;
+            setIsHovering(isClickable);
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseover', handleHoverCheck);
+        document.addEventListener('mouseenter', handleMouseEnter);
+        document.addEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseover', handleHoverCheck);
+            document.removeEventListener('mouseenter', handleMouseEnter);
+            document.removeEventListener('mouseleave', handleMouseLeave);
+        };
+    }, []);
+
+    if (!isVisible) return null;
+
+    return (
+        <div
+            className="emoji-cursor"
+            style={{
+                left: position.x,
+                top: position.y,
+                transform: `translate(-50%, -50%) scale(${isHovering ? 0.85 : 1})`,
+                fontSize: isHovering ? '18px' : '20px'
+            }}
+        >
+            {isHovering ? '💍' : '❤️'}
+        </div>
+    );
+};
+
+// ============================================
+// FUN CURSOR EFFECTS
+// ============================================
+const CursorEffects = () => {
+    const [sparkles, setSparkles] = React.useState([]);
+    const [heartBursts, setHeartBursts] = React.useState([]);
+    const [ripples, setRipples] = React.useState([]);
+    const [floatingHearts, setFloatingHearts] = React.useState([]);
+    const [glowPos, setGlowPos] = React.useState({ x: 0, y: 0 });
+
+    const sparkleEmojis = React.useMemo(() => ['✨', '⭐', '💫', '🌟'], []);
+    const heartEmojis = React.useMemo(() => ['❤️', '💕', '💗', '💖', '💘'], []);
+
+    React.useEffect(() => {
+        let sparkleId = 0;
+        let heartId = 0;
+        let floatId = 0;
+        let lastSparkleTime = 0;
+        let lastFloatTime = 0;
+        let rafId = null;
+
+        // Throttled sparkle trail on mouse move
+        const handleMouseMove = (e) => {
+            if (rafId) return;
+            rafId = requestAnimationFrame(() => {
+                const now = Date.now();
+                setGlowPos({ x: e.clientX, y: e.clientY });
+
+                // Create sparkle every 120ms (reduced frequency)
+                if (now - lastSparkleTime > 120) {
+                    lastSparkleTime = now;
+                    const sparkle = {
+                        id: sparkleId++,
+                        x: e.clientX + (Math.random() - 0.5) * 20,
+                        y: e.clientY + (Math.random() - 0.5) * 20,
+                        emoji: sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)]
+                    };
+                    setSparkles(prev => [...prev.slice(-12), sparkle]);
+                    setTimeout(() => {
+                        setSparkles(prev => prev.filter(s => s.id !== sparkle.id));
+                    }, 1000);
+                }
+
+                // Create floating heart every 800ms (reduced frequency)
+                if (now - lastFloatTime > 800) {
+                    lastFloatTime = now;
+                    const heart = {
+                        id: floatId++,
+                        x: e.clientX + (Math.random() - 0.5) * 30,
+                        y: e.clientY,
+                        emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)]
+                    };
+                    setFloatingHearts(prev => [...prev.slice(-6), heart]);
+                    setTimeout(() => {
+                        setFloatingHearts(prev => prev.filter(h => h.id !== heart.id));
+                    }, 2000);
+                }
+                rafId = null;
+            });
+        };
+
+        // Heart burst and ripple on click
+        const handleClick = (e) => {
+            // Create ripple
+            const ripple = { id: Date.now(), x: e.clientX, y: e.clientY };
+            setRipples(prev => [...prev.slice(-3), ripple]);
+            setTimeout(() => {
+                setRipples(prev => prev.filter(r => r.id !== ripple.id));
+            }, 800);
+
+            // Create heart burst (reduced from 8 to 6)
+            for (let i = 0; i < 6; i++) {
+                const angle = (i / 6) * Math.PI * 2;
+                const distance = 50 + Math.random() * 30;
+                const burst = {
+                    id: heartId++,
+                    x: e.clientX,
+                    y: e.clientY,
+                    tx: Math.cos(angle) * distance,
+                    ty: Math.sin(angle) * distance,
+                    emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)]
+                };
+                setHeartBursts(prev => [...prev.slice(-10), burst]);
+                setTimeout(() => {
+                    setHeartBursts(prev => prev.filter(h => h.id !== burst.id));
+                }, 1000);
+            }
+        };
+
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
+        window.addEventListener('click', handleClick);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('click', handleClick);
+            if (rafId) cancelAnimationFrame(rafId);
+        };
+    }, []);
+
+    return (
+        <>
+            {/* Cursor glow */}
+            <div
+                className="cursor-glow"
+                style={{ left: glowPos.x, top: glowPos.y }}
+            />
+
+            {/* Sparkle trail */}
+            {sparkles.map(sparkle => (
+                <span
+                    key={sparkle.id}
+                    className="sparkle"
+                    style={{ left: sparkle.x, top: sparkle.y }}
+                >
+                    {sparkle.emoji}
+                </span>
+            ))}
+
+            {/* Heart burst on click */}
+            {heartBursts.map(burst => (
+                <span
+                    key={burst.id}
+                    className="heart-burst"
+                    style={{
+                        left: burst.x,
+                        top: burst.y,
+                        '--tx': `${burst.tx}px`,
+                        '--ty': `${burst.ty}px`
+                    }}
+                >
+                    {burst.emoji}
+                </span>
+            ))}
+
+            {/* Ripple effect on click */}
+            {ripples.map(ripple => (
+                <div
+                    key={ripple.id}
+                    className="click-ripple"
+                    style={{ left: ripple.x, top: ripple.y }}
+                />
+            ))}
+
+            {/* Floating hearts */}
+            {floatingHearts.map(heart => (
+                <span
+                    key={heart.id}
+                    className="floating-heart"
+                    style={{ left: heart.x, top: heart.y }}
+                >
+                    {heart.emoji}
+                </span>
+            ))}
+        </>
+    );
+};
+
+// Magnetic Button Component
+const MagneticButton = ({ children, className, href, onClick }) => {
+    const ref = React.useRef(null);
+    const [transform, setTransform] = React.useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e) => {
+        const rect = ref.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const distX = (e.clientX - centerX) * 0.4;
+        const distY = (e.clientY - centerY) * 0.4;
+        setTransform({ x: distX, y: distY });
+    };
+
+    const handleMouseLeave = () => {
+        setTransform({ x: 0, y: 0 });
+    };
+
+    const style = {
+        transform: `translate(${transform.x}px, ${transform.y}px)`,
+        transition: 'transform 0.2s ease-out'
+    };
+
+    if (href) {
+        return (
+            <a
+                ref={ref}
+                href={href}
+                className={className}
+                style={style}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                onClick={onClick}
+            >
+                {children}
+            </a>
+        );
+    }
+
+    return (
+        <button
+            ref={ref}
+            className={className}
+            style={style}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            onClick={onClick}
+        >
+            {children}
+        </button>
+    );
+};
+
+// ============================================
+// FLOATING EMOJIS - GLOBAL
+// ============================================
+const FloatingEmojis = () => {
+    const emojis = ['⭐', '🌟', '✨', '💫', '⭐', '🌟', '✨', '💫', '⭐', '🌟', '✨', '💫', '⭐', '🌟', '✨'];
+
+    const positions = React.useMemo(() =>
+        emojis.map((emoji, i) => ({
+            emoji,
+            left: Math.random() * 95,
+            top: Math.random() * 300,
+            delay: Math.random() * 5,
+            duration: 8 + Math.random() * 6,
+            size: 1.5 + Math.random() * 1.5
+        })), []);
+
+    return (
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-10" style={{height: '400vh', contain: 'layout style'}}>
+            {positions.map((item, i) => (
+                <span
+                    key={i}
+                    className="floating-emoji"
+                    style={{
+                        left: `${item.left}%`,
+                        top: `${item.top}%`,
+                        animationDelay: `${item.delay}s`,
+                        animationDuration: `${item.duration}s`,
+                        fontSize: `${item.size}rem`,
+                        opacity: 0.12,
+                        willChange: 'transform'
+                    }}
+                >
+                    {item.emoji}
+                </span>
+            ))}
+        </div>
+    );
+};
 
 // ============================================
 // NAVBAR
@@ -752,10 +1645,28 @@ const Navbar = () => {
 
     const links = ["Home", "About", "Career", "Family", "Hobbies", "Preferences", "Gallery", "Contact"];
 
+    // Toran hanging pieces
+    const ToranDecoration = React.memo(() => (
+        <div className="toran">
+            {[...Array(20)].map((_, i) => (
+                <div key={i} className="toran-piece" style={{animationDelay: `${i * 0.1}s`, willChange: 'transform'}}></div>
+            ))}
+        </div>
+    ));
+
     return (
-        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-dark-900/95 backdrop-blur-lg shadow-lg' : ''}`}>
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 navbar-gold rangoli-bg ${scrolled ? 'backdrop-blur-lg' : ''}`}>
+            {/* Mandala border at bottom */}
+            <div className="mandala-border"></div>
+
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="#" className="font-display text-2xl font-bold gradient-text animate-pulse-slow">🤵 Sumit</a>
+                {/* Logo with rose */}
+                <div className="flex items-center gap-2">
+                    <a href="#" className="font-display text-2xl font-bold gradient-text animate-pulse-slow">
+                        Sumit
+                    </a>
+                    <span style={{fontSize: '28px', zIndex: 99999, position: 'relative'}}>🌹</span>
+                </div>
 
                 <ul className="hidden lg:flex gap-8 items-center">
                     {links.map((link, i) => (
@@ -766,9 +1677,9 @@ const Navbar = () => {
                         </li>
                     ))}
                     <li className="animate-fadeInDown" style={{animationDelay: '0.8s'}}>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" target="_blank" className="px-4 py-2 gradient-bg rounded-full text-sm font-semibold gradient-btn-text hover:scale-105 transition-transform">
+                        <MagneticButton href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" className="px-4 py-2 gradient-bg rounded-full text-sm font-semibold gradient-btn-text hover:scale-105 transition-transform">
                             📝 Feedback
-                        </a>
+                        </MagneticButton>
                     </li>
                 </ul>
 
@@ -776,6 +1687,9 @@ const Navbar = () => {
                     <span className="text-2xl">{mobileOpen ? '✖️' : '☰'}</span>
                 </button>
             </div>
+
+            {/* Toran/Bandanwar hanging decoration */}
+            <ToranDecoration />
 
             {mobileOpen && (
                 <div className="lg:hidden bg-dark-900/98 backdrop-blur-lg border-t border-dark-700">
@@ -812,7 +1726,7 @@ const Hero = () => (
 
                 <h1 className="mb-6">
                     <span className="block text-dark-400 text-xl mb-2 animate-fadeInLeft delay-100">🌟 PERSONAL ESSENCE</span>
-                    <span className="block font-display text-6xl lg:text-8xl font-bold gradient-text glow-text animate-fadeInUp delay-200">{bioData.name}</span>
+                    <span className="block font-display text-6xl lg:text-8xl font-bold gradient-text glow-text animate-fadeInUp delay-200 hover:rainbow-text transition-all cursor-default">{bioData.name}</span>
                 </h1>
 
                 <p className="font-display text-2xl lg:text-3xl text-yellow-400 italic mb-6 animate-fadeInUp delay-300 animate-pulse-slow glow-text">
@@ -825,16 +1739,16 @@ const Hero = () => (
 
                 <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10">
                     {bioData.highlights.map((item, i) => (
-                        <div key={i} className="flex items-center gap-3 px-5 py-3 glass-card rounded-xl neon-tag animate-fadeInUp" style={{animationDelay: `${0.5 + i*0.1}s`}}>
-                            <span className="text-2xl">{item.emoji}</span>
+                        <div key={i} className="flex items-center gap-3 px-5 py-3 glass-card rounded-xl neon-tag animate-fadeInUp card-fun" style={{animationDelay: `${0.5 + i*0.1}s`}}>
+                            <span className="text-2xl card-emoji">{item.emoji}</span>
                             <span className="font-semibold">{item.text}</span>
                         </div>
                     ))}
                 </div>
 
-                <a href="#about" className="inline-flex items-center gap-3 px-8 py-4 gradient-bg rounded-full font-semibold animate-glow hover:scale-110 transition-transform animate-fadeInUp delay-600 gradient-btn-text shimmer">
+                <MagneticButton href="#about" className="inline-flex items-center gap-3 px-8 py-4 gradient-bg rounded-full font-semibold animate-glow hover:scale-110 transition-transform animate-fadeInUp delay-600 gradient-btn-text shimmer">
                     Know More ⬇️
-                </a>
+                </MagneticButton>
             </div>
 
             <div className="flex-shrink-0 animate-float">
@@ -869,9 +1783,9 @@ const About = () => (
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {bioData.basics.map((item, i) => (
-                    <div key={i} className="p-6 rounded-2xl border border-dark-700 bg-dark-900 card-hover">
+                    <div key={i} className="p-6 rounded-2xl border border-dark-700 bg-dark-900 card-fun">
                         <div className="flex items-center gap-4">
-                            <span className="text-3xl">{item.emoji}</span>
+                            <span className="text-3xl card-emoji">{item.emoji}</span>
                             <div>
                                 <p className="text-sm uppercase tracking-wide text-dark-500">{item.label}</p>
                                 {item.link ? (
@@ -1013,8 +1927,8 @@ const Hobbies = () => (
                     <h3 className="text-xl font-bold mb-4">🏆 Sports (❤️)</h3>
                     <div className="flex flex-wrap gap-3">
                         {bioData.hobbies.sports.map((sport, i) => (
-                            <span key={i} className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default hover:scale-110 text-lg">
-                                {sport.emoji} {sport.name}
+                            <span key={i} className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default tag-fun text-lg">
+                                <span className="inline-block hover:animate-bounce">{sport.emoji}</span> {sport.name}
                             </span>
                         ))}
                     </div>
@@ -1111,7 +2025,7 @@ const Gallery = () => {
                             className="gallery-item aspect-[4/5] cursor-pointer"
                             onClick={() => setLightbox(img)}
                         >
-                            <img src={img} alt={`Photo ${i+1}`} className="gallery-img rounded-xl" />
+                            <img src={img} alt={`Photo ${i+1}`} className="gallery-img rounded-xl" loading="lazy" />
                         </div>
                     ))}
                 </div>
@@ -1179,9 +2093,9 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto px-6 text-center space-y-4">
                 {/* Feedback Button */}
                 <div className="mb-6">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" target="_blank" className="inline-flex items-center gap-2 px-8 py-3 gradient-bg rounded-full font-semibold gradient-btn-text hover:scale-105 transition-transform text-lg">
+                    <MagneticButton href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" className="inline-flex items-center gap-2 px-8 py-3 gradient-bg rounded-full font-semibold gradient-btn-text hover:scale-105 transition-transform text-lg">
                         📝 Share Your Feedback
-                    </a>
+                    </MagneticButton>
                 </div>
 
                 {/* Hit Counter */}
@@ -1204,6 +2118,11 @@ const Footer = () => {
 // ============================================
 const App = () => (
     <>
+        <Aurora />
+        <ColorWave />
+        <CursorEffects />
+        <Confetti />
+        <FloatingEmojis />
         <FloatingOrbs />
         <Navbar />
         <Hero />
@@ -1215,6 +2134,7 @@ const App = () => (
         <Gallery />
         <Contact />
         <Footer />
+        <EmojiCursor />
     </>
 );
 

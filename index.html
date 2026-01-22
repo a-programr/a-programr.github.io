@@ -92,12 +92,9 @@
             background-attachment: fixed;
         }
 
-        /* Grid pattern overlay */
+        /* Grid pattern overlay - disabled for cleaner look */
         .grid-pattern {
-            background-image:
-                linear-gradient(rgba(239, 68, 68, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(239, 68, 68, 0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
+            /* background removed for seamless appearance */
         }
 
         .gradient-text {
@@ -760,7 +757,7 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 <a href="#" className="font-display text-2xl font-bold gradient-text animate-pulse-slow">🤵 Sumit</a>
 
-                <ul className="hidden lg:flex gap-8">
+                <ul className="hidden lg:flex gap-8 items-center">
                     {links.map((link, i) => (
                         <li key={link} className="animate-fadeInDown" style={{animationDelay: `${i * 0.1}s`}}>
                             <a href={`#${link.toLowerCase()}`} className="text-dark-400 hover:text-yellow-400 transition-all duration-300 text-sm font-medium">
@@ -768,6 +765,11 @@ const Navbar = () => {
                             </a>
                         </li>
                     ))}
+                    <li className="animate-fadeInDown" style={{animationDelay: '0.8s'}}>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" target="_blank" className="px-4 py-2 gradient-bg rounded-full text-sm font-semibold gradient-btn-text hover:scale-105 transition-transform">
+                            📝 Feedback
+                        </a>
+                    </li>
                 </ul>
 
                 <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden text-white p-2">
@@ -785,6 +787,11 @@ const Navbar = () => {
                                 </a>
                             </li>
                         ))}
+                        <li className="animate-fadeInUp" style={{animationDelay: '0.5s'}}>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" target="_blank" className="px-6 py-3 gradient-bg rounded-full font-semibold gradient-btn-text">
+                                📝 Feedback
+                            </a>
+                        </li>
                     </ul>
                 </div>
             )}
@@ -1170,6 +1177,13 @@ const Footer = () => {
     return (
         <footer className="py-10 border-t border-dark-700 relative z-10">
             <div className="max-w-7xl mx-auto px-6 text-center space-y-4">
+                {/* Feedback Button */}
+                <div className="mb-6">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" target="_blank" className="inline-flex items-center gap-2 px-8 py-3 gradient-bg rounded-full font-semibold gradient-btn-text hover:scale-105 transition-transform text-lg">
+                        📝 Share Your Feedback
+                    </a>
+                </div>
+
                 {/* Hit Counter */}
                 <HitCounter />
 

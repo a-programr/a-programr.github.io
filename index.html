@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumit | Matrimonial Biodata</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            200: '#fecaca',
+                            300: '#fca5a5',
+                            400: '#f87171',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                            900: '#7f1d1d',
+                        },
+                        accent: {
+                            50: '#fefce8',
+                            100: '#fef9c3',
+                            200: '#fef08a',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                            800: '#854d0e',
+                            900: '#713f12',
+                        },
+                        success: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        dark: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0f172a;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ef4444 0%, #facc15 50%, #22c55e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #ef4444 0%, #facc15 50%, #22c55e 100%);
+        }
+
+        .gradient-bg-alt {
+            background: linear-gradient(135deg, #22c55e 0%, #facc15 50%, #ef4444 100%);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glow {
+            box-shadow: 0 0 40px rgba(239, 68, 68, 0.3), 0 0 60px rgba(250, 204, 21, 0.2);
+        }
+
+        .glow-green {
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.4);
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.2), 0 0 40px rgba(250, 204, 21, 0.15);
+            border-color: rgba(250, 204, 21, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            75% { transform: translateY(-5px) rotate(-1deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.4), 0 0 40px rgba(250, 204, 21, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.6), 0 0 60px rgba(250, 204, 21, 0.4), 0 0 80px rgba(34, 197, 94, 0.2); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        @keyframes slideInScale {
+            from { opacity: 0; transform: scale(0.8) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease forwards; }
+        .animate-fadeInDown { animation: fadeInDown 0.8s ease forwards; }
+        .animate-fadeInLeft { animation: fadeInLeft 0.8s ease forwards; }
+        .animate-fadeInRight { animation: fadeInRight 0.8s ease forwards; }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-pulse-slow { animation: pulse 3s ease-in-out infinite; }
+        .animate-bounce-slow { animation: bounce 2s ease-in-out infinite; }
+        .animate-glow { animation: glow-pulse 3s ease-in-out infinite; }
+        .animate-wiggle { animation: wiggle 1s ease-in-out infinite; }
+        .animate-slideInScale { animation: slideInScale 0.6s ease forwards; }
+        .animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+
+        .timeline-line {
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #ef4444, #facc15, #22c55e);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #334155;
+            border: 3px solid #0f172a;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: #facc15;
+            box-shadow: 0 0 20px #facc15;
+            transform: scale(1.3);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #ef4444, #facc15, #22c55e);
+            border-radius: 4px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            animation: slideInScale 0.4s ease;
+        }
+
+        .hit-counter {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(250, 204, 21, 0.2), rgba(34, 197, 94, 0.2));
+            border: 1px solid rgba(250, 204, 21, 0.3);
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        /* Gradient button text styling */
+        .gradient-btn-text {
+            color: #1a1a2e;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            font-weight: 700;
+        }
+
+        .emoji { font-size: 1.2em; }
+        .emoji-lg { font-size: 1.5em; }
+    </style>
+</head>
+<body class="bg-dark-900 text-white font-sans">
+    <div id="root"></div>
+
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+// ============================================
+// BIO DATA - All content from bio.docx with emojis
+// ============================================
+const bioData = {
+    name: "Sumit",
+    tagline: "I AM ME",
+    personalEssence: "I am a grounded 🌳, open-minded 🌐, self-driven 🚀 individual who balances a high-performance professional life 💼 with a deep passion for sports 🏆 and fitness 💪. A proud IIT Bombay 🎓 alumnus and AIR 47 🏅 holder, I value authenticity ✨ and intellectual depth 🧠. I am deeply connected to my Haryanvi roots 🌾 and am committed to building a life and career within India 🇮🇳, with no intention of settling abroad.",
+    highlights: [
+        { emoji: "🎓", text: "IIT Bombay" },
+        { emoji: "🏅", text: "AIR 47 JEE Advanced" },
+        { emoji: "💼", text: "NVIDIA" }
+    ],
+    basics: [
+        { emoji: "🧑‍💼", label: "Name", value: "Sumit" },
+        { emoji: "🎂", label: "Age", value: "25 Years" },
+        { emoji: "📅", label: "Birth", value: "February 2000" },
+        { emoji: "📏", label: "Height", value: "5' 11\" (180 cm)" },
+        { emoji: "⚖️", label: "Weight", value: "75 kg" },
+        { emoji: "💍", label: "Marital Status", value: "Never Married" },
+        { emoji: "🌱🥚", label: "Diet", value: "Eggetarian" },
+        { emoji: "🍛", label: "Cuisine", value: "Haryanvi" },
+        { emoji: "🚭", label: "Smoke", value: "No" },
+        { emoji: "🚫", label: "Drink", value: "No" },
+        { emoji: "📸", label: "Instagram", value: "jakharsumit2025", link: "https://instagram.com/jakharsumit2025" }
+    ],
+    career: [
+        {
+            year: "2017",
+            title: "JEE Advanced 🎖️",
+            subtitle: "All India Rank 47 🏅",
+            description: "Cleared one of the toughest exams in the world with an exceptional rank.",
+            emoji: "🏅"
+        },
+        {
+            year: "2017",
+            title: "Schooling 🏫",
+            subtitle: "Class of 2017",
+            description: "Completed schooling in Jhajjar, Haryana.",
+            emoji: "🏫"
+        },
+        {
+            year: "2017-2021",
+            title: "IIT Bombay 🏛️",
+            subtitle: "B.Tech in Computer Science & Engineering 💻",
+            description: "Graduated from one of India's premier institutes with a degree in CSE.",
+            emoji: "🎓"
+        },
+        {
+            year: "Present",
+            title: "NVIDIA 💼",
+            subtitle: "System Software Engineer ⚙️",
+            description: "Working at one of the world's leading technology companies in Bangalore.",
+            emoji: "⚙️",
+            active: true
+        },
+        {
+            year: "Future",
+            title: "Entrepreneurial Dreams 🚀",
+            subtitle: "Own Company",
+            description: "To have my own company or something (highest priority will remain health and family though).",
+            emoji: "🚀",
+            future: true
+        }
+    ],
+    workDetails: {
+        location: "📍 Bangalore, Karnataka (Preferred for the future)",
+        linkedin: "🔗 linkedin.com/in/sumit-12890b171",
+        income: "💰 Available to discuss in person (NOT the one who got 1cr package, btw. 😊)"
+    },
+    family: {
+        religion: "Hindu 🕉️",
+        motherTongue: "Haryanvi",
+        languages: ["Haryanvi", "Hindi", "English"],
+        permanent: "Jhajjar, Haryana 🏡",
+        current: "Mahadevpura, Bangalore, Karnataka 🏙️",
+        settlement: "India Only 🇮🇳",
+        members: [
+            {
+                emoji: "👮‍♂️",
+                role: "Father",
+                name: "Mr. Rajender",
+                detail: "Sub Inspector, Haryana Police",
+                badge: "Non-smoker, Non-drinker"
+            },
+            {
+                emoji: "👩‍🏫",
+                role: "Mother",
+                name: "Mrs. Sunita",
+                detail: "Retired Private School Teacher",
+                badge: "HTET Qualified"
+            },
+            {
+                emoji: "🏠",
+                role: "Siblings",
+                name: "None (Only Child)",
+                detail: "All the love and attention!"
+            }
+        ]
+    },
+    hobbies: {
+        sports: [
+            { emoji: "🏸", name: "Badminton" },
+            { emoji: "🎳", name: "Bowling" },
+            { emoji: "♟️", name: "Chess" },
+            { emoji: "🃏", name: "Card Games" },
+            { emoji: "🎯", name: "Carrom" },
+            { emoji: "🏏", name: "Cricket" },
+            { emoji: "🥋", name: "Martial Arts" },
+            { emoji: "🏊", name: "Swimming" },
+            { emoji: "🏓", name: "Table Tennis" },
+            { emoji: "🏐", name: "Volleyball" }
+        ],
+        music: {
+            emoji: "🎶",
+            genres: ["Majorly Punjabi Music", "Hindi", "Haryanvi", "English"]
+        },
+        travelling: { emoji: "✈️", detail: "Enthusiast" },
+        movies: { emoji: "🎬", detail: "Enjoy watching various genres. Languages – Hindi, English, Punjabi" },
+        others: { emoji: "🗺️", detail: "Geopolitics" }
+    },
+    preferences: [
+        {
+            emoji: "🎓",
+            title: "Education",
+            desc: "Preference for an Engineering background"
+        },
+        {
+            emoji: "🏢",
+            title: "Work Location",
+            desc: "Preferably working in or willing to relocate to Bangalore"
+        },
+        {
+            emoji: "🚭",
+            title: "Smoking",
+            desc: "No"
+        },
+        {
+            emoji: "🚫",
+            title: "Drinking",
+            desc: "No"
+        },
+        {
+            emoji: "📏",
+            title: "Physical Status",
+            desc: "Normal; Preferred height >= 5' 4\""
+        },
+        {
+            emoji: "🌍",
+            title: "Background",
+            desc: "Open to all Religions, Castes, and Mother Tongues"
+        },
+        {
+            emoji: "🚫",
+            title: "Horoscope",
+            desc: "Not interested at all"
+        }
+    ],
+    preferenceIntro: "Seeking a partner 💑 with similar thoughts 💭, priorities 📌, goals 🎯 and mindset 🤝",
+    contact: {
+        instagram: { handle: "jakharsumit2025", emoji: "📸" },
+        linkedin: { handle: "sumit-12890b171", emoji: "🔗" },
+        location: { value: "Mahadevpura, Bangalore, Karnataka", emoji: "📍" }
+    },
+    profilePhoto: "images/IMG_20220710_200139.jpg",
+    gallery: [
+        "images/IMG_20250217_091950.jpg",
+        "images/IMG_20240820_165703.jpg",
+        "images/IMG_20241019_135442.jpg",
+        "images/echoPointPhoto.jpg",
+        "images/IMG_20250612_103425.jpg",
+        "images/1766732769845.jpg",
+        "images/1758732677097.jpg",
+        "images/IMG-20241012-WA0025.jpg",
+        "images/Gemini_Generated_Image_gxecspgxecspgxec.png",
+        "images/Screenshot 2025-12-26 134555.png"
+    ],
+    galleryQuote: "Simplicity is the ultimate sophistication : Leonardo Da Vinci"
+};
+
+// ============================================
+// HIT COUNTER COMPONENT
+// ============================================
+const HitCounter = () => {
+    const [count, setCount] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        // Use CountAPI - a simple free counter service
+        fetch('https://api.counterapi.dev/v1/sumit-biodata-2026/visits/up')
+            .then(res => res.json())
+            .then(data => {
+                setCount(data.count);
+                setLoading(false);
+            })
+            .catch(() => {
+                // Fallback to localStorage if API fails
+                const stored = localStorage.getItem('sumit-biodata-visits') || '100';
+                let num = parseInt(stored);
+                if (!sessionStorage.getItem('counted')) {
+                    num += 1;
+                    localStorage.setItem('sumit-biodata-visits', num.toString());
+                    sessionStorage.setItem('counted', 'true');
+                }
+                setCount(num);
+                setLoading(false);
+            });
+    }, []);
+
+    return (
+        <div className="flex justify-center mb-4">
+            <div className="hit-counter flex items-center gap-3">
+                <span className="text-xl">👁️</span>
+                <span className="text-dark-300">Visitors:</span>
+                <span className="text-yellow-400 font-bold text-xl">
+                    {loading ? '...' : count}
+                </span>
+            </div>
+        </div>
+    );
+};
+
+// ============================================
+// NAVBAR
+// ============================================
+const Navbar = () => {
+    const [scrolled, setScrolled] = React.useState(false);
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+
+    React.useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 50);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const links = ["Home", "About", "Career", "Family", "Hobbies", "Preferences", "Gallery", "Contact"];
+
+    return (
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-dark-900/95 backdrop-blur-lg shadow-lg' : ''}`}>
+            <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" className="font-display text-2xl font-bold gradient-text animate-pulse-slow">🤵 Sumit</a>
+
+                <ul className="hidden lg:flex gap-8">
+                    {links.map((link, i) => (
+                        <li key={link} className="animate-fadeInDown" style={{animationDelay: `${i * 0.1}s`}}>
+                            <a href={`#${link.toLowerCase()}`} className="text-dark-400 hover:text-yellow-400 transition-all duration-300 text-sm font-medium">
+                                {link}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+
+                <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden text-white p-2">
+                    <span className="text-2xl">{mobileOpen ? '✖️' : '☰'}</span>
+                </button>
+            </div>
+
+            {mobileOpen && (
+                <div className="lg:hidden bg-dark-900/98 backdrop-blur-lg border-t border-dark-700">
+                    <ul className="flex flex-col items-center py-8 gap-6">
+                        {links.map((link, i) => (
+                            <li key={link} className="animate-fadeInUp" style={{animationDelay: `${i * 0.05}s`}}>
+                                <a href={`#${link.toLowerCase()}`} onClick={() => setMobileOpen(false)} className="text-dark-300 hover:text-yellow-400 transition-colors text-lg">
+                                    {link}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+        </nav>
+    );
+};
+
+// ============================================
+// HERO SECTION
+// ============================================
+const Hero = () => (
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <div className="absolute inset-0">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-yellow-500/15 rounded-full blur-3xl animate-pulse-slow delay-300"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-500/20 rounded-full blur-3xl animate-pulse-slow delay-500"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-12">
+            <div className="flex-1 text-center lg:text-left">
+                <span className="inline-block px-6 py-2 glass rounded-full text-sm tracking-widest uppercase mb-6 animate-fadeInDown">
+                    🤵 MATRIMONIAL BIODATA
+                </span>
+
+                <h1 className="mb-4">
+                    <span className="block text-dark-400 text-xl mb-2 animate-fadeInLeft delay-100">🌟 PERSONAL ESSENCE</span>
+                    <span className="block font-display text-6xl lg:text-8xl font-bold gradient-text animate-fadeInUp delay-200">{bioData.name}</span>
+                </h1>
+
+                <p className="font-display text-2xl text-yellow-400 italic mb-6 animate-fadeInUp delay-300 animate-pulse-slow">
+                    "{bioData.tagline}"
+                </p>
+
+                <p className="text-dark-300 text-lg max-w-2xl mx-auto lg:mx-0 mb-8 animate-fadeInUp delay-400 leading-relaxed">
+                    {bioData.personalEssence}
+                </p>
+
+                <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-8">
+                    {bioData.highlights.map((item, i) => (
+                        <div key={i} className={`flex items-center gap-3 px-5 py-3 bg-dark-800 rounded-xl border border-dark-700 hover:border-yellow-500/50 card-hover animate-fadeInUp`} style={{animationDelay: `${0.5 + i*0.1}s`}}>
+                            <span className="text-2xl">{item.emoji}</span>
+                            <span className="font-medium">{item.text}</span>
+                        </div>
+                    ))}
+                </div>
+
+                <a href="#about" className="inline-flex items-center gap-3 px-8 py-4 gradient-bg rounded-full font-semibold animate-glow hover:scale-110 transition-transform animate-fadeInUp delay-600 gradient-btn-text">
+                    Know More ⬇️
+                </a>
+            </div>
+
+            <div className="flex-shrink-0 animate-float">
+                <div className="w-72 h-80 lg:w-80 lg:h-96 rounded-2xl overflow-hidden border-2 border-yellow-500/30 animate-glow">
+                    <img src={bioData.profilePhoto} alt="Sumit" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// SECTION HEADER
+// ============================================
+const SectionHeader = ({ emoji, tag, title, subtitle }) => (
+    <div className="text-center mb-16">
+        <span className="inline-block px-6 py-2 gradient-bg rounded-full text-sm tracking-widest uppercase mb-4 animate-slideInScale gradient-btn-text">
+            {emoji} {tag}
+        </span>
+        <h2 className="font-display text-4xl lg:text-5xl font-bold gradient-text mb-4">{title}</h2>
+        {subtitle && <p className="text-dark-400 italic text-lg">{subtitle}</p>}
+    </div>
+);
+
+// ============================================
+// ABOUT SECTION - 📋 BASIC DETAILS & LIFESTYLE
+// ============================================
+const About = () => (
+    <section id="about" className="py-24 bg-dark-800">
+        <div className="max-w-7xl mx-auto px-6">
+            <SectionHeader emoji="📋" tag="Get to Know Me" title="Basic Details & Lifestyle" />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {bioData.basics.map((item, i) => (
+                    <div key={i} className="p-6 rounded-2xl border border-dark-700 bg-dark-900 card-hover">
+                        <div className="flex items-center gap-4">
+                            <span className="text-3xl">{item.emoji}</span>
+                            <div>
+                                <p className="text-sm uppercase tracking-wide text-dark-500">{item.label}</p>
+                                {item.link ? (
+                                    <a href={item.link} target="_blank" className="font-semibold text-lg text-white hover:text-yellow-400 hover:underline transition-colors">{item.value}</a>
+                                ) : (
+                                    <p className="font-semibold text-lg">{item.value}</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// CAREER SECTION - 🎓 EDUCATION & CAREER
+// ============================================
+const Career = () => (
+    <section id="career" className="py-24">
+        <div className="max-w-4xl mx-auto px-6">
+            <SectionHeader emoji="🎓" tag="Professional Journey" title="Education & Career" />
+
+            <div className="relative pl-8">
+                <div className="timeline-line"></div>
+
+                {bioData.career.map((item, i) => (
+                    <div key={i} className={`timeline-item relative pl-10 pb-12 ${item.future ? 'opacity-70' : ''}`}>
+                        <div className={`timeline-dot ${item.active ? 'bg-green-500 shadow-lg shadow-green-500/50' : ''}`}></div>
+
+                        <div className={`p-6 rounded-2xl bg-dark-800 border card-hover ${item.future ? 'border-dashed border-dark-600' : 'border-dark-700'}`}>
+                            <span className="inline-block px-4 py-1 gradient-bg rounded-full text-sm font-medium mb-4 gradient-btn-text">
+                                {item.year}
+                            </span>
+                            <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
+                            <p className="text-yellow-400 font-medium mb-2 flex items-center gap-2">
+                                <span className="text-xl">{item.emoji}</span>
+                                {item.subtitle}
+                            </p>
+                            <p className="text-dark-400">{item.description}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="mt-8 p-6 bg-dark-800 rounded-2xl border border-dark-700 card-hover space-y-3">
+                <p className="text-dark-300">{bioData.workDetails.location}</p>
+                <p className="text-dark-300">
+                    {bioData.workDetails.linkedin.split('linkedin.com')[0]}
+                    <a href={`https://linkedin.com/in/${bioData.contact.linkedin.handle}`} target="_blank" className="text-green-400 hover:underline">
+                        linkedin.com/in/{bioData.contact.linkedin.handle}
+                    </a>
+                </p>
+                <p className="text-dark-300">{bioData.workDetails.income}</p>
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// FAMILY SECTION - 🏡 FAMILY & BACKGROUND
+// ============================================
+const Family = () => (
+    <section id="family" className="py-24 bg-dark-800">
+        <div className="max-w-7xl mx-auto px-6">
+            <SectionHeader emoji="🏡" tag="My Roots" title="Family & Background" />
+
+            <div className="grid lg:grid-cols-3 gap-8">
+                <div className="space-y-6">
+                    <div className="p-6 bg-dark-900 rounded-2xl border border-dark-700 card-hover">
+                        <h3 className="text-lg font-bold mb-4">🕉️ Religion & Language</h3>
+                        <ul className="space-y-3 text-dark-300">
+                            <li><span className="text-white font-medium">Religion:</span> {bioData.family.religion}</li>
+                            <li><span className="text-white font-medium">Mother Tongue 🗣️:</span> {bioData.family.motherTongue}</li>
+                            <li><span className="text-white font-medium">Languages 🌐:</span> {bioData.family.languages.join(", ")}</li>
+                        </ul>
+                    </div>
+
+                    <div className="p-6 bg-dark-900 rounded-2xl border border-dark-700 card-hover">
+                        <h3 className="text-lg font-bold mb-4">🏡 Address</h3>
+                        <ul className="space-y-3 text-dark-300">
+                            <li><span className="text-white font-medium">Permanent Address:</span> {bioData.family.permanent}</li>
+                            <li><span className="text-white font-medium">Current Address:</span> {bioData.family.current}</li>
+                            <li><span className="text-white font-medium">Settlement:</span> {bioData.family.settlement}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="lg:col-span-2">
+                    <h3 className="text-xl font-bold mb-6">👨‍👩‍👦 Family Members</h3>
+
+                    <div className="space-y-4">
+                        {bioData.family.members.map((member, i) => (
+                            <div key={i} className={`flex items-center gap-6 p-6 bg-dark-900 rounded-2xl border card-hover ${member.role === 'Siblings' ? 'border-dashed border-dark-600' : 'border-dark-700'}`}>
+                                <span className="text-5xl">{member.emoji}</span>
+                                <div>
+                                    <p className="text-sm text-dark-500 uppercase tracking-wide">{member.role}</p>
+                                    <p className="text-xl font-bold">{member.name}</p>
+                                    <p className="text-dark-400">{member.detail}</p>
+                                    {member.badge && (
+                                        <span className="inline-block mt-2 px-3 py-1 gradient-bg rounded-full text-xs font-medium gradient-btn-text">
+                                            {member.badge}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// HOBBIES SECTION - 🎨 HOBBIES & INTERESTS
+// ============================================
+const Hobbies = () => (
+    <section id="hobbies" className="py-24">
+        <div className="max-w-5xl mx-auto px-6">
+            <SectionHeader emoji="🎨" tag="Beyond Work" title="Hobbies & Interests" />
+
+            <div className="space-y-10">
+                {/* Sports */}
+                <div>
+                    <h3 className="text-xl font-bold mb-4">🏆 Sports (❤️)</h3>
+                    <div className="flex flex-wrap gap-3">
+                        {bioData.hobbies.sports.map((sport, i) => (
+                            <span key={i} className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default hover:scale-110 text-lg">
+                                {sport.emoji} {sport.name}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Music */}
+                <div>
+                    <h3 className="text-xl font-bold mb-4">{bioData.hobbies.music.emoji} Music</h3>
+                    <div className="flex flex-wrap gap-3">
+                        {bioData.hobbies.music.genres.map((genre, i) => (
+                            <span key={i} className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default hover:scale-110">
+                                {genre}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Others */}
+                <div>
+                    <h3 className="text-xl font-bold mb-4">🎬 Entertainment & More</h3>
+                    <div className="flex flex-wrap gap-3">
+                        <span className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default hover:scale-110">
+                            {bioData.hobbies.travelling.emoji} Travelling - {bioData.hobbies.travelling.detail}
+                        </span>
+                        <span className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default hover:scale-110">
+                            {bioData.hobbies.movies.emoji} Movies - {bioData.hobbies.movies.detail}
+                        </span>
+                        <span className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default hover:scale-110">
+                            {bioData.hobbies.others.emoji} {bioData.hobbies.others.detail}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// PREFERENCES SECTION - 💍 PARTNER PREFERENCES
+// ============================================
+const Preferences = () => (
+    <section id="preferences" className="py-24 bg-dark-800">
+        <div className="max-w-7xl mx-auto px-6">
+            <SectionHeader emoji="💍" tag="Looking For" title="Partner Preferences" />
+
+            <p className="text-center text-dark-300 text-xl max-w-2xl mx-auto mb-8">
+                {bioData.preferenceIntro}
+            </p>
+
+            {/* Mindset Section - Highlighted */}
+            <div className="mb-12 p-8 bg-dark-900 rounded-2xl border-2 border-yellow-500/30 card-hover max-w-3xl mx-auto">
+                <div className="text-center">
+                    <span className="text-5xl mb-4 block">💡</span>
+                    <h3 className="text-2xl font-bold mb-4 gradient-text">Mindset 🤝</h3>
+                    <p className="text-dark-300 text-lg">
+                        💪 Self-confident and 🙏 self-respecting; someone who doesn't require external validation ✨
+                    </p>
+                </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {bioData.preferences.map((pref, i) => (
+                    <div key={i} className="p-6 bg-dark-900 rounded-2xl border border-dark-700 text-center card-hover">
+                        <span className="text-4xl mb-4 block">{pref.emoji}</span>
+                        <h3 className="text-lg font-bold mb-2">{pref.title}</h3>
+                        <p className="text-dark-400 text-sm">{pref.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// GALLERY SECTION - 📸 PHOTO ALBUM
+// ============================================
+const Gallery = () => {
+    const [lightbox, setLightbox] = React.useState(null);
+
+    return (
+        <section id="gallery" className="py-24">
+            <div className="max-w-7xl mx-auto px-6">
+                <SectionHeader
+                    emoji="📸"
+                    tag="Photo Album"
+                    title="Gallery"
+                    subtitle={`"${bioData.galleryQuote}"`}
+                />
+
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    {bioData.gallery.map((img, i) => (
+                        <div
+                            key={i}
+                            className="gallery-item aspect-[4/5] rounded-2xl overflow-hidden border-2 border-dark-700 hover:border-yellow-500/50 transition-all cursor-pointer hover:shadow-lg hover:shadow-yellow-500/20"
+                            onClick={() => setLightbox(img)}
+                        >
+                            <img src={img} alt={`Photo ${i+1}`} className="gallery-img" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Lightbox */}
+            <div className={`lightbox ${lightbox ? 'active' : ''}`} onClick={() => setLightbox(null)}>
+                {lightbox && <img src={lightbox} alt="Full size" />}
+                <button className="absolute top-6 right-6 text-white p-2 hover:text-red-400 transition-colors text-3xl" onClick={() => setLightbox(null)}>
+                    ✖️
+                </button>
+            </div>
+        </section>
+    );
+};
+
+// ============================================
+// CONTACT SECTION
+// ============================================
+const Contact = () => {
+    const contacts = [
+        { emoji: bioData.contact.instagram.emoji, title: "Instagram", value: `@${bioData.contact.instagram.handle}`, link: `https://instagram.com/${bioData.contact.instagram.handle}` },
+        { emoji: bioData.contact.linkedin.emoji, title: "LinkedIn", value: `linkedin.com/in/${bioData.contact.linkedin.handle}`, link: `https://linkedin.com/in/${bioData.contact.linkedin.handle}` },
+        { emoji: bioData.contact.location.emoji, title: "Location", value: bioData.contact.location.value }
+    ];
+
+    return (
+        <section id="contact" className="py-24 bg-dark-800">
+            <div className="max-w-5xl mx-auto px-6">
+                <SectionHeader emoji="📞" tag="Get in Touch" title="Contact" />
+
+                <div className="grid md:grid-cols-3 gap-6">
+                    {contacts.map((contact, i) => (
+                        <div key={i} className="p-8 bg-dark-900 rounded-2xl border border-dark-700 text-center card-hover">
+                            <span className="text-5xl mb-4 block">{contact.emoji}</span>
+                            <h3 className="text-lg font-bold mb-2">{contact.title}</h3>
+                            {contact.link ? (
+                                <a href={contact.link} target="_blank" className="text-white hover:text-yellow-400 hover:underline transition-colors">
+                                    {contact.value}
+                                </a>
+                            ) : (
+                                <p className="text-white">{contact.value}</p>
+                            )}
+                        </div>
+                    ))}
+                </div>
+
+                {/* Additional Contact Note */}
+                <div className="mt-10 p-6 bg-dark-900/50 rounded-2xl border border-dark-700 text-center">
+                    <p className="text-dark-300 text-lg">
+                        📱 Feel free to contact via any other medium (phone, email, etc.) you want, besides these.
+                    </p>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+// ============================================
+// FOOTER
+// ============================================
+const Footer = () => {
+    return (
+        <footer className="py-10 border-t border-dark-700">
+            <div className="max-w-7xl mx-auto px-6 text-center space-y-4">
+                {/* Hit Counter */}
+                <HitCounter />
+
+                <p className="text-dark-500">Last Updated: 22-01-2026</p>
+                <p className="text-2xl flex items-center justify-center gap-2">
+                    Made with <span className="animate-heartbeat text-red-500 text-3xl">❤️</span>
+                </p>
+                <p className="text-dark-500 text-sm mt-4">
+                    🌐 Best viewed on: Chrome 90+ | Firefox 88+ | Edge 90+ | Safari 14+
+                </p>
+            </div>
+        </footer>
+    );
+};
+
+// ============================================
+// MAIN APP
+// ============================================
+const App = () => (
+    <>
+        <Navbar />
+        <Hero />
+        <About />
+        <Career />
+        <Family />
+        <Hobbies />
+        <Preferences />
+        <Gallery />
+        <Contact />
+        <Footer />
+    </>
+);
+
+// Render
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+    </script>
+</body>
+</html>

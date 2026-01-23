@@ -51,18 +51,6 @@
                             800: '#854d0e',
                             900: '#713f12',
                         },
-                        success: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            300: '#86efac',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                        },
                         dark: {
                             50: '#f8fafc',
                             100: '#f1f5f9',
@@ -97,7 +85,7 @@
         }
 
         /* Performance optimizations */
-        .orb, .floating-emoji, .toran-piece, .confetti, .sparkle, .heart-burst, .floating-heart {
+        .floating-emoji, .confetti, .sparkle, .heart-burst, .floating-heart {
             will-change: transform;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
@@ -108,36 +96,15 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0a0a15 0%, #1a0a20 25%, #0f172a 50%, #0a1a1a 75%, #150a15 100%);
-            background-attachment: fixed;
-            animation: bg-color-shift 15s ease-in-out infinite;
-        }
-
-        @keyframes bg-color-shift {
-            0%, 100% { background: linear-gradient(135deg, #0a0a15 0%, #1a0a20 25%, #0f172a 50%, #0a1a1a 75%, #150a15 100%); }
-            25% { background: linear-gradient(135deg, #150a15 0%, #0a1520 25%, #1a0a1a 50%, #0a0a20 75%, #0f1520 100%); }
-            50% { background: linear-gradient(135deg, #0a1015 0%, #150a1a 25%, #0a1a20 50%, #1a0f15 75%, #0a1520 100%); }
-            75% { background: linear-gradient(135deg, #1a0a15 0%, #0a1a15 25%, #150a20 50%, #0a1520 75%, #1a1010 100%); }
-        }
-
-        /* Grid pattern overlay - disabled for cleaner look */
-        .grid-pattern {
-            /* background removed for seamless appearance */
+            background: #000000;
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #ef4444 0%, #facc15 50%, #22c55e 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ffffff;
         }
 
         .gradient-bg {
-            background: linear-gradient(135deg, #ef4444 0%, #facc15 50%, #22c55e 100%);
-        }
-
-        .gradient-bg-alt {
-            background: linear-gradient(135deg, #22c55e 0%, #facc15 50%, #ef4444 100%);
+            background: #DC2626;
         }
 
         /* Enhanced Glassmorphism */
@@ -164,134 +131,21 @@
         .glass-card:hover {
             transform: translateY(-10px) rotateX(2deg) rotateY(-2deg);
             box-shadow:
-                0 20px 40px rgba(239, 68, 68, 0.15),
+                0 20px 40px rgba(250, 204, 21, 0.15),
                 0 0 30px rgba(250, 204, 21, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.15);
             border-color: rgba(250, 204, 21, 0.3);
         }
 
         /* Neon glow effects */
-        .neon-red { box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.3), 0 0 60px rgba(239, 68, 68, 0.1); }
-        .neon-yellow { box-shadow: 0 0 20px rgba(250, 204, 21, 0.5), 0 0 40px rgba(250, 204, 21, 0.3), 0 0 60px rgba(250, 204, 21, 0.1); }
-        .neon-green { box-shadow: 0 0 20px rgba(34, 197, 94, 0.5), 0 0 40px rgba(34, 197, 94, 0.3), 0 0 60px rgba(34, 197, 94, 0.1); }
+        .neon-red { box-shadow: 0 0 20px rgba(250, 204, 21, 0.5), 0 0 40px rgba(250, 204, 21, 0.3), 0 0 60px rgba(250, 204, 21, 0.1); }
 
         .glow {
-            box-shadow: 0 0 40px rgba(239, 68, 68, 0.3), 0 0 60px rgba(250, 204, 21, 0.2);
-        }
-
-        .glow-green {
-            box-shadow: 0 0 30px rgba(34, 197, 94, 0.4);
+            box-shadow: 0 0 40px rgba(250, 204, 21, 0.3), 0 0 60px rgba(250, 204, 21, 0.2);
         }
 
         .glow-text {
-            text-shadow: 0 0 20px rgba(250, 204, 21, 0.5), 0 0 40px rgba(239, 68, 68, 0.3);
-        }
-
-        /* Floating orbs - more vibrant */
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.5;
-            animation: orbFloat 10s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        .orb-red { background: rgba(239, 68, 68, 0.6); }
-        .orb-yellow { background: rgba(250, 204, 21, 0.5); }
-        .orb-green { background: rgba(34, 197, 94, 0.5); }
-        .orb-pink { background: rgba(236, 72, 153, 0.5); }
-        .orb-purple { background: rgba(168, 85, 247, 0.4); }
-        .orb-orange { background: rgba(251, 146, 60, 0.5); }
-
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -40px) scale(1.1); }
-            50% { transform: translate(-20px, -20px) scale(0.9); }
-            75% { transform: translate(40px, 30px) scale(1.05); }
-        }
-
-        @keyframes orbPulse {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.2); }
-        }
-
-        /* Animated color wave overlay */
-        .color-wave {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            background:
-                radial-gradient(ellipse at 20% 30%, rgba(239, 68, 68, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(250, 204, 21, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 80%, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 10% 70%, rgba(236, 72, 153, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 90% 60%, rgba(168, 85, 247, 0.06) 0%, transparent 50%);
-            animation: colorWaveMove 20s ease-in-out infinite;
-        }
-
-        @keyframes colorWaveMove {
-            0%, 100% {
-                background-position: 0% 0%, 100% 0%, 50% 100%, 0% 50%, 100% 50%;
-            }
-            25% {
-                background-position: 50% 20%, 80% 50%, 20% 80%, 30% 70%, 70% 30%;
-            }
-            50% {
-                background-position: 100% 50%, 0% 100%, 80% 20%, 60% 10%, 40% 90%;
-            }
-            75% {
-                background-position: 30% 80%, 50% 30%, 100% 60%, 90% 40%, 10% 70%;
-            }
-        }
-
-        /* Aurora effect - Soft Rose, Gold & Blush */
-        .aurora {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 60vh;
-            pointer-events: none;
-            z-index: 0;
-            background: linear-gradient(180deg,
-                rgba(251, 191, 36, 0.1) 0%,
-                rgba(253, 224, 182, 0.08) 20%,
-                rgba(251, 207, 172, 0.06) 40%,
-                rgba(252, 182, 159, 0.04) 60%,
-                transparent 100%);
-            animation: auroraShift 15s ease-in-out infinite;
-        }
-
-        @keyframes auroraShift {
-            0%, 100% {
-                opacity: 0.8;
-                transform: translateY(0);
-                background: linear-gradient(180deg,
-                    rgba(251, 191, 36, 0.1) 0%,
-                    rgba(253, 224, 182, 0.08) 25%,
-                    rgba(252, 182, 159, 0.05) 50%,
-                    transparent 100%);
-            }
-            33% {
-                opacity: 1;
-                transform: translateY(-5px);
-                background: linear-gradient(180deg,
-                    rgba(253, 224, 182, 0.1) 0%,
-                    rgba(251, 191, 36, 0.08) 25%,
-                    rgba(255, 192, 203, 0.05) 50%,
-                    transparent 100%);
-            }
-            66% {
-                opacity: 0.9;
-                transform: translateY(-10px);
-                background: linear-gradient(180deg,
-                    rgba(255, 218, 185, 0.1) 0%,
-                    rgba(255, 192, 203, 0.07) 25%,
-                    rgba(251, 191, 36, 0.05) 50%,
-                    transparent 100%);
-            }
+            text-shadow: 0 0 20px rgba(250, 204, 21, 0.5), 0 0 40px rgba(250, 204, 21, 0.3);
         }
 
         /* Card hover with 3D */
@@ -302,7 +156,7 @@
 
         .card-hover:hover {
             transform: translateY(-8px) rotateX(2deg) rotateY(-1deg) scale(1.02);
-            box-shadow: 0 25px 50px rgba(239, 68, 68, 0.15), 0 0 30px rgba(250, 204, 21, 0.1);
+            box-shadow: 0 25px 50px rgba(250, 204, 21, 0.15), 0 0 30px rgba(250, 204, 21, 0.1);
             border-color: rgba(250, 204, 21, 0.5);
         }
 
@@ -319,7 +173,7 @@
             inset: 0;
             border-radius: 20px;
             padding: 1px;
-            background: linear-gradient(135deg, #ef4444, #facc15, #22c55e);
+            background: #DC2626;
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
@@ -397,8 +251,8 @@
         }
 
         @keyframes glow-pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.4), 0 0 40px rgba(250, 204, 21, 0.2); }
-            50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.6), 0 0 60px rgba(250, 204, 21, 0.4), 0 0 80px rgba(34, 197, 94, 0.3); }
+            0%, 100% { box-shadow: 0 0 20px rgba(250, 204, 21, 0.4), 0 0 40px rgba(250, 204, 21, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(250, 204, 21, 0.6), 0 0 60px rgba(250, 204, 21, 0.4); }
         }
 
         @keyframes glow-gold {
@@ -471,7 +325,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, #ef4444, #facc15, #22c55e);
+            background: #DC2626;
             box-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
             border-radius: 3px;
         }
@@ -490,7 +344,7 @@
         }
 
         .timeline-item:hover .timeline-dot {
-            background: linear-gradient(135deg, #facc15, #ef4444);
+            background: #DC2626;
             box-shadow: 0 0 25px #facc15, 0 0 50px rgba(250, 204, 21, 0.5);
             transform: scale(1.4);
         }
@@ -515,7 +369,7 @@
             inset: 0;
             border-radius: 16px;
             padding: 2px;
-            background: linear-gradient(135deg, #ef4444, #facc15, #22c55e);
+            background: #DC2626;
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
@@ -540,7 +394,7 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #ef4444, #facc15, #22c55e);
+            background: #DC2626;
             border-radius: 4px;
             box-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
         }
@@ -570,14 +424,14 @@
             border-radius: 16px;
             animation: slideInScale 0.4s ease;
             box-shadow: 0 0 60px rgba(250, 204, 21, 0.3);
-            border: 2px solid rgba(250, 204, 21, 0.3);
+            border: 2px solid rgba(220, 38, 38, 0.3);
         }
 
         .hit-counter {
             font-family: 'Courier New', monospace;
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(250, 204, 21, 0.15), rgba(34, 197, 94, 0.15));
+            background: rgba(220, 38, 38, 0.15);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(250, 204, 21, 0.3);
+            border: 1px solid rgba(220, 38, 38, 0.3);
             padding: 10px 20px;
             border-radius: 12px;
             box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
@@ -585,22 +439,22 @@
 
         /* Gradient button text styling */
         .gradient-btn-text {
-            color: #1a1a2e;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             font-weight: 700;
         }
 
         /* Neon tag */
         .neon-tag {
-            background: rgba(250, 204, 21, 0.1);
-            border: 1px solid rgba(250, 204, 21, 0.3);
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
             transition: all 0.3s ease;
         }
 
         .neon-tag:hover {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(250, 204, 21, 0.2), rgba(34, 197, 94, 0.2));
+            background: rgba(220, 38, 38, 0.2);
             box-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
-            border-color: rgba(250, 204, 21, 0.6);
+            border-color: rgba(220, 38, 38, 0.6);
             transform: translateY(-3px) scale(1.05);
         }
 
@@ -744,16 +598,9 @@
             position: absolute;
             inset: -4px;
             border-radius: 20px;
-            background: linear-gradient(45deg, #ef4444, #facc15, #22c55e, #3b82f6, #a855f7, #ef4444);
-            background-size: 400% 400%;
-            animation: rainbow-border 3s linear infinite;
+            background: #DC2626;
+            box-shadow: 0 0 20px rgba(250, 204, 21, 0.6);
             z-index: -1;
-        }
-
-        @keyframes rainbow-border {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         /* ============================================ */
@@ -765,48 +612,16 @@
             cursor: none !important;
         }
 
-        /* ============================================ */
-        /* INDIAN DESIGN ELEMENTS */
-        /* ============================================ */
-
-
-        /* Navbar dark gold tint background */
+        /* Navbar background */
         .navbar-gold {
             background: linear-gradient(135deg,
                 rgba(15, 15, 25, 0.97) 0%,
-                rgba(25, 20, 15, 0.97) 50%,
+                rgba(25, 15, 15, 0.97) 50%,
                 rgba(15, 15, 25, 0.97) 100%);
             box-shadow:
                 0 4px 20px rgba(0, 0, 0, 0.3),
-                inset 0 -1px 0 rgba(250, 204, 21, 0.15),
-                inset 0 1px 0 rgba(250, 204, 21, 0.1);
-        }
-
-        /* Rangoli pattern for navbar background */
-        .rangoli-bg {
-            background-image:
-                radial-gradient(circle at 10% 50%, rgba(250, 204, 21, 0.08) 0%, transparent 25%),
-                radial-gradient(circle at 90% 50%, rgba(250, 204, 21, 0.08) 0%, transparent 25%),
-                radial-gradient(circle at 50% 50%, rgba(250, 204, 21, 0.05) 0%, transparent 40%);
-        }
-
-        /* Marigold garland effect */
-        .marigold {
-            display: inline-block;
-            color: #f59e0b;
-            text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
-            animation: marigoldBob 2s ease-in-out infinite;
-        }
-
-        .marigold:nth-child(even) {
-            color: #ef4444;
-            text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
-            animation-delay: 0.3s;
-        }
-
-        @keyframes marigoldBob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
+                inset 0 -1px 0 rgba(220, 38, 38, 0.15),
+                inset 0 1px 0 rgba(220, 38, 38, 0.1);
         }
 
         /* Custom emoji cursor - highest z-index */
@@ -896,14 +711,9 @@
             transform: translate(-50%, -50%);
             transition: transform 0.05s ease-out;
         }
-
-        /* Magnetic element effect */
-        .magnetic {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
     </style>
 </head>
-<body class="bg-dark-900 text-white font-sans grid-pattern">
+<body class="bg-dark-900 text-white font-sans">
     <div id="root"></div>
 
     <!-- React -->
@@ -917,8 +727,7 @@
 // ============================================
 const bioData = {
     name: "Sumit",
-    tagline: "I AM ME",
-    personalEssence: "I am a grounded 🌳, open-minded 🌐, cheerful 😊, self-driven 🚀 individual who balances a high-performance professional life 💼 with a deep passion for sports 🏆 and fitness 💪. A proud IIT Bombay 🎓 alumnus and AIR 47 🏅 holder, I value authenticity ✨ and intellectual depth 🧠. I am deeply connected to my Haryanvi roots 🌾 and am committed to building a life and career within India 🇮🇳, with no intention of settling abroad.",
+    personalEssence: "I am a grounded 🌳, open-minded 🌐, cheerful 😊, self-driven 🚀 individual who balances a high-performance professional life with a deep passion for sports and fitness. A proud IIT Bombay alumnus and AIR 47 holder, I value authenticity ✨ and intellectual depth 🧠. I am deeply connected to my Haryanvi roots and am committed to building a life and career within India 🇮🇳, with no intention of settling abroad.",
     highlights: [
         { emoji: "🎓", text: "CSE IIT Bombay" },
         { emoji: "🏅", text: "AIR 47 JEE Advanced" },
@@ -976,11 +785,6 @@ const bioData = {
             future: true
         }
     ],
-    workDetails: {
-        location: "📍 Bangalore, Karnataka (Preferred for the future)",
-        linkedin: "🔗 linkedin.com/in/sumit-12890b171",
-        income: "💰 Available to discuss in person (NOT the one who got 1cr package, btw. 😊)"
-    },
     family: {
         religion: "Hindu 🕉️",
         motherTongue: "Haryanvi",
@@ -1007,7 +811,7 @@ const bioData = {
                 emoji: "🏠",
                 role: "Siblings",
                 name: "None (Only Child)",
-                detail: "All the love and attention!"
+                detail: ""
             }
         ]
     },
@@ -1024,12 +828,9 @@ const bioData = {
             { emoji: "🏓", name: "Table Tennis" },
             { emoji: "🏐", name: "Volleyball" }
         ],
-        music: {
-            emoji: "🎶",
-            genres: ["Majorly Punjabi Music", "Hindi", "Haryanvi", "English"]
-        },
+        music: { emoji: "🎶" },
         travelling: { emoji: "✈️", detail: "Enthusiast" },
-        movies: { emoji: "🎬", detail: "Enjoy watching various genres. Languages – Hindi, English, Punjabi" },
+        movies: { emoji: "🎬" },
         others: { emoji: "🗺️", detail: "Geopolitics" }
     },
     preferences: [
@@ -1054,6 +855,11 @@ const bioData = {
             desc: "No"
         },
         {
+            emoji: "🍽️",
+            title: "Diet",
+            desc: "Any"
+        },
+        {
             emoji: "📏",
             title: "Physical Status",
             desc: "Normal; Preferred height >= 5' 4\""
@@ -1069,16 +875,11 @@ const bioData = {
             desc: "Not interested at all"
         }
     ],
-    preferenceIntro: "Seeking a partner 💑 with similar thoughts 💭, priorities 📌, goals 🎯 and mindset 🤝",
+    preferenceIntro: "Seeking a partner with similar thoughts 💭, priorities 📌, goals 🎯 and mindset 🤝",
     contact: {
         instagram: { handle: "jakharsumit2025", logo: "images/instagramLogo.png" },
         linkedin: { handle: "sumit-12890b171", logo: "images/linkedinLogo.png" },
-        location: { value: "Mahadevpura, Bangalore, Karnataka", emoji: "📍" },
-        jeevansathi: { handle: "TYAX4445", label: "Jeevansathi.com", logo: "images/jeevansathiLogo.jpeg" },
-        iitiimshaadi: { handle: "IIS4188641", label: "IITIIMShaadi", logo: "images/iitiimshaadiLogo.jpg" },
-        iimiitmatrimony: { handle: "IIM330026", label: "IIMIITMatrimony", logo: "images/iimiitmatrimonyLogo.svg" },
-        bumble: { label: "Bumble", logo: "images/bumbleLogo.png" },
-        hinge: { label: "Hinge", logo: "images/hingeLogo.jpg" }
+        location: { value: "Mahadevpura, Bangalore, Karnataka", emoji: "📍" }
     },
     profilePhoto: "images/IMG_20220710_200139.jpg",
     gallery: [
@@ -1102,15 +903,7 @@ const bioData = {
         { trait: "Mature", emoji: "🌳" },
         { trait: "Amicable", emoji: "😊" },
         { trait: "Empathetic", emoji: "💗" },
-        { trait: "Compassionate", emoji: "💕" },
-        { trait: "Introvert", emoji: "🤫" },
-        { trait: "Reserved", emoji: "🔒" },
-        { trait: "Reading People", emoji: "👁️" },
-        { trait: "Far-sighted", emoji: "🔭" },
-        { trait: "Pragmatic", emoji: "⚖️" },
-        { trait: "Energetic", emoji: "⚡" },
-        { trait: "Kind Hearted", emoji: "❤️" },
-        { trait: "Detail Oriented", emoji: "🔍" }
+        { trait: "Energetic", emoji: "⚡" }
     ]
 };
 
@@ -1157,37 +950,11 @@ const HitCounter = () => {
 };
 
 // ============================================
-// FLOATING ORBS - 3D Background Elements
-// ============================================
-const FloatingOrbs = React.memo(() => (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0" style={{contain: 'layout style'}}>
-        {/* Large orbs */}
-        <div className="orb orb-red w-96 h-96 -top-48 -left-48" style={{animationDelay: '0s', willChange: 'transform'}}></div>
-        <div className="orb orb-yellow w-80 h-80 top-1/4 -right-40" style={{animationDelay: '2s', willChange: 'transform'}}></div>
-        <div className="orb orb-green w-72 h-72 bottom-1/4 left-1/4" style={{animationDelay: '4s', willChange: 'transform'}}></div>
-        <div className="orb orb-pink w-64 h-64 -bottom-32 right-1/3" style={{animationDelay: '1s', willChange: 'transform'}}></div>
-        {/* Medium orbs */}
-        <div className="orb orb-orange w-48 h-48 top-3/4 right-1/4" style={{animationDelay: '1.5s', willChange: 'transform'}}></div>
-        <div className="orb orb-purple w-40 h-40 top-1/3 right-10" style={{animationDelay: '0.5s', willChange: 'transform'}}></div>
-    </div>
-));
-
-// Color wave background effect (memoized)
-const ColorWave = React.memo(() => (
-    <div className="color-wave" style={{willChange: 'background-position'}}></div>
-));
-
-// Aurora effect at top (memoized)
-const Aurora = React.memo(() => (
-    <div className="aurora" style={{willChange: 'opacity, transform'}}></div>
-));
-
-// ============================================
 // CONFETTI EFFECT
 // ============================================
 const Confetti = () => {
     const [confetti, setConfetti] = React.useState([]);
-    const colors = React.useMemo(() => ['#ef4444', '#f472b6', '#fbbf24', '#ff6b6b', '#ff85a2'], []);
+    const colors = React.useMemo(() => ['#DC2626', '#b91c1c', '#ef4444', '#991b1b', '#f87171'], []);
     const shapes = React.useMemo(() => ['❤️', '💕', '💗', '💖', '💘', '💝', '💞', '💍', '🥰', '😍', '💑', '🌹', '🎊', '✨'], []);
 
     React.useEffect(() => {
@@ -1255,7 +1022,6 @@ const Confetti = () => {
 // ============================================
 const EmojiCursor = () => {
     const [position, setPosition] = React.useState({ x: 0, y: 0 });
-    const [isHovering, setIsHovering] = React.useState(false);
     const [isVisible, setIsVisible] = React.useState(false);
 
     React.useEffect(() => {
@@ -1267,25 +1033,12 @@ const EmojiCursor = () => {
         const handleMouseEnter = () => setIsVisible(true);
         const handleMouseLeave = () => setIsVisible(false);
 
-        const handleHoverCheck = (e) => {
-            const target = e.target;
-            const isClickable = target.tagName === 'A' ||
-                               target.tagName === 'BUTTON' ||
-                               target.closest('a') ||
-                               target.closest('button') ||
-                               target.classList.contains('cursor-pointer') ||
-                               target.onclick;
-            setIsHovering(isClickable);
-        };
-
         window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('mouseover', handleHoverCheck);
         document.addEventListener('mouseenter', handleMouseEnter);
         document.addEventListener('mouseleave', handleMouseLeave);
 
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('mouseover', handleHoverCheck);
             document.removeEventListener('mouseenter', handleMouseEnter);
             document.removeEventListener('mouseleave', handleMouseLeave);
         };
@@ -1299,11 +1052,11 @@ const EmojiCursor = () => {
             style={{
                 left: position.x,
                 top: position.y,
-                transform: `translate(-50%, -50%) scale(${isHovering ? 0.85 : 1})`,
-                fontSize: isHovering ? '18px' : '20px'
+                transform: 'translate(-50%, -50%)',
+                fontSize: '20px'
             }}
         >
-            {isHovering ? '💍' : '❤️'}
+            ❤️
         </div>
     );
 };
@@ -1465,59 +1218,6 @@ const CursorEffects = () => {
     );
 };
 
-// Magnetic Button Component
-const MagneticButton = ({ children, className, href, onClick }) => {
-    const ref = React.useRef(null);
-    const [transform, setTransform] = React.useState({ x: 0, y: 0 });
-
-    const handleMouseMove = (e) => {
-        const rect = ref.current.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const distX = (e.clientX - centerX) * 0.4;
-        const distY = (e.clientY - centerY) * 0.4;
-        setTransform({ x: distX, y: distY });
-    };
-
-    const handleMouseLeave = () => {
-        setTransform({ x: 0, y: 0 });
-    };
-
-    const style = {
-        transform: `translate(${transform.x}px, ${transform.y}px)`,
-        transition: 'transform 0.2s ease-out'
-    };
-
-    if (href) {
-        return (
-            <a
-                ref={ref}
-                href={href}
-                className={className}
-                style={style}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                onClick={onClick}
-            >
-                {children}
-            </a>
-        );
-    }
-
-    return (
-        <button
-            ref={ref}
-            className={className}
-            style={style}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            onClick={onClick}
-        >
-            {children}
-        </button>
-    );
-};
-
 // ============================================
 // FLOATING EMOJIS - GLOBAL
 // ============================================
@@ -1573,7 +1273,7 @@ const Navbar = () => {
     const links = ["Home", "More Qualities", "About", "Career", "Family", "Hobbies", "Preferences", "Gallery", "Contact"];
 
     return (
-        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 navbar-gold rangoli-bg ${scrolled ? 'backdrop-blur-lg' : ''}`}>
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 navbar-gold ${scrolled ? 'backdrop-blur-lg' : ''}`}>
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 {/* Logo with rose */}
                 <div className="flex items-center gap-2">
@@ -1592,9 +1292,9 @@ const Navbar = () => {
                         </li>
                     ))}
                     <li className="animate-fadeInDown" style={{animationDelay: '0.8s'}}>
-                        <MagneticButton href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" className="px-4 py-2 gradient-bg rounded-full text-sm font-semibold gradient-btn-text hover:scale-105 transition-transform">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" className="px-4 py-2 gradient-bg rounded-full text-sm font-semibold gradient-btn-text hover:scale-105 transition-transform">
                             📝 Feedback
-                        </MagneticButton>
+                        </a>
                     </li>
                 </ul>
 
@@ -1634,18 +1334,13 @@ const Hero = () => (
         <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1 text-center lg:text-left">
                 <span className="inline-block px-6 py-3 glass-card rounded-full text-sm tracking-widest uppercase mb-8 animate-fadeInDown animate-neon shimmer">
-                    🤵 MATRIMONIAL BIODATA
+                      MATRIMONIAL BIODATA
                 </span>
 
                 <h1 className="mb-6">
                     <span className="block text-dark-400 text-xl mb-2 animate-fadeInLeft delay-100">🌟 PERSONAL ESSENCE</span>
                     <span className="block font-display text-6xl lg:text-8xl font-bold gradient-text glow-text animate-fadeInUp delay-200 hover:rainbow-text transition-all cursor-default">{bioData.name}</span>
                 </h1>
-
-                <p className="font-display text-2xl lg:text-3xl text-yellow-400 italic mb-6 animate-fadeInUp delay-300 animate-pulse-slow glow-text">
-                    "{bioData.tagline}"
-                </p>
-
                 <p className="text-dark-300 text-lg max-w-2xl mx-auto lg:mx-0 mb-10 animate-fadeInUp delay-400 leading-relaxed font-description">
                     {bioData.personalEssence}
                 </p>
@@ -1659,9 +1354,9 @@ const Hero = () => (
                     ))}
                 </div>
 
-                <MagneticButton href="#about" className="inline-flex items-center gap-3 px-8 py-4 gradient-bg rounded-full font-semibold animate-glow hover:scale-110 transition-transform animate-fadeInUp delay-600 gradient-btn-text shimmer">
+                <a href="#about" className="inline-flex items-center gap-3 px-8 py-4 gradient-bg rounded-full font-semibold animate-glow hover:scale-110 transition-transform animate-fadeInUp delay-600 gradient-btn-text shimmer">
                     Know More ⬇️
-                </MagneticButton>
+                </a>
             </div>
 
             <div className="flex-shrink-0 animate-float">
@@ -1678,7 +1373,7 @@ const Hero = () => (
 // ============================================
 const SectionHeader = ({ emoji, tag, title, subtitle }) => (
     <div className="text-center mb-16">
-        <span className="inline-block px-6 py-2.5 gradient-bg rounded-full text-sm tracking-widest uppercase mb-6 animate-slideInScale gradient-btn-text neon-yellow shimmer">
+        <span className="inline-block px-6 py-2.5 gradient-bg rounded-full text-sm tracking-widest uppercase mb-6 animate-slideInScale gradient-btn-text shimmer">
             {emoji} {tag}
         </span>
         <h2 className="font-display text-4xl lg:text-5xl font-bold gradient-text glow-text mb-4">{title}</h2>
@@ -1690,21 +1385,21 @@ const SectionHeader = ({ emoji, tag, title, subtitle }) => (
 // ABOUT SECTION - 📋 BASIC DETAILS & LIFESTYLE
 // ============================================
 const About = () => (
-    <section id="about" className="py-24 relative z-10">
+    <section id="about" className="py-16 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
             <SectionHeader emoji="📋" tag="Get to Know Me" title="Basic Details & Lifestyle" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {bioData.basics.map((item, i) => (
-                    <div key={i} className="p-6 rounded-2xl border border-dark-700 bg-dark-900 card-fun">
-                        <div className="flex items-center gap-4">
-                            <span className="text-3xl card-emoji">{item.emoji}</span>
+                    <div key={i} className="p-4 rounded-2xl border border-dark-700 bg-dark-900 card-fun">
+                        <div className="flex items-center gap-3">
+                            <span className="text-2xl card-emoji">{item.emoji}</span>
                             <div>
-                                <p className="text-sm uppercase tracking-wide text-dark-500">{item.label}</p>
+                                <p className="text-xs uppercase tracking-wide text-dark-500">{item.label}</p>
                                 {item.link ? (
-                                    <a href={item.link} target="_blank" className="font-semibold text-lg text-white hover:text-yellow-400 hover:underline transition-colors">{item.value}</a>
+                                    <a href={item.link} target="_blank" className="font-semibold text-base text-white hover:text-yellow-400 hover:underline transition-colors">{item.value}</a>
                                 ) : (
-                                    <p className="font-semibold text-lg">{item.value}</p>
+                                    <p className="font-semibold text-base">{item.value}</p>
                                 )}
                             </div>
                         </div>
@@ -1719,19 +1414,19 @@ const About = () => (
 // QUALITIES SECTION - ✨ OTHER QUALITIES
 // ============================================
 const Qualities = () => (
-    <section id="more qualities" className="py-24 relative z-10">
+    <section id="more qualities" className="py-16 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
             <SectionHeader emoji="✨" tag="What Defines Me" title="More Qualities" subtitle="Traits that make me who I am 💫" />
 
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {bioData.qualities.map((item, i) => (
                     <div
                         key={i}
-                        className="px-6 py-4 rounded-2xl border border-dark-700 bg-dark-900 card-fun flex items-center gap-3 hover:border-yellow-500/50 transition-all"
+                        className="px-4 py-4 rounded-2xl border border-dark-700 bg-dark-900 card-fun flex items-center justify-center gap-3 hover:border-yellow-500/50 transition-all"
                         style={{animationDelay: `${i * 0.05}s`}}
                     >
                         <span className="text-2xl">{item.emoji}</span>
-                        <span className="font-semibold text-lg">{item.trait}</span>
+                        <span className="font-semibold text-base">{item.trait}</span>
                     </div>
                 ))}
             </div>
@@ -1743,7 +1438,7 @@ const Qualities = () => (
 // CAREER SECTION - 🎓 EDUCATION & CAREER
 // ============================================
 const Career = () => (
-    <section id="career" className="py-24 relative z-10">
+    <section id="career" className="py-16 relative z-10">
         <div className="max-w-4xl mx-auto px-6">
             <SectionHeader emoji="🎓" tag="Professional Journey" title="Education & Career" />
 
@@ -1752,10 +1447,10 @@ const Career = () => (
 
                 {bioData.career.map((item, i) => (
                     <div key={i} className={`timeline-item relative pl-12 pb-12 ${item.future ? 'opacity-70' : ''}`}>
-                        <div className={`timeline-dot ${item.active ? 'neon-green' : ''}`} style={{background: item.active ? 'linear-gradient(135deg, #22c55e, #facc15)' : ''}}></div>
+                        <div className={`timeline-dot ${item.active ? 'neon-red' : ''}`} style={{background: item.active ? '#DC2626' : ''}}></div>
 
                         <div className={`p-6 rounded-2xl glass-card ${item.future ? 'border-dashed' : ''}`}>
-                            <span className="inline-block px-4 py-1.5 gradient-bg rounded-full text-sm font-bold mb-4 gradient-btn-text neon-yellow">
+                            <span className="inline-block px-4 py-1.5 gradient-bg rounded-full text-sm font-bold mb-4 gradient-btn-text">
                                 {item.year}
                             </span>
                             <h3 className="text-2xl font-bold mb-2 text-white">{item.title}</h3>
@@ -1786,7 +1481,6 @@ const Career = () => (
                         <div>
                             <p className="text-sm uppercase tracking-wide text-yellow-400">Annual Income etc.</p>
                             <p className="font-semibold text-lg">Available to discuss in person</p>
-                            <p className="text-dark-400 text-sm">(NOT the one who got 1cr package, btw. 😊)</p>
                         </div>
                     </div>
                 </div>
@@ -1799,14 +1493,14 @@ const Career = () => (
 // FAMILY SECTION - 🏡 FAMILY & BACKGROUND
 // ============================================
 const Family = () => (
-    <section id="family" className="py-24 relative z-10">
+    <section id="family" className="py-16 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
             <SectionHeader emoji="🏡" tag="My Roots" title="Family & Background" />
 
             <div className="grid lg:grid-cols-3 gap-8">
                 <div className="space-y-6">
                     <div className="p-6 bg-dark-900 rounded-2xl border border-dark-700 card-hover">
-                        <h3 className="text-lg font-bold mb-4">🕉️ Religion & Language</h3>
+                        <h3 className="text-lg font-bold mb-4"> Religion & Language</h3>
                         <ul className="space-y-3 text-dark-300 font-description">
                             <li><span className="text-white font-medium">Religion:</span> {bioData.family.religion}</li>
                             <li><span className="text-white font-medium">Mother Tongue 🗣️:</span> {bioData.family.motherTongue}</li>
@@ -1854,7 +1548,7 @@ const Family = () => (
 // HOBBIES SECTION - 🎨 HOBBIES & INTERESTS
 // ============================================
 const Hobbies = () => (
-    <section id="hobbies" className="py-24 relative z-10">
+    <section id="hobbies" className="py-16 relative z-10">
         <div className="max-w-5xl mx-auto px-6">
             <SectionHeader emoji="🎨" tag="Beyond Work" title="Hobbies & Interests" />
 
@@ -1871,27 +1565,18 @@ const Hobbies = () => (
                     </div>
                 </div>
 
-                {/* Music */}
-                <div>
-                    <h3 className="text-xl font-bold mb-4">{bioData.hobbies.music.emoji} Music</h3>
-                    <div className="flex flex-wrap gap-3">
-                        {bioData.hobbies.music.genres.map((genre, i) => (
-                            <span key={i} className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default hover:scale-110">
-                                {genre}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-
                 {/* Others */}
                 <div>
                     <h3 className="text-xl font-bold mb-4">🎬 Entertainment & More</h3>
                     <div className="flex flex-wrap gap-3">
                         <span className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default hover:scale-110">
+                            {bioData.hobbies.music.emoji} Music
+                        </span>
+                        <span className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default hover:scale-110">
                             {bioData.hobbies.travelling.emoji} Travelling - {bioData.hobbies.travelling.detail}
                         </span>
                         <span className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default hover:scale-110">
-                            {bioData.hobbies.movies.emoji} Movies - {bioData.hobbies.movies.detail}
+                            {bioData.hobbies.movies.emoji} Movies/Series
                         </span>
                         <span className="px-5 py-3 bg-dark-800 rounded-full border border-dark-700 hover:gradient-bg hover:border-transparent transition-all cursor-default hover:scale-110">
                             {bioData.hobbies.others.emoji} {bioData.hobbies.others.detail}
@@ -1907,7 +1592,7 @@ const Hobbies = () => (
 // PREFERENCES SECTION - 💍 PARTNER PREFERENCES
 // ============================================
 const Preferences = () => (
-    <section id="preferences" className="py-24 relative z-10">
+    <section id="preferences" className="py-16 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
             <SectionHeader emoji="💍" tag="Looking For" title="Partner Preferences" />
 
@@ -1919,9 +1604,9 @@ const Preferences = () => (
             <div className="mb-12 p-8 bg-dark-900 rounded-2xl border-2 border-yellow-500/30 card-hover max-w-3xl mx-auto">
                 <div className="text-center">
                     <span className="text-5xl mb-4 block">💡</span>
-                    <h3 className="text-2xl font-bold mb-4 gradient-text">Mindset 🤝</h3>
+                    <h3 className="text-2xl font-bold mb-4 gradient-text">Mindset</h3>
                     <p className="text-dark-300 text-lg font-description">
-                        💪 Self-confident and 🙏 self-respecting; someone who doesn't require external validation ✨
+                        Self-confident and self-respecting; someone who doesn't require external validation ✨
                     </p>
                 </div>
             </div>
@@ -1946,7 +1631,7 @@ const Gallery = () => {
     const [lightbox, setLightbox] = React.useState(null);
 
     return (
-        <section id="gallery" className="py-24 relative z-10">
+        <section id="gallery" className="py-16 relative z-10">
             <div className="max-w-7xl mx-auto px-6">
                 <SectionHeader
                     emoji="📸"
@@ -1989,19 +1674,8 @@ const Contact = () => {
         { emoji: bioData.contact.location.emoji, title: "Location", value: bioData.contact.location.value }
     ];
 
-    const matrimonyContacts = [
-        { logo: bioData.contact.jeevansathi.logo, title: bioData.contact.jeevansathi.label, value: bioData.contact.jeevansathi.handle },
-        { logo: bioData.contact.iitiimshaadi.logo, title: bioData.contact.iitiimshaadi.label, value: bioData.contact.iitiimshaadi.handle },
-        { logo: bioData.contact.iimiitmatrimony.logo, title: bioData.contact.iimiitmatrimony.label, value: bioData.contact.iimiitmatrimony.handle }
-    ];
-
-    const datingApps = [
-        { logo: bioData.contact.bumble.logo, title: bioData.contact.bumble.label },
-        { logo: bioData.contact.hinge.logo, title: bioData.contact.hinge.label }
-    ];
-
     return (
-        <section id="contact" className="py-24 relative z-10">
+        <section id="contact" className="py-16 relative z-10">
             <div className="max-w-6xl mx-auto px-6">
                 <SectionHeader emoji="📞" tag="Get in Touch" title="Contact" />
 
@@ -2026,37 +1700,6 @@ const Contact = () => {
                     ))}
                 </div>
 
-                {/* Matrimony Websites */}
-                <h3 className="text-2xl font-bold text-center mb-6"><span>💒</span> <span className="gradient-text">Matrimony Profiles</span></h3>
-                <div className="grid md:grid-cols-3 gap-6 mb-10">
-                    {matrimonyContacts.map((contact, i) => (
-                        <div key={i} className="p-6 bg-dark-900 rounded-2xl border border-dark-700 text-center card-hover">
-                            {contact.logo ? (
-                                <img src={contact.logo} alt={contact.title} className="w-14 h-14 mx-auto mb-3 rounded-lg object-contain" />
-                            ) : (
-                                <span className="text-4xl mb-3 block">{contact.emoji}</span>
-                            )}
-                            <h3 className="text-lg font-bold mb-2">{contact.title}</h3>
-                            <p className="text-yellow-400 font-mono text-lg">{contact.value}</p>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Dating Apps */}
-                <h3 className="text-2xl font-bold text-center mb-6"><span>💕</span> <span className="gradient-text">Dating Apps</span></h3>
-                <div className="flex justify-center gap-6 mb-10">
-                    {datingApps.map((app, i) => (
-                        <div key={i} className="px-8 py-6 bg-dark-900 rounded-2xl border border-dark-700 text-center card-hover">
-                            {app.logo ? (
-                                <img src={app.logo} alt={app.title} className="w-14 h-14 mx-auto mb-3 rounded-lg object-contain" />
-                            ) : (
-                                <span className="text-4xl mb-3 block">{app.emoji}</span>
-                            )}
-                            <h3 className="text-lg font-bold">{app.title}</h3>
-                        </div>
-                    ))}
-                </div>
-
                 {/* Additional Contact Note */}
                 <div className="mt-10 p-6 bg-dark-900/50 rounded-2xl border border-dark-700 text-center">
                     <p className="text-dark-300 text-lg font-description">
@@ -2077,15 +1720,15 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto px-6 text-center space-y-4">
                 {/* Feedback Button */}
                 <div className="mb-6">
-                    <MagneticButton href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" className="inline-flex items-center gap-2 px-8 py-3 gradient-bg rounded-full font-semibold gradient-btn-text hover:scale-105 transition-transform text-lg">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" className="inline-flex items-center gap-2 px-8 py-3 gradient-bg rounded-full font-semibold gradient-btn-text hover:scale-105 transition-transform text-lg">
                         📝 Share Your Feedback
-                    </MagneticButton>
+                    </a>
                 </div>
 
                 {/* Hit Counter */}
                 <HitCounter />
 
-                <p className="text-dark-500">Last Updated: 22-01-2026</p>
+                <p className="text-dark-500">Last Updated: 23-01-2026</p>
                 <p className="text-2xl flex items-center justify-center gap-2">
                     Made with <span className="animate-heartbeat text-red-500 text-3xl">❤️</span>
                 </p>
@@ -2105,12 +1748,9 @@ const Footer = () => {
 // ============================================
 const App = () => (
     <>
-        <Aurora />
-        <ColorWave />
         <CursorEffects />
         <Confetti />
         <FloatingEmojis />
-        <FloatingOrbs />
         <Navbar />
         <Hero />
         <Qualities />

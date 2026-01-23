@@ -16,7 +16,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -80,6 +80,7 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         display: ['Playfair Display', 'serif'],
+                        description: ['Centaur', 'Cormorant Garamond', 'Garamond', 'Georgia', 'serif'],
                     },
                 }
             }
@@ -768,111 +769,6 @@
         /* INDIAN DESIGN ELEMENTS */
         /* ============================================ */
 
-        /* Toran/Bandanwar hanging decoration */
-        .toran {
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            right: 0;
-            height: 20px;
-            display: flex;
-            justify-content: center;
-            pointer-events: none;
-        }
-
-        .toran-piece {
-            width: 40px;
-            height: 20px;
-            background: linear-gradient(180deg, #facc15 0%, #f59e0b 100%);
-            clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
-            margin: 0 -5px;
-            animation: toranSway 3s ease-in-out infinite;
-            filter: drop-shadow(0 2px 4px rgba(250, 204, 21, 0.3));
-        }
-
-        /* Red */
-        .toran-piece:nth-child(10n+1) {
-            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
-            filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.3));
-        }
-
-        /* Yellow/Gold */
-        .toran-piece:nth-child(10n+2) {
-            background: linear-gradient(180deg, #facc15 0%, #f59e0b 100%);
-            filter: drop-shadow(0 2px 4px rgba(250, 204, 21, 0.3));
-        }
-
-        /* Bright Green */
-        .toran-piece:nth-child(10n+3) {
-            background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
-            filter: drop-shadow(0 2px 4px rgba(34, 197, 94, 0.3));
-        }
-
-        /* Orange */
-        .toran-piece:nth-child(10n+4) {
-            background: linear-gradient(180deg, #f97316 0%, #ea580c 100%);
-            filter: drop-shadow(0 2px 4px rgba(249, 115, 22, 0.3));
-        }
-
-        /* Teal Green */
-        .toran-piece:nth-child(10n+5) {
-            background: linear-gradient(180deg, #14b8a6 0%, #0d9488 100%);
-            filter: drop-shadow(0 2px 4px rgba(20, 184, 166, 0.3));
-        }
-
-        /* Pink */
-        .toran-piece:nth-child(10n+6) {
-            background: linear-gradient(180deg, #ec4899 0%, #db2777 100%);
-            filter: drop-shadow(0 2px 4px rgba(236, 72, 153, 0.3));
-        }
-
-        /* Lime Green */
-        .toran-piece:nth-child(10n+7) {
-            background: linear-gradient(180deg, #84cc16 0%, #65a30d 100%);
-            filter: drop-shadow(0 2px 4px rgba(132, 204, 22, 0.3));
-        }
-
-        /* Deep Red/Maroon */
-        .toran-piece:nth-child(10n+8) {
-            background: linear-gradient(180deg, #be123c 0%, #9f1239 100%);
-            filter: drop-shadow(0 2px 4px rgba(190, 18, 60, 0.3));
-        }
-
-        /* Emerald Green */
-        .toran-piece:nth-child(10n+9) {
-            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
-            filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3));
-        }
-
-        /* Purple */
-        .toran-piece:nth-child(10n+10) {
-            background: linear-gradient(180deg, #a855f7 0%, #9333ea 100%);
-            filter: drop-shadow(0 2px 4px rgba(168, 85, 247, 0.3));
-        }
-
-        @keyframes toranSway {
-            0%, 100% { transform: rotate(-2deg); }
-            50% { transform: rotate(2deg); }
-        }
-
-        /* Mandala decoration */
-        .mandala-border {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: repeating-linear-gradient(
-                90deg,
-                #facc15 0px,
-                #facc15 10px,
-                #ef4444 10px,
-                #ef4444 20px,
-                #22c55e 20px,
-                #22c55e 30px
-            );
-            opacity: 0.8;
-        }
 
         /* Navbar dark gold tint background */
         .navbar-gold {
@@ -1175,9 +1071,14 @@ const bioData = {
     ],
     preferenceIntro: "Seeking a partner 💑 with similar thoughts 💭, priorities 📌, goals 🎯 and mindset 🤝",
     contact: {
-        instagram: { handle: "jakharsumit2025", emoji: "📸" },
-        linkedin: { handle: "sumit-12890b171", emoji: "🔗" },
-        location: { value: "Mahadevpura, Bangalore, Karnataka", emoji: "📍" }
+        instagram: { handle: "jakharsumit2025", logo: "images/instagramLogo.png" },
+        linkedin: { handle: "sumit-12890b171", logo: "images/linkedinLogo.png" },
+        location: { value: "Mahadevpura, Bangalore, Karnataka", emoji: "📍" },
+        jeevansathi: { handle: "TYAX4445", label: "Jeevansathi.com", logo: "images/jeevansathiLogo.jpeg" },
+        iitiimshaadi: { handle: "IIS4188641", label: "IITIIMShaadi", logo: "images/iitiimshaadiLogo.jpg" },
+        iimiitmatrimony: { handle: "IIM330026", label: "IIMIITMatrimony", logo: "images/iimiitmatrimonyLogo.svg" },
+        bumble: { label: "Bumble", logo: "images/bumbleLogo.png" },
+        hinge: { label: "Hinge", logo: "images/hingeLogo.jpg" }
     },
     profilePhoto: "images/IMG_20220710_200139.jpg",
     gallery: [
@@ -1192,7 +1093,25 @@ const bioData = {
         "images/Gemini_Generated_Image_gxecspgxecspgxec.png",
         "images/Screenshot 2025-12-26 134555.png"
     ],
-    galleryQuote: "Simplicity is the ultimate sophistication : Leonardo Da Vinci"
+    galleryQuote: "Simplicity is the ultimate sophistication : Leonardo Da Vinci",
+    qualities: [
+        { trait: "Caring", emoji: "🤗" },
+        { trait: "Understanding", emoji: "🧠" },
+        { trait: "Loyal", emoji: "🤝" },
+        { trait: "Fun Loving", emoji: "🎉" },
+        { trait: "Mature", emoji: "🌳" },
+        { trait: "Amicable", emoji: "😊" },
+        { trait: "Empathetic", emoji: "💗" },
+        { trait: "Compassionate", emoji: "💕" },
+        { trait: "Introvert", emoji: "🤫" },
+        { trait: "Reserved", emoji: "🔒" },
+        { trait: "Reading People", emoji: "👁️" },
+        { trait: "Far-sighted", emoji: "🔭" },
+        { trait: "Pragmatic", emoji: "⚖️" },
+        { trait: "Energetic", emoji: "⚡" },
+        { trait: "Kind Hearted", emoji: "❤️" },
+        { trait: "Detail Oriented", emoji: "🔍" }
+    ]
 };
 
 // ============================================
@@ -1651,22 +1570,10 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const links = ["Home", "About", "Career", "Family", "Hobbies", "Preferences", "Gallery", "Contact"];
-
-    // Toran hanging pieces
-    const ToranDecoration = React.memo(() => (
-        <div className="toran">
-            {[...Array(20)].map((_, i) => (
-                <div key={i} className="toran-piece" style={{animationDelay: `${i * 0.1}s`, willChange: 'transform'}}></div>
-            ))}
-        </div>
-    ));
+    const links = ["Home", "More Qualities", "About", "Career", "Family", "Hobbies", "Preferences", "Gallery", "Contact"];
 
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 navbar-gold rangoli-bg ${scrolled ? 'backdrop-blur-lg' : ''}`}>
-            {/* Mandala border at bottom */}
-            <div className="mandala-border"></div>
-
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 {/* Logo with rose */}
                 <div className="flex items-center gap-2">
@@ -1696,8 +1603,6 @@ const Navbar = () => {
                 </button>
             </div>
 
-            {/* Toran/Bandanwar hanging decoration */}
-            <ToranDecoration />
 
             {mobileOpen && (
                 <div className="lg:hidden bg-dark-900/98 backdrop-blur-lg border-t border-dark-700">
@@ -1741,7 +1646,7 @@ const Hero = () => (
                     "{bioData.tagline}"
                 </p>
 
-                <p className="text-dark-300 text-lg max-w-2xl mx-auto lg:mx-0 mb-10 animate-fadeInUp delay-400 leading-relaxed">
+                <p className="text-dark-300 text-lg max-w-2xl mx-auto lg:mx-0 mb-10 animate-fadeInUp delay-400 leading-relaxed font-description">
                     {bioData.personalEssence}
                 </p>
 
@@ -1777,7 +1682,7 @@ const SectionHeader = ({ emoji, tag, title, subtitle }) => (
             {emoji} {tag}
         </span>
         <h2 className="font-display text-4xl lg:text-5xl font-bold gradient-text glow-text mb-4">{title}</h2>
-        {subtitle && <p className="text-dark-300 italic text-lg">{subtitle}</p>}
+        {subtitle && <p className="text-dark-300 italic text-lg font-description">{subtitle}</p>}
     </div>
 );
 
@@ -1811,6 +1716,30 @@ const About = () => (
 );
 
 // ============================================
+// QUALITIES SECTION - ✨ OTHER QUALITIES
+// ============================================
+const Qualities = () => (
+    <section id="more qualities" className="py-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-6">
+            <SectionHeader emoji="✨" tag="What Defines Me" title="More Qualities" subtitle="Traits that make me who I am 💫" />
+
+            <div className="flex flex-wrap justify-center gap-4">
+                {bioData.qualities.map((item, i) => (
+                    <div
+                        key={i}
+                        className="px-6 py-4 rounded-2xl border border-dark-700 bg-dark-900 card-fun flex items-center gap-3 hover:border-yellow-500/50 transition-all"
+                        style={{animationDelay: `${i * 0.05}s`}}
+                    >
+                        <span className="text-2xl">{item.emoji}</span>
+                        <span className="font-semibold text-lg">{item.trait}</span>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
 // CAREER SECTION - 🎓 EDUCATION & CAREER
 // ============================================
 const Career = () => (
@@ -1834,7 +1763,7 @@ const Career = () => (
                                 <span className="text-xl">{item.emoji}</span>
                                 {item.subtitle}
                             </p>
-                            <p className="text-dark-300">{item.description}</p>
+                            <p className="text-dark-300 font-description">{item.description}</p>
                         </div>
                     </div>
                 ))}
@@ -1878,7 +1807,7 @@ const Family = () => (
                 <div className="space-y-6">
                     <div className="p-6 bg-dark-900 rounded-2xl border border-dark-700 card-hover">
                         <h3 className="text-lg font-bold mb-4">🕉️ Religion & Language</h3>
-                        <ul className="space-y-3 text-dark-300">
+                        <ul className="space-y-3 text-dark-300 font-description">
                             <li><span className="text-white font-medium">Religion:</span> {bioData.family.religion}</li>
                             <li><span className="text-white font-medium">Mother Tongue 🗣️:</span> {bioData.family.motherTongue}</li>
                             <li><span className="text-white font-medium">Languages 🌐:</span> {bioData.family.languages.join(", ")}</li>
@@ -1887,7 +1816,7 @@ const Family = () => (
 
                     <div className="p-6 bg-dark-900 rounded-2xl border border-dark-700 card-hover">
                         <h3 className="text-lg font-bold mb-4">🏡 Address</h3>
-                        <ul className="space-y-3 text-dark-300">
+                        <ul className="space-y-3 text-dark-300 font-description">
                             <li><span className="text-white font-medium">Permanent Address:</span> {bioData.family.permanent}</li>
                             <li><span className="text-white font-medium">Current Address:</span> {bioData.family.current}</li>
                             <li><span className="text-white font-medium">Settlement:</span> {bioData.family.settlement}</li>
@@ -1982,7 +1911,7 @@ const Preferences = () => (
         <div className="max-w-7xl mx-auto px-6">
             <SectionHeader emoji="💍" tag="Looking For" title="Partner Preferences" />
 
-            <p className="text-center text-dark-300 text-xl max-w-2xl mx-auto mb-8">
+            <p className="text-center text-dark-300 text-xl max-w-2xl mx-auto mb-8 font-description">
                 {bioData.preferenceIntro}
             </p>
 
@@ -1991,7 +1920,7 @@ const Preferences = () => (
                 <div className="text-center">
                     <span className="text-5xl mb-4 block">💡</span>
                     <h3 className="text-2xl font-bold mb-4 gradient-text">Mindset 🤝</h3>
-                    <p className="text-dark-300 text-lg">
+                    <p className="text-dark-300 text-lg font-description">
                         💪 Self-confident and 🙏 self-respecting; someone who doesn't require external validation ✨
                     </p>
                 </div>
@@ -2054,21 +1983,37 @@ const Gallery = () => {
 // CONTACT SECTION
 // ============================================
 const Contact = () => {
-    const contacts = [
-        { emoji: bioData.contact.instagram.emoji, title: "Instagram", value: `@${bioData.contact.instagram.handle}`, link: `https://instagram.com/${bioData.contact.instagram.handle}` },
-        { emoji: bioData.contact.linkedin.emoji, title: "LinkedIn", value: `linkedin.com/in/${bioData.contact.linkedin.handle}`, link: `https://linkedin.com/in/${bioData.contact.linkedin.handle}` },
+    const socialContacts = [
+        { logo: bioData.contact.instagram.logo, title: "Instagram", value: `@${bioData.contact.instagram.handle}`, link: `https://instagram.com/${bioData.contact.instagram.handle}` },
+        { logo: bioData.contact.linkedin.logo, title: "LinkedIn", value: bioData.contact.linkedin.handle, link: `https://linkedin.com/in/${bioData.contact.linkedin.handle}` },
         { emoji: bioData.contact.location.emoji, title: "Location", value: bioData.contact.location.value }
+    ];
+
+    const matrimonyContacts = [
+        { logo: bioData.contact.jeevansathi.logo, title: bioData.contact.jeevansathi.label, value: bioData.contact.jeevansathi.handle },
+        { logo: bioData.contact.iitiimshaadi.logo, title: bioData.contact.iitiimshaadi.label, value: bioData.contact.iitiimshaadi.handle },
+        { logo: bioData.contact.iimiitmatrimony.logo, title: bioData.contact.iimiitmatrimony.label, value: bioData.contact.iimiitmatrimony.handle }
+    ];
+
+    const datingApps = [
+        { logo: bioData.contact.bumble.logo, title: bioData.contact.bumble.label },
+        { logo: bioData.contact.hinge.logo, title: bioData.contact.hinge.label }
     ];
 
     return (
         <section id="contact" className="py-24 relative z-10">
-            <div className="max-w-5xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-6">
                 <SectionHeader emoji="📞" tag="Get in Touch" title="Contact" />
 
-                <div className="grid md:grid-cols-3 gap-6">
-                    {contacts.map((contact, i) => (
+                {/* Social & Location */}
+                <div className="grid md:grid-cols-3 gap-6 mb-10">
+                    {socialContacts.map((contact, i) => (
                         <div key={i} className="p-8 bg-dark-900 rounded-2xl border border-dark-700 text-center card-hover">
-                            <span className="text-5xl mb-4 block">{contact.emoji}</span>
+                            {contact.logo ? (
+                                <img src={contact.logo} alt={contact.title} className="w-12 h-12 mx-auto mb-4" />
+                            ) : (
+                                <span className="text-5xl mb-4 block">{contact.emoji}</span>
+                            )}
                             <h3 className="text-lg font-bold mb-2">{contact.title}</h3>
                             {contact.link ? (
                                 <a href={contact.link} target="_blank" className="text-white hover:text-yellow-400 hover:underline transition-colors">
@@ -2081,9 +2026,40 @@ const Contact = () => {
                     ))}
                 </div>
 
+                {/* Matrimony Websites */}
+                <h3 className="text-2xl font-bold text-center mb-6"><span>💒</span> <span className="gradient-text">Matrimony Profiles</span></h3>
+                <div className="grid md:grid-cols-3 gap-6 mb-10">
+                    {matrimonyContacts.map((contact, i) => (
+                        <div key={i} className="p-6 bg-dark-900 rounded-2xl border border-dark-700 text-center card-hover">
+                            {contact.logo ? (
+                                <img src={contact.logo} alt={contact.title} className="w-14 h-14 mx-auto mb-3 rounded-lg object-contain" />
+                            ) : (
+                                <span className="text-4xl mb-3 block">{contact.emoji}</span>
+                            )}
+                            <h3 className="text-lg font-bold mb-2">{contact.title}</h3>
+                            <p className="text-yellow-400 font-mono text-lg">{contact.value}</p>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Dating Apps */}
+                <h3 className="text-2xl font-bold text-center mb-6"><span>💕</span> <span className="gradient-text">Dating Apps</span></h3>
+                <div className="flex justify-center gap-6 mb-10">
+                    {datingApps.map((app, i) => (
+                        <div key={i} className="px-8 py-6 bg-dark-900 rounded-2xl border border-dark-700 text-center card-hover">
+                            {app.logo ? (
+                                <img src={app.logo} alt={app.title} className="w-14 h-14 mx-auto mb-3 rounded-lg object-contain" />
+                            ) : (
+                                <span className="text-4xl mb-3 block">{app.emoji}</span>
+                            )}
+                            <h3 className="text-lg font-bold">{app.title}</h3>
+                        </div>
+                    ))}
+                </div>
+
                 {/* Additional Contact Note */}
                 <div className="mt-10 p-6 bg-dark-900/50 rounded-2xl border border-dark-700 text-center">
-                    <p className="text-dark-300 text-lg">
+                    <p className="text-dark-300 text-lg font-description">
                         📱 Feel free to contact via any other medium (phone, email, etc.) you want, besides these.
                     </p>
                 </div>
@@ -2137,6 +2113,7 @@ const App = () => (
         <FloatingOrbs />
         <Navbar />
         <Hero />
+        <Qualities />
         <About />
         <Career />
         <Family />

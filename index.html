@@ -85,7 +85,7 @@
         }
 
         /* Performance optimizations */
-        .floating-emoji, .confetti, .sparkle, .heart-burst, .floating-heart {
+        .floating-emoji, .confetti {
             will-change: transform;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
@@ -638,77 +638,6 @@
         section, footer, nav, header, div {
             cursor: none !important;
         }
-
-        /* Sparkle trail particle */
-        .sparkle {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            font-size: 16px;
-            animation: sparkle-fade 1s ease-out forwards;
-        }
-
-        @keyframes sparkle-fade {
-            0% { opacity: 1; transform: scale(1) translateY(0); }
-            100% { opacity: 0; transform: scale(0) translateY(-20px); }
-        }
-
-        /* Heart burst particle */
-        .heart-burst {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            font-size: 20px;
-            animation: heart-burst-anim 1s ease-out forwards;
-        }
-
-        @keyframes heart-burst-anim {
-            0% { opacity: 1; transform: scale(0) translate(0, 0); }
-            50% { opacity: 1; transform: scale(1.2); }
-            100% { opacity: 0; transform: scale(0.5) translate(var(--tx), var(--ty)); }
-        }
-
-        /* Ripple effect */
-        .click-ripple {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9998;
-            border: 3px solid rgba(250, 204, 21, 0.8);
-            border-radius: 50%;
-            animation: ripple-expand 0.8s ease-out forwards;
-        }
-
-        @keyframes ripple-expand {
-            0% { width: 0; height: 0; opacity: 1; }
-            100% { width: 150px; height: 150px; opacity: 0; margin-left: -75px; margin-top: -75px; }
-        }
-
-        /* Floating hearts from cursor */
-        .floating-heart {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9997;
-            font-size: 18px;
-            animation: float-up 2s ease-out forwards;
-        }
-
-        @keyframes float-up {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-80px) scale(0.5); }
-        }
-
-        /* Cursor glow */
-        .cursor-glow {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9996;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(250, 204, 21, 0.4) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            transition: transform 0.05s ease-out;
-        }
     </style>
 </head>
 <body class="bg-dark-900 text-white font-sans">
@@ -725,7 +654,7 @@
 // ============================================
 const bioData = {
     name: "Sumit",
-    personalEssence: "I am a grounded 🌳, open-minded 🌐, cheerful 😊, self-driven 🚀 individual who balances a high-performance professional life with a deep passion for sports and fitness. A proud IIT Bombay alumnus and AIR 47 holder, I value authenticity ✨ and intellectual depth 🧠. I am deeply connected to my Haryanvi roots and am committed to building a life and career within India 🇮🇳, with no intention of settling abroad.",
+    personalEssence: "I am a grounded, open-minded, cheerful 😊, self-driven individual who balances a high-performance professional life with a deep passion for sports and fitness. A proud IIT Bombay alumnus and AIR 47 holder, I value authenticity and intellectual depth. I am deeply connected to my Haryanvi roots and am committed to building a life and career within India 🇮🇳, with no intention of settling abroad.",
     highlights: [
         { emoji: "🎓", text: "CSE IIT Bombay" },
         { emoji: "🏅", text: "AIR 47 JEE Advanced" },
@@ -838,11 +767,6 @@ const bioData = {
             desc: "Preference for an Engineering background"
         },
         {
-            emoji: "🏢",
-            title: "Work Location",
-            desc: "Preferably working in or willing to relocate to Bangalore"
-        },
-        {
             emoji: "🚭",
             title: "Smoking",
             desc: "No"
@@ -856,11 +780,6 @@ const bioData = {
             emoji: "🍽️",
             title: "Diet",
             desc: "Any"
-        },
-        {
-            emoji: "📏",
-            title: "Physical Status",
-            desc: "Normal; Preferred height >= 5' 4\""
         },
         {
             emoji: "🌍",
@@ -953,7 +872,7 @@ const HitCounter = () => {
 const Confetti = () => {
     const [confetti, setConfetti] = React.useState([]);
     const colors = React.useMemo(() => ['#EC4899', '#f472b6', '#f9a8d4', '#fbcfe8', '#fce7f3'], []);
-    const shapes = React.useMemo(() => ['❤️', '💕', '💗', '💖', '💘', '💝', '💞', '💍', '🥰', '😍', '💑', '🌹', '🎊', '✨'], []);
+    const shapes = React.useMemo(() => ['❤️', '💕', '💗', '💖', '💘', '💝', '💞', '🌹', '✨'], []);
 
     React.useEffect(() => {
         const createConfetti = () => {
@@ -1056,163 +975,6 @@ const EmojiCursor = () => {
         >
             ❤️
         </div>
-    );
-};
-
-// ============================================
-// FUN CURSOR EFFECTS
-// ============================================
-const CursorEffects = () => {
-    const [sparkles, setSparkles] = React.useState([]);
-    const [heartBursts, setHeartBursts] = React.useState([]);
-    const [ripples, setRipples] = React.useState([]);
-    const [floatingHearts, setFloatingHearts] = React.useState([]);
-    const [glowPos, setGlowPos] = React.useState({ x: 0, y: 0 });
-
-    const sparkleEmojis = React.useMemo(() => ['✨', '⭐', '💫', '🌟'], []);
-    const heartEmojis = React.useMemo(() => ['❤️', '💕', '💗', '💖', '💘'], []);
-
-    React.useEffect(() => {
-        let sparkleId = 0;
-        let heartId = 0;
-        let floatId = 0;
-        let lastSparkleTime = 0;
-        let lastFloatTime = 0;
-        let rafId = null;
-
-        // Throttled sparkle trail on mouse move
-        const handleMouseMove = (e) => {
-            if (rafId) return;
-            rafId = requestAnimationFrame(() => {
-                const now = Date.now();
-                setGlowPos({ x: e.clientX, y: e.clientY });
-
-                // Create sparkle every 120ms (reduced frequency)
-                if (now - lastSparkleTime > 120) {
-                    lastSparkleTime = now;
-                    const sparkle = {
-                        id: sparkleId++,
-                        x: e.clientX + (Math.random() - 0.5) * 20,
-                        y: e.clientY + (Math.random() - 0.5) * 20,
-                        emoji: sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)]
-                    };
-                    setSparkles(prev => [...prev.slice(-12), sparkle]);
-                    setTimeout(() => {
-                        setSparkles(prev => prev.filter(s => s.id !== sparkle.id));
-                    }, 1000);
-                }
-
-                // Create floating heart every 800ms (reduced frequency)
-                if (now - lastFloatTime > 800) {
-                    lastFloatTime = now;
-                    const heart = {
-                        id: floatId++,
-                        x: e.clientX + (Math.random() - 0.5) * 30,
-                        y: e.clientY,
-                        emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)]
-                    };
-                    setFloatingHearts(prev => [...prev.slice(-6), heart]);
-                    setTimeout(() => {
-                        setFloatingHearts(prev => prev.filter(h => h.id !== heart.id));
-                    }, 2000);
-                }
-                rafId = null;
-            });
-        };
-
-        // Heart burst and ripple on click
-        const handleClick = (e) => {
-            // Create ripple
-            const ripple = { id: Date.now(), x: e.clientX, y: e.clientY };
-            setRipples(prev => [...prev.slice(-3), ripple]);
-            setTimeout(() => {
-                setRipples(prev => prev.filter(r => r.id !== ripple.id));
-            }, 800);
-
-            // Create heart burst (reduced from 8 to 6)
-            for (let i = 0; i < 6; i++) {
-                const angle = (i / 6) * Math.PI * 2;
-                const distance = 50 + Math.random() * 30;
-                const burst = {
-                    id: heartId++,
-                    x: e.clientX,
-                    y: e.clientY,
-                    tx: Math.cos(angle) * distance,
-                    ty: Math.sin(angle) * distance,
-                    emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)]
-                };
-                setHeartBursts(prev => [...prev.slice(-10), burst]);
-                setTimeout(() => {
-                    setHeartBursts(prev => prev.filter(h => h.id !== burst.id));
-                }, 1000);
-            }
-        };
-
-        window.addEventListener('mousemove', handleMouseMove, { passive: true });
-        window.addEventListener('click', handleClick);
-
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('click', handleClick);
-            if (rafId) cancelAnimationFrame(rafId);
-        };
-    }, []);
-
-    return (
-        <>
-            {/* Cursor glow */}
-            <div
-                className="cursor-glow"
-                style={{ left: glowPos.x, top: glowPos.y }}
-            />
-
-            {/* Sparkle trail */}
-            {sparkles.map(sparkle => (
-                <span
-                    key={sparkle.id}
-                    className="sparkle"
-                    style={{ left: sparkle.x, top: sparkle.y }}
-                >
-                    {sparkle.emoji}
-                </span>
-            ))}
-
-            {/* Heart burst on click */}
-            {heartBursts.map(burst => (
-                <span
-                    key={burst.id}
-                    className="heart-burst"
-                    style={{
-                        left: burst.x,
-                        top: burst.y,
-                        '--tx': `${burst.tx}px`,
-                        '--ty': `${burst.ty}px`
-                    }}
-                >
-                    {burst.emoji}
-                </span>
-            ))}
-
-            {/* Ripple effect on click */}
-            {ripples.map(ripple => (
-                <div
-                    key={ripple.id}
-                    className="click-ripple"
-                    style={{ left: ripple.x, top: ripple.y }}
-                />
-            ))}
-
-            {/* Floating hearts */}
-            {floatingHearts.map(heart => (
-                <span
-                    key={heart.id}
-                    className="floating-heart"
-                    style={{ left: heart.x, top: heart.y }}
-                >
-                    {heart.emoji}
-                </span>
-            ))}
-        </>
     );
 };
 
@@ -1414,7 +1176,7 @@ const About = () => (
 const Qualities = () => (
     <section id="more-qualities" className="py-16 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
-            <SectionHeader emoji="✨" tag="What Defines Me" title="More Qualities" subtitle="Traits that make me who I am 💫" />
+            <SectionHeader emoji="✨" tag="What Defines Me" title="More Qualities" subtitle="Traits that make me who I am" />
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {bioData.qualities.map((item, i) => (
@@ -1609,7 +1371,7 @@ const Preferences = () => (
                 </div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {bioData.preferences.map((pref, i) => (
                     <div key={i} className="p-5 bg-dark-800 rounded-2xl border border-dark-700 text-center card-fun">
                         <span className="text-3xl mb-3 block card-emoji">{pref.emoji}</span>
@@ -1746,7 +1508,6 @@ const Footer = () => {
 // ============================================
 const App = () => (
     <>
-        <CursorEffects />
         <Confetti />
         <FloatingEmojis />
         <Navbar />

@@ -768,12 +768,12 @@ const bioData = {
         },
         {
             emoji: "🚭",
-            title: "Smoking",
+            title: "Smoking*",
             desc: "No"
         },
         {
             emoji: "🚫",
-            title: "Drinking",
+            title: "Drinking*",
             desc: "No"
         },
         {
@@ -1375,10 +1375,24 @@ const Preferences = () => (
                 {bioData.preferences.map((pref, i) => (
                     <div key={i} className="p-5 bg-dark-800 rounded-2xl border border-dark-700 text-center card-fun">
                         <span className="text-3xl mb-3 block card-emoji">{pref.emoji}</span>
-                        <h3 className="text-base font-bold mb-2">{pref.title}</h3>
+                        <h3 className="text-base font-bold mb-2">
+                            {pref.title.includes('*') ? (
+                                <>
+                                    {pref.title.replace('*', '')}
+                                    <sup>*</sup>
+                                </>
+                            ) : pref.title}
+                        </h3>
                         <p className="text-dark-400 text-sm">{pref.desc}</p>
                     </div>
                 ))}
+            </div>
+
+            {/* Note about preferences */}
+            <div className="mt-6 text-center">
+                <p className="text-dark-400 text-sm italic max-w-2xl mx-auto">
+                    <sup>*</sup>What is cool or glamorous for someone can be garbage for someone. Hope you understand... no offence.
+                </p>
             </div>
         </div>
     </section>
@@ -1399,6 +1413,15 @@ const Gallery = () => {
                     title="Gallery"
                     subtitle={`"${bioData.galleryQuote}"`}
                 />
+
+                {/* Fashion Note - Highlighted */}
+                <div className="mb-8 p-8 bg-gradient-to-r from-purple-900/60 to-pink-900/60 rounded-2xl border-2 border-pink-500 shadow-lg shadow-pink-500/30 card-hover max-w-3xl mx-auto">
+                    <div className="text-center">
+                        <p className="text-white text-lg font-description leading-relaxed font-semibold">
+                            I'm simple but doesn't mean I hate fashion. Just not interested in clothes... more interested in thoughts.
+                        </p>
+                    </div>
+                </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
                     {bioData.gallery.map((img, i) => (
@@ -1461,7 +1484,7 @@ const Contact = () => {
                 </div>
 
                 {/* Additional Contact Note */}
-                <div className="mt-10 p-5 bg-dark-800 rounded-2xl border border-dark-700 text-center">
+                <div className="mt-10 p-5 bg-dark-800 rounded-2xl border border-dark-700 text-center max-w-2xl mx-auto">
                     <p className="text-dark-300 text-base font-description">
                         📱 Feel free to contact via any other medium (phone, email, etc.) you want, besides these.
                     </p>
@@ -1488,7 +1511,7 @@ const Footer = () => {
                 {/* Hit Counter */}
                 <HitCounter />
 
-                <p className="text-gray-300">Last Updated: 24-01-2026</p>
+                <p className="text-gray-300">Last Updated: 05-02-2026</p>
                 <p className="text-2xl flex items-center justify-center gap-2 text-white">
                     Made with <span className="animate-heartbeat text-red-500 text-3xl">❤️</span>
                 </p>

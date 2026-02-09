@@ -1559,17 +1559,16 @@ const Footer = () => {
         fetchCounts();
         const onUpdate = (e) => {
             const d = e.detail;
-            const isLocal = typeof window !== 'undefined' && window.location.protocol === 'file:';
             if (d && d.type === 'like') {
                 setLikeCount((c) => {
                     const n = c + 1;
-                    if (isLocal) localStorage.setItem(LIKES_STORAGE_KEY, String(n));
+                    localStorage.setItem(LIKES_STORAGE_KEY, String(n));
                     return n;
                 });
             } else if (d && d.type === 'dislike') {
                 setDislikeCount((c) => {
                     const n = c + 1;
-                    if (isLocal) localStorage.setItem(DISLIKES_STORAGE_KEY, String(n));
+                    localStorage.setItem(DISLIKES_STORAGE_KEY, String(n));
                     return n;
                 });
             }

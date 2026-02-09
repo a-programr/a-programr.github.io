@@ -779,7 +779,13 @@ const COUNTAPI_NS = 'sumit-biodata-2026';
 const VISITOR_HIT_URL = 'https://api.counterapi.dev/v1/' + COUNTAPI_NS + '/visits-fun/up';
 const LIKES_HIT_URL = 'https://api.counterapi.dev/v1/' + COUNTAPI_NS + '/fun-likes/up';
 const DISLIKES_HIT_URL = 'https://api.counterapi.dev/v1/' + COUNTAPI_NS + '/fun-dislikes/up';
-const countApiGet = (key) => fetch('https://api.counterapi.dev/v1/' + COUNTAPI_NS + '/' + key).then(r => r.json());
+const COUNTAPI_GET = (key) => 'https://api.counterapi.dev/v1/' + COUNTAPI_NS + '/' + key;
+const countApiGet = (key) => {
+    const url = COUNTAPI_GET(key);
+    return fetch(url).then(r => r.json()).catch(() =>
+        fetch('https://corsproxy.io/?' + encodeURIComponent(url)).then(r => r.json())
+    );
+};
 
 // ============================================
 // HIT COUNTER COMPONENT

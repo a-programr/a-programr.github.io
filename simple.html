@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<!--
+    ============================================
+    © 2026 Sumit. All Rights Reserved.
+
+    This website and its source code are protected by copyright.
+    Unauthorized copying, modification, or distribution is prohibited.
+    ============================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumit | Matrimonial Biodata</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fafafa',
+                            100: '#f4f4f5',
+                            200: '#e4e4e7',
+                            300: '#d4d4d8',
+                            400: '#a1a1aa',
+                            500: '#71717a',
+                            600: '#52525b',
+                            700: '#3f3f46',
+                            800: '#27272a',
+                            900: '#18181b',
+                        },
+                        silver: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        dark: {
+                            50: '#f8fafc',
+                            100: '#e2e8f0',
+                            200: '#cbd5e1',
+                            300: '#94a3b8',
+                            400: '#64748b',
+                            500: '#475569',
+                            600: '#334155',
+                            700: '#1e293b',
+                            800: '#0f172a',
+                            900: '#020617',
+                            950: '#010409',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
+                        description: ['Centaur', 'Cormorant Garamond', 'Garamond', 'Georgia', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        /* Theme Variables - warm, appealing, sober */
+        :root {
+            --bg-primary: #faf8f5;
+            --bg-primary-end: #f5f2ed;
+            --bg-secondary: #f5f2ed;
+            --bg-card: #fefdfb;
+            --bg-card-hover: #f7f5f0;
+            --text-primary: #1c1917;
+            --text-secondary: #44403c;
+            --text-muted: #78716c;
+            --border-color: rgba(68, 64, 60, 0.18);
+            --border-hover: rgba(68, 64, 60, 0.3);
+            --shadow-color: rgba(28, 25, 23, 0.06);
+            --navbar-bg: rgba(250, 248, 245, 0.95);
+            --tag-bg: rgba(68, 64, 60, 0.08);
+        }
+
+        .dark-mode {
+            --bg-primary: #1c1917;
+            --bg-primary-end: #252220;
+            --bg-secondary: #292524;
+            --bg-card: #292524;
+            --bg-card-hover: #44403c;
+            --text-primary: #fafaf9;
+            --text-secondary: #d6d3d1;
+            --text-muted: #a8a29e;
+            --border-color: rgba(168, 162, 158, 0.15);
+            --border-hover: rgba(168, 162, 158, 0.28);
+            --shadow-color: rgba(0, 0, 0, 0.35);
+            --navbar-bg: rgba(28, 25, 23, 0.95);
+            --tag-bg: rgba(168, 162, 158, 0.1);
+        }
+
+        /* Performance optimizations */
+
+        section {
+            contain: layout style;
+        }
+
+        body {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-primary-end) 100%) !important;
+            min-height: 100vh;
+            color: var(--text-primary);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .gradient-text {
+            color: var(--text-primary);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+        }
+
+        .dark-mode .gradient-bg {
+            background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%);
+        }
+
+        /* Enhanced Glassmorphism */
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow-color);
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px var(--shadow-color);
+            border-color: var(--border-hover);
+        }
+
+        /* Subtle silver accents */
+        .neon-red { box-shadow: 0 0 10px rgba(148, 163, 184, 0.2); }
+
+        .glow {
+            box-shadow: 0 0 15px rgba(148, 163, 184, 0.15);
+        }
+
+        .glow-text {
+            text-shadow: none;
+        }
+
+        /* Card hover - elegant */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(148, 163, 184, 0.25);
+        }
+
+        /* Gradient border effect */
+        .gradient-border {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 16px;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, #94a3b8, #e2e8f0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .gradient-border:hover::before {
+            opacity: 0.5;
+        }
+
+        /* Shimmer effect */
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmerMove 3s infinite;
+        }
+
+        @keyframes shimmerMove {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            75% { transform: translateY(-5px) rotate(-1deg); }
+        }
+
+        @keyframes float3D {
+            0%, 100% { transform: translateY(0) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateY(5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(148, 163, 184, 0.15); }
+            50% { box-shadow: 0 0 15px rgba(148, 163, 184, 0.25); }
+        }
+
+        @keyframes glow-subtle {
+            0%, 100% { box-shadow: 0 0 10px rgba(148, 163, 184, 0.2); }
+            50% { box-shadow: 0 0 18px rgba(148, 163, 184, 0.3); }
+        }
+
+        @keyframes neon-pulse {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(148, 163, 184, 0.15);
+                border-color: rgba(148, 163, 184, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 10px rgba(148, 163, 184, 0.2);
+                border-color: rgba(148, 163, 184, 0.35);
+            }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        @keyframes slideInScale {
+            from { opacity: 0; transform: scale(0.8) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
+        @keyframes borderRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease forwards; }
+        .animate-fadeInDown { animation: fadeInDown 0.8s ease forwards; }
+        .animate-fadeInLeft { animation: fadeInLeft 0.8s ease forwards; }
+        .animate-fadeInRight { animation: fadeInRight 0.8s ease forwards; }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+        .animate-float3D { animation: float3D 6s ease-in-out infinite; }
+        .animate-pulse-slow { animation: pulse 3s ease-in-out infinite; }
+        .animate-bounce-slow { animation: bounce 2s ease-in-out infinite; }
+        .animate-glow { animation: glow-pulse 3s ease-in-out infinite; }
+        .animate-glow { animation: glow-subtle 3s ease-in-out infinite; }
+        .animate-neon { animation: neon-pulse 2s ease-in-out infinite; }
+        .animate-wiggle { animation: wiggle 1s ease-in-out infinite; }
+        .animate-slideInScale { animation: slideInScale 0.6s ease forwards; }
+        .animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+        .animate-shimmer { animation: shimmerMove 3s infinite; }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+
+        /* Timeline - clean professional */
+        .timeline-line {
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--text-muted), var(--border-color));
+            border-radius: 2px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: var(--text-primary);
+            border-color: var(--text-primary);
+            transform: scale(1.1);
+        }
+
+        /* Gallery image styling */
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.03);
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 10px 30px var(--shadow-color);
+            border-color: var(--border-hover);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-muted);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
+        /* Lightbox with blur */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            animation: slideInScale 0.3s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+        }
+
+        .hit-counter {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        /* Gradient button text styling */
+        .gradient-btn-text {
+            color: #f8fafc;
+            text-shadow: none;
+            font-weight: 600;
+        }
+
+        .dark-mode .gradient-btn-text {
+            color: #0f172a;
+        }
+
+        /* Clean tag */
+        .neon-tag {
+            background: var(--tag-bg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .neon-tag:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .emoji { font-size: 1.2em; }
+        .emoji-lg { font-size: 1.5em; }
+
+        /* Fun Animations */
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        @keyframes bounce-fun {
+            0%, 100% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-15px) scale(1.1); }
+            50% { transform: translateY(-5px) scale(0.95); }
+            75% { transform: translateY(-10px) scale(1.05); }
+        }
+
+        @keyframes wiggle-fun {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg) scale(1.2); }
+            75% { transform: rotate(15deg) scale(1.2); }
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px) rotate(-5deg); }
+            75% { transform: translateX(5px) rotate(5deg); }
+        }
+
+
+        /* Emoji hover effects */
+        .emoji-bounce:hover {
+            display: inline-block;
+            animation: bounce-fun 0.6s ease;
+        }
+
+        .emoji-wiggle:hover {
+            display: inline-block;
+            animation: wiggle-fun 0.5s ease;
+        }
+
+        .emoji-spin:hover {
+            display: inline-block;
+            animation: spin-slow 0.8s ease;
+        }
+
+        .emoji-pop:hover {
+            display: inline-block;
+            animation: pop 0.3s ease;
+        }
+
+        /* Rainbow text effect */
+        .rainbow-text {
+            animation: rainbow 3s linear infinite;
+        }
+
+        /* Elegant card effects */
+        .card-fun {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-fun:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-fun:hover .card-emoji {
+            animation: none;
+        }
+
+        /* Tag hover */
+        .tag-fun:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Profile photo border */
+        .photo-fun {
+            position: relative;
+        }
+
+        .photo-fun::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #64748b, #94a3b8);
+            z-index: -1;
+        }
+
+        /* Navbar background */
+        .navbar-main {
+            background: var(--navbar-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s ease;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--border-hover);
+        }
+
+        /* Theme-aware text colors */
+        .theme-text-primary { color: var(--text-primary); }
+        .theme-text-secondary { color: var(--text-secondary); }
+        .theme-text-muted { color: var(--text-muted); }
+        .theme-bg-card { background: var(--bg-card); }
+        .theme-bg-secondary { background: var(--bg-secondary); }
+        .theme-border { border-color: var(--border-color); }
+    </style>
+</head>
+<body class="font-sans">
+    <div id="root"></div>
+
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+// ============================================
+// BIO DATA - All content from bio.docx with emojis
+// ============================================
+const bioData = {
+    name: "Sumit",
+    personalEssence: "I am a grounded, open-minded, cheerful 😊, self-driven individual who balances a high-performance professional life with a deep passion for sports and fitness. A proud IIT Bombay alumnus and AIR 47 holder, I value authenticity and intellectual depth. I am deeply connected to my Haryanvi roots and am committed to building a life and career within India 🇮🇳, with no intention of settling abroad.",
+    highlights: [
+        { emoji: "🎓", text: "CSE IIT Bombay" },
+        { emoji: "🏅", text: "AIR 47 JEE Advanced" },
+        { emoji: "💼", text: "NVIDIA" }
+    ],
+    basics: [
+        { emoji: "🧑‍💼", label: "Name", value: "Sumit" },
+        { emoji: "🎂", label: "Age", value: "26 Years" },
+        { emoji: "📅", label: "Birth", value: "February 2000" },
+        { emoji: "📏", label: "Height", value: "5' 11\" (180 cm)" },
+        { emoji: "⚖️", label: "Weight", value: "75 kg" },
+        { emoji: "💍", label: "Marital Status", value: "Never Married" },
+        { emoji: "🌱🥚", label: "Diet", value: "Eggetarian" },
+        { emoji: "🍛", label: "Cuisine", value: "Haryanvi" },
+        { emoji: "🚭", label: "Smoking", value: "NO(Bheed ko follow nahi karta)" },
+        { emoji: "🚫", label: "Drinking", value: "NO(Bheed ko follow nahi karta)" },
+        { emoji: "📸", label: "Instagram", value: "jakharsumit2025", link: "https://instagram.com/jakharsumit2025" }
+    ],
+    career: [
+        {
+            year: "2017",
+            title: "JEE Advanced 🎖️",
+            subtitle: "All India Rank 47 🏅",
+            description: "Cleared one of the toughest exams in the world with an exceptional rank.",
+            emoji: "🏅"
+        },
+        {
+            year: "2017",
+            title: "Schooling 🏫",
+            subtitle: "Class of 2017",
+            description: "Completed schooling in Jhajjar, Haryana.",
+            emoji: "🏫"
+        },
+        {
+            year: "2017-2021",
+            title: "IIT Bombay 🏛️",
+            subtitle: "B.Tech in Computer Science & Engineering 💻",
+            description: "Graduated from one of India's premier institutes with a degree in CSE.",
+            emoji: "🎓"
+        },
+        {
+            year: "Present",
+            title: "NVIDIA 💼",
+            subtitle: "System Software Engineer ⚙️",
+            description: "Working at one of the world's leading technology companies in Bangalore.",
+            emoji: "⚙️",
+            active: true
+        },
+        {
+            year: "Future",
+            title: "Entrepreneurial Dreams 🚀",
+            subtitle: "Own Company",
+            description: "To have my own company or something (highest priority will remain health and family though).",
+            emoji: "🚀",
+            future: true
+        }
+    ],
+    family: {
+        religion: "Hindu 🕉️",
+        motherTongue: "Haryanvi",
+        languages: ["Haryanvi", "Hindi", "English"],
+        permanent: "Jhajjar, Haryana 🏡",
+        current: "Mahadevpura, Bangalore, Karnataka 🏙️",
+        settlement: "India Only 🇮🇳",
+        members: [
+            {
+                emoji: "👮‍♂️",
+                role: "Father",
+                name: "Mr. Rajender",
+                detail: "Sub Inspector, Haryana Police",
+                badge: "Non-smoker, Non-drinker"
+            },
+            {
+                emoji: "👩‍🏫",
+                role: "Mother",
+                name: "Mrs. Sunita",
+                detail: "Retired Private School Teacher",
+                badge: "HTET Qualified"
+            },
+            {
+                emoji: "🏠",
+                role: "Siblings",
+                name: "None (Only Child)",
+                detail: ""
+            }
+        ]
+    },
+    hobbies: {
+        sports: [
+            { emoji: "🏸", name: "Badminton" },
+            { emoji: "🎳", name: "Bowling" },
+            { emoji: "♟️", name: "Chess" },
+            { emoji: "🃏", name: "Card Games" },
+            { emoji: "🎯", name: "Carrom" },
+            { emoji: "🏏", name: "Cricket" },
+            { emoji: "🥋", name: "Martial Arts" },
+            { emoji: "🏊", name: "Swimming" },
+            { emoji: "🏓", name: "Table Tennis" },
+            { emoji: "🏐", name: "Volleyball" }
+        ],
+        music: { emoji: "🎶" },
+        travelling: { emoji: "✈️", detail: "mostly solo" },
+        movies: { emoji: "🎬" },
+        others: { emoji: "🗺️", detail: "Geopolitics" }
+    },
+    preferences: [
+        {
+            emoji: "🎓",
+            title: "Education",
+            desc: "Preference for an Engineering background"
+        },
+        {
+            emoji: "🚭",
+            title: "Smoking",
+            desc: "NO(Don't find it cool! Sorry!)"
+        },
+        {
+            emoji: "🚫",
+            title: "Drinking",
+            desc: "NO(Don't find it cool! Sorry!)"
+        },
+        {
+            emoji: "🍽️",
+            title: "Diet",
+            desc: "Any"
+        },
+        {
+            emoji: "🌍",
+            title: "Background",
+            desc: "Open to all Religions, Castes, and Mother Tongues"
+        },
+        {
+            emoji: "🚫",
+            title: "Horoscope",
+            desc: "Not interested at all"
+        }
+    ],
+    preferenceIntro: "Seeking a partner with similar thoughts 💭, priorities 📌, goals 🎯 and mindset 🤝",
+    contact: {
+        instagram: { handle: "jakharsumit2025", logo: "images/instagramLogo.png" },
+        linkedin: { handle: "sumit-12890b171", logo: "images/linkedinLogo.png" },
+        location: { value: "Mahadevpura, Bangalore, Karnataka", emoji: "📍" }
+    },
+    profilePhoto: "images/IMG_20250217_091950.jpg",
+    gallery: [
+        { src: "images/IMG_20220710_200139.jpg", title: "Profile", desc: "A moment captured." },
+        { src: "images/IMG_20240820_165703.jpg", title: "Exploring Nature", desc: "Finding peace in nature. Trekking and outdoor adventures are my way of reconnecting with the world." },
+        { src: "images/IMG_20241019_135442.jpg", title: "Weekend Vibes", desc: "Balancing work with leisure. Every weekend is an opportunity to explore and create memories." },
+        { src: "images/echoPointPhoto.jpg", title: "Echo Point", desc: "Travel broadens perspectives. This was a memorable trip that reminded me of life's simple pleasures." },
+        { src: "images/IMG_20250612_103425.jpg", title: "Professional Life", desc: "Working at NVIDIA, contributing to cutting-edge technology while maintaining work-life harmony." },
+        { src: "images/1766732769845.jpg", title: "Casual Moments", desc: "Life isn't always about grand gestures. Sometimes the best moments are the simple, everyday ones." },
+        { src: "images/1758732677097.jpg", title: "Fitness Journey", desc: "Consistency over intensity. The gym is where discipline meets determination." },
+        { src: "images/IMG-20241012-WA0025.jpg", title: "Social Connections", desc: "Friends and family are the pillars of a meaningful life. Quality relationships matter most." },
+        { src: "images/Gemini_Generated_Image_gxecspgxecspgxec.png", title: "Creative Side", desc: "Exploring AI and technology creatively. Always curious about new possibilities." },
+        { src: "images/Screenshot 2025-12-26 134555.png", title: "Digital Life", desc: "Embracing the digital age while staying grounded in traditional values." }
+    ],
+    galleryQuote: "Simplicity is the ultimate sophistication — Leonardo Da Vinci",
+    qualities: [
+        { trait: "Introvert", emoji: "🧘" },
+        { trait: "Caring", emoji: "🤗" },
+        { trait: "Understanding", emoji: "🧠" },
+        { trait: "Loyal", emoji: "🤝" },
+        { trait: "Fun Loving", emoji: "🎉" },
+        { trait: "Mature", emoji: "🌳" },
+        { trait: "Amicable", emoji: "😊" },
+        { trait: "Empathetic", emoji: "💗" },
+
+    ],
+    myStory: [
+        {
+            num: "01",
+            title: "Haryanvi Roots",
+            desc: "Born and raised in Jhajjar, Haryana. Deeply connected to cultural values, traditions, and the simplicity of small-town life. These roots shaped who I am today.",
+            img: "images/echoPointPhoto.jpg"
+        },
+        {
+            num: "02",
+            title: "Family Foundation",
+            desc: "Raised as an only child by a Sub Inspector father and a school teacher mother. Discipline from Dad, education from Mom — the perfect balance that built my character.",
+            img: "images/IMG-20241012-WA0025.jpg"
+        },
+        {
+            num: "03",
+            title: "Academic Triumph",
+            desc: "Secured All India Rank 47 in JEE Advanced 2017 — one of the world's toughest exams. Hard work and focus paid off, opening doors to India's best institutions.",
+            img: "images/Screenshot 2025-12-26 134555.png"
+        },
+        {
+            num: "04",
+            title: "IIT Bombay Journey",
+            desc: "Four transformative years at IIT Bombay pursuing Computer Science. Not just academics, but friendships, growth, and discovering my true potential.",
+            img: "images/IMG_20241019_135442.jpg"
+        },
+        {
+            num: "05",
+            title: "Tech at NVIDIA",
+            desc: "Now a System Software Engineer at NVIDIA, Bangalore. Working on cutting-edge technology while contributing to innovations that shape the future.",
+            img: "images/IMG_20250612_103425.jpg"
+        },
+        {
+            num: "06",
+            title: "Sports & Fitness",
+            desc: "Sports aren't just a hobby — they're a lifestyle. From badminton to swimming, martial arts to cricket, fitness is a non-negotiable priority.",
+            img: "images/IMG_20250217_091950.jpg"
+        },
+        {
+            num: "07",
+            title: "Grounded Values",
+            desc: "No smoking, no drinking — not because of restrictions, but by choice. I believe in authenticity, intellectual depth, and staying true to oneself.",
+            img: "images/1766732769845.jpg"
+        },
+        {
+            num: "08",
+            title: "Future Vision",
+            desc: "Entrepreneurial dreams with health and family as the highest priorities. Committed to building a meaningful life in India, not abroad.",
+            img: "images/IMG_20240820_165703.jpg"
+        }
+    ]
+};
+
+// ============================================
+// THEME CONTEXT
+// ============================================
+const ThemeContext = React.createContext();
+
+const ThemeProvider = ({ children }) => {
+    const [isDark, setIsDark] = React.useState(false);
+
+    React.useEffect(() => {
+        // Check localStorage for saved preference
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') {
+            setIsDark(true);
+            document.body.classList.add('dark-mode');
+        }
+    }, []);
+
+    const toggleTheme = () => {
+        setIsDark(prev => {
+            const newValue = !prev;
+            if (newValue) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+            return newValue;
+        });
+    };
+
+    return (
+        <ThemeContext.Provider value={{ isDark, toggleTheme }}>
+            {children}
+        </ThemeContext.Provider>
+    );
+};
+
+const useTheme = () => React.useContext(ThemeContext);
+
+// ============================================
+// HIT COUNTER COMPONENT
+// ============================================
+const HitCounter = () => {
+    const [count, setCount] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        // Use CountAPI - a simple free counter service
+        fetch('https://api.counterapi.dev/v1/sumit-biodata-2026/visits-simple/up')
+            .then(res => res.json())
+            .then(data => {
+                setCount(data.count);
+                setLoading(false);
+            })
+            .catch(() => {
+                // Fallback to localStorage if API fails (per-page)
+                const stored = localStorage.getItem('sumit-biodata-visits-simple') || '0';
+                let num = parseInt(stored);
+                if (!sessionStorage.getItem('counted-simple')) {
+                    num += 1;
+                    localStorage.setItem('sumit-biodata-visits-simple', num.toString());
+                    sessionStorage.setItem('counted-simple', 'true');
+                }
+                setCount(num);
+                setLoading(false);
+            });
+    }, []);
+
+    return (
+        <div className="flex justify-center mb-4">
+            <div className="hit-counter flex items-center gap-3">
+                <span className="text-xl">👁️</span>
+                <span style={{color: 'var(--text-muted)'}}>Visitors:</span>
+                <span className="font-bold text-xl" style={{color: 'var(--text-secondary)'}}>
+                    {loading ? '...' : count}
+                </span>
+            </div>
+        </div>
+    );
+};
+
+// ============================================
+// NAVBAR
+// ============================================
+const COUNTER_NAMESPACE = 'sumit-biodata-2026';
+const LIKES_KEY = 'simple-likes';
+const DISLIKES_KEY = 'simple-dislikes';
+const canCallCounterApi = () => typeof window !== 'undefined' && window.location.protocol !== 'file:';
+
+const Navbar = () => {
+    const [scrolled, setScrolled] = React.useState(false);
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const { isDark, toggleTheme } = useTheme();
+
+    const incrementLike = () => {
+        if (canCallCounterApi()) fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${LIKES_KEY}/up`).catch(() => {});
+    };
+    const incrementDislike = () => {
+        if (canCallCounterApi()) fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${DISLIKES_KEY}/up`).catch(() => {});
+    };
+
+    React.useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 50);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const links = ["Home", "My Story", "About", "Family", "Hobbies", "Preferences", "Gallery", "Contact"];
+
+    return (
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 navbar-main`}>
+            <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+                {/* Logo, theme toggle, and Like/Dislike on mobile */}
+                <div className="flex items-center gap-2 flex-1 min-w-0">
+                    <a href="#" className="font-display text-xl font-semibold theme-text-primary shrink-0">
+                        Sumit
+                    </a>
+                    <button onClick={toggleTheme} className="theme-toggle shrink-0" title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
+                        {isDark ? '☀️' : '🌙'}
+                    </button>
+                    {/* Like/Dislike visible on phone without opening menu */}
+                    <div className="flex items-center gap-1.5 ml-1 lg:hidden shrink-0">
+                        <button
+                            type="button"
+                            onClick={incrementLike}
+                            className="px-2 py-1.5 rounded-lg border-2 text-xs font-medium transition-all select-none active:scale-95"
+                            style={{ borderColor: 'var(--border-color)', background: 'var(--bg-card)', color: 'var(--text-primary)'}}
+                            title="Like"
+                            aria-label="Like"
+                        >
+                            👍 Like
+                        </button>
+                        <button
+                            type="button"
+                            onClick={incrementDislike}
+                            className="px-2 py-1.5 rounded-lg border-2 text-xs font-medium transition-all select-none active:scale-95"
+                            style={{ borderColor: 'var(--border-color)', background: 'var(--bg-card)', color: 'var(--text-primary)'}}
+                            title="Dislike"
+                            aria-label="Dislike"
+                        >
+                            👎 Dislike
+                        </button>
+                    </div>
+                </div>
+
+                <ul className="hidden lg:flex gap-6 items-center">
+                    {links.map((link) => (
+                        <li key={link}>
+                            <a href={`#${link.toLowerCase().replace(' ', '-')}`} className="theme-text-muted hover:theme-text-primary transition-colors text-sm" style={{color: 'var(--text-muted)'}}>
+                                {link}
+                            </a>
+                        </li>
+                    ))}
+                    <li>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" className="px-4 py-2 gradient-bg rounded-lg text-sm font-medium gradient-btn-text hover:opacity-90 transition-opacity">
+                            Feedback
+                        </a>
+                    </li>
+                    <li className="flex items-center gap-2">
+                        <button
+                            type="button"
+                            onClick={incrementLike}
+                            className="px-3 py-2 rounded-lg border-2 text-sm font-medium transition-all duration-150 select-none active:scale-95"
+                            style={{ borderColor: 'var(--border-color)', background: 'var(--bg-card)', color: 'var(--text-primary)'}}
+                            title="Like"
+                            aria-label="Like"
+                        >
+                            👍 Like
+                        </button>
+                        <button
+                            type="button"
+                            onClick={incrementDislike}
+                            className="px-3 py-2 rounded-lg border-2 text-sm font-medium transition-all duration-150 select-none active:scale-95"
+                            style={{ borderColor: 'var(--border-color)', background: 'var(--bg-card)', color: 'var(--text-primary)'}}
+                            title="Dislike"
+                            aria-label="Dislike"
+                        >
+                            👎 Dislike
+                        </button>
+                    </li>
+                </ul>
+
+                <div className="flex items-center gap-2 lg:hidden">
+                    <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2" style={{color: 'var(--text-muted)'}} aria-label="Menu">
+                        <span className="text-xl">{mobileOpen ? '✕' : '☰'}</span>
+                    </button>
+                </div>
+            </div>
+
+            {mobileOpen && (
+                <div className="lg:hidden backdrop-blur-lg border-t" style={{background: 'var(--navbar-bg)', borderColor: 'var(--border-color)'}}>
+                    <ul className="flex flex-col items-center py-6 gap-4">
+                        {links.map((link) => (
+                            <li key={link}>
+                                <a href={`#${link.toLowerCase().replace(' ', '-')}`} onClick={() => setMobileOpen(false)} className="transition-colors" style={{color: 'var(--text-muted)'}}>
+                                    {link}
+                                </a>
+                            </li>
+                        ))}
+                        <li className="pt-2">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" target="_blank" className="px-5 py-2.5 gradient-bg rounded-lg font-medium gradient-btn-text">
+                                Feedback
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            )}
+        </nav>
+    );
+};
+
+// ============================================
+// HERO SECTION
+// ============================================
+const Hero = () => (
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
+            <div className="flex-1 text-center lg:text-left">
+                <span className="inline-block px-5 py-2.5 rounded-full text-sm tracking-widest uppercase mb-6" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-muted)'}}>
+                    Matrimonial Biodata
+                </span>
+
+                <h1 className="mb-4">
+                    <span className="block font-display text-5xl lg:text-7xl font-bold" style={{color: 'var(--text-primary)'}}>{bioData.name}</span>
+                    <span className="block text-sm lg:text-base mt-3 tracking-wide uppercase" style={{color: 'var(--text-muted)'}}>Personal Essence</span>
+                </h1>
+                <p className="text-base lg:text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed font-description" style={{color: 'var(--text-secondary)'}}>
+                    {bioData.personalEssence}
+                </p>
+
+                <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8">
+                    {bioData.highlights.map((item, i) => (
+                        <div key={i} className="flex items-center gap-2 px-4 py-2.5 rounded-lg" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)'}}>
+                            <span className="text-lg">{item.emoji}</span>
+                            <span className="font-medium text-sm" style={{color: 'var(--text-secondary)'}}>{item.text}</span>
+                        </div>
+                    ))}
+                </div>
+
+                <a href="#more-qualities" className="inline-flex items-center gap-2 px-7 py-3.5 gradient-bg rounded-lg font-semibold hover:opacity-90 transition-opacity gradient-btn-text">
+                    Know More
+                    <span className="text-lg">↓</span>
+                </a>
+            </div>
+
+            <div className="flex-shrink-0">
+                <div className="w-64 h-72 lg:w-72 lg:h-80 rounded-xl overflow-hidden shadow-2xl" style={{border: '1px solid var(--border-color)'}}>
+                    <img src={bioData.profilePhoto} alt="Sumit" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// SECTION HEADER
+// ============================================
+const SectionHeader = ({ emoji, tag, title, subtitle }) => (
+    <div className="text-center mb-14">
+        <span className="inline-block px-5 py-2 rounded-full text-xs tracking-widest uppercase mb-5" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-muted)'}}>
+            {emoji} {tag}
+        </span>
+        <h2 className="font-display text-3xl lg:text-4xl font-semibold mb-3" style={{letterSpacing: '0.02em', color: 'var(--text-primary)'}}>{title}</h2>
+        {subtitle && <p className="text-base font-description max-w-lg mx-auto" style={{color: 'var(--text-muted)'}}>{subtitle}</p>}
+    </div>
+);
+
+// ============================================
+// MY STORY SECTION - 📖 WHO I AM
+// ============================================
+const MyStory = () => (
+    <section id="my-story" className="py-12 relative z-10">
+        <div className="max-w-5xl mx-auto px-6">
+            <SectionHeader emoji="📖" tag="Who I Am" title="My Story" />
+
+            <div className="space-y-16">
+                {bioData.myStory.map((item, i) => (
+                    <div
+                        key={i}
+                        className={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center`}
+                    >
+                        {/* Image */}
+                        <div className="w-full lg:w-1/2">
+                            <div className="aspect-[4/3] rounded-xl overflow-hidden" style={{border: '1px solid var(--border-color)'}}>
+                                <img
+                                    src={item.img}
+                                    alt={item.title}
+                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                    loading="lazy"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Text */}
+                        <div className="w-full lg:w-1/2 text-center lg:text-left">
+                            <span className="text-sm font-medium tracking-wider uppercase" style={{color: 'var(--text-muted)'}}>
+                                {item.num}
+                            </span>
+                            <h3 className="text-2xl font-display font-semibold mt-2 mb-4" style={{color: 'var(--text-primary)'}}>
+                                {item.title}
+                            </h3>
+                            <p className="font-description text-lg leading-relaxed" style={{color: 'var(--text-secondary)'}}>
+                                {item.desc}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="mt-10 grid md:grid-cols-2 gap-4">
+                <div className="p-4 rounded-xl" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)'}}>
+                    <div className="flex items-center gap-3">
+                        <span className="text-2xl">📍</span>
+                        <div>
+                            <p className="text-xs uppercase tracking-wide" style={{color: 'var(--text-muted)'}}>Work Location</p>
+                            <p className="font-medium text-sm" style={{color: 'var(--text-primary)'}}>Bangalore, Karnataka</p>
+                            <p className="text-xs" style={{color: 'var(--text-muted)'}}>(Preferred for the future)</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="p-4 rounded-xl" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)'}}>
+                    <div className="flex items-center gap-3">
+                        <span className="text-2xl">💰</span>
+                        <div>
+                            <p className="text-xs uppercase tracking-wide" style={{color: 'var(--text-muted)'}}>Annual Income etc.</p>
+                            <p className="font-medium text-sm" style={{color: 'var(--text-primary)'}}>Available to discuss in person</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// ABOUT SECTION - 📋 BASIC DETAILS & LIFESTYLE
+// ============================================
+const About = () => (
+    <section id="about" className="py-12 relative z-10">
+        <div className="max-w-5xl mx-auto px-6">
+            <SectionHeader emoji="📋" tag="Get to Know Me" title="Basic Details & Lifestyle" />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {bioData.basics.map((item, i) => (
+                    <div key={i} className="p-4 rounded-lg transition-colors" style={{border: '1px solid var(--border-color)', background: 'var(--bg-card)'}}>
+                        <div className="flex items-center gap-3">
+                            <span className="text-xl">{item.emoji}</span>
+                            <div>
+                                <p className="text-xs uppercase tracking-wide" style={{color: 'var(--text-muted)'}}>{item.label}</p>
+                                {item.link ? (
+                                    <a href={item.link} target="_blank" className="font-medium text-sm transition-colors" style={{color: 'var(--text-primary)'}}>{item.value}</a>
+                                ) : (() => {
+                                    const match = item.value.match(/^(.+?)\(([^)]+)\)$/);
+                                    if (match) {
+                                        return (
+                                            <p className="font-medium text-sm" style={{color: 'var(--text-primary)'}}>
+                                                {match[1]}
+                                                <span className="italic text-xs">({match[2]})</span>
+                                            </p>
+                                        );
+                                    }
+                                    return <p className="font-medium text-sm" style={{color: 'var(--text-primary)'}}>{item.value}</p>;
+                                })()}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// QUALITIES SECTION - ✨ OTHER QUALITIES
+// ============================================
+const Qualities = () => (
+    <section id="more-qualities" className="py-12 relative z-10">
+        <div className="max-w-4xl mx-auto px-6">
+            <SectionHeader emoji="✨" tag="What Defines Me" title="More Qualities" subtitle="Traits that make me who I am" />
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {bioData.qualities.map((item, i) => (
+                    <div
+                        key={i}
+                        className="px-4 py-3 rounded-lg flex items-center justify-center gap-2 transition-colors"
+                        style={{border: '1px solid var(--border-color)', background: 'var(--bg-card)'}}
+                    >
+                        <span className="text-lg">{item.emoji}</span>
+                        <span className="font-medium text-sm" style={{color: 'var(--text-secondary)'}}>{item.trait}</span>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// FAMILY SECTION - 🏡 FAMILY & BACKGROUND
+// ============================================
+const Family = () => (
+    <section id="family" className="py-12 relative z-10">
+        <div className="max-w-5xl mx-auto px-6">
+            <SectionHeader emoji="🏡" tag="My Roots" title="Family & Background" />
+
+            <div className="grid lg:grid-cols-3 gap-6">
+                <div className="space-y-4">
+                    <div className="p-4 rounded-xl" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)'}}>
+                        <h3 className="text-sm font-semibold mb-3" style={{color: 'var(--text-secondary)'}}>Religion & Language</h3>
+                        <ul className="space-y-2 font-description text-sm" style={{color: 'var(--text-muted)'}}>
+                            <li><span style={{color: 'var(--text-secondary)'}}>Religion:</span> {bioData.family.religion}</li>
+                            <li><span style={{color: 'var(--text-secondary)'}}>Mother Tongue:</span> {bioData.family.motherTongue}</li>
+                            <li><span style={{color: 'var(--text-secondary)'}}>Languages:</span> {bioData.family.languages.join(", ")}</li>
+                        </ul>
+                    </div>
+
+                    <div className="p-4 rounded-xl" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)'}}>
+                        <h3 className="text-sm font-semibold mb-3" style={{color: 'var(--text-secondary)'}}>Address</h3>
+                        <ul className="space-y-2 font-description text-sm" style={{color: 'var(--text-muted)'}}>
+                            <li><span style={{color: 'var(--text-secondary)'}}>Permanent:</span> {bioData.family.permanent}</li>
+                            <li><span style={{color: 'var(--text-secondary)'}}>Current:</span> {bioData.family.current}</li>
+                            <li><span style={{color: 'var(--text-secondary)'}}>Settlement:</span> {bioData.family.settlement}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="lg:col-span-2">
+                    <h3 className="text-sm font-semibold mb-4 uppercase tracking-wide" style={{color: 'var(--text-secondary)'}}>Family Members</h3>
+
+                    <div className="space-y-3">
+                        {bioData.family.members.map((member, i) => (
+                            <div key={i} className={`flex items-center gap-4 p-4 rounded-xl ${member.role === 'Siblings' ? 'border-dashed' : ''}`} style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)'}}>
+                                <span className="text-2xl">{member.emoji}</span>
+                                <div>
+                                    <p className="text-xs uppercase tracking-wide" style={{color: 'var(--text-muted)'}}>{member.role}</p>
+                                    <p className="text-base font-medium" style={{color: 'var(--text-primary)'}}>{member.name}</p>
+                                    {member.detail && <p className="text-sm" style={{color: 'var(--text-muted)'}}>{member.detail}</p>}
+                                    {member.badge && (
+                                        <span className="inline-block mt-1 px-2 py-0.5 rounded text-xs" style={{background: 'var(--tag-bg)', color: 'var(--text-secondary)'}}>
+                                            {member.badge}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// HOBBIES SECTION - 🎨 HOBBIES & INTERESTS
+// ============================================
+const Hobbies = () => (
+    <section id="hobbies" className="py-12 relative z-10">
+        <div className="max-w-4xl mx-auto px-6">
+            <SectionHeader emoji="🎨" tag="Beyond Work" title="Hobbies & Interests" />
+
+            <div className="space-y-8">
+                {/* Sports */}
+                <div>
+                    <h3 className="text-sm font-semibold mb-4 uppercase tracking-wide" style={{color: 'var(--text-secondary)'}}>Sports</h3>
+                    <div className="flex flex-wrap gap-2">
+                        {bioData.hobbies.sports.map((sport, i) => (
+                            <span key={i} className="px-3 py-2 rounded-lg text-sm transition-colors" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)'}}>
+                                {sport.emoji} {sport.name}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Others */}
+                <div>
+                    <h3 className="text-sm font-semibold mb-4 uppercase tracking-wide" style={{color: 'var(--text-secondary)'}}>Entertainment & More</h3>
+                    <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-2 rounded-lg text-sm transition-colors" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)'}}>
+                            {bioData.hobbies.music.emoji} Music
+                        </span>
+                        <span className="px-3 py-2 rounded-lg text-sm transition-colors" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)'}}>
+                            {bioData.hobbies.travelling.emoji} Travelling - {bioData.hobbies.travelling.detail}
+                        </span>
+                        <span className="px-3 py-2 rounded-lg text-sm transition-colors" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)'}}>
+                            {bioData.hobbies.movies.emoji} Movies/Series
+                        </span>
+                        <span className="px-3 py-2 rounded-lg text-sm transition-colors" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)'}}>
+                            {bioData.hobbies.others.emoji} {bioData.hobbies.others.detail}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+// ============================================
+// PREFERENCES SECTION - 💍 PARTNER PREFERENCES
+// ============================================
+const Preferences = () => (
+    <section id="preferences" className="py-12 relative z-10">
+        <div className="max-w-4xl mx-auto px-6">
+            <SectionHeader emoji="💍" tag="Looking For" title="Partner Preferences" />
+
+            <p className="text-center text-base max-w-xl mx-auto mb-10 font-description" style={{color: 'var(--text-muted)'}}>
+                {bioData.preferenceIntro}
+            </p>
+
+            {/* Mindset Section - Highlighted */}
+            <div className="mb-10 p-5 rounded-xl max-w-2xl mx-auto" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)'}}>
+                <div className="text-center">
+                    <span className="text-2xl mb-2 block">💡</span>
+                    <h3 className="text-base font-semibold mb-2" style={{color: 'var(--text-primary)'}}>Mindset</h3>
+                    <p className="text-sm font-description" style={{color: 'var(--text-muted)'}}>
+                        Self-confident and self-respecting; someone who doesn't require external validation
+                    </p>
+                </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {bioData.preferences.map((pref, i) => (
+                    <div key={i} className="p-4 rounded-xl text-center transition-colors" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)'}}>
+                        <span className="text-xl mb-2 block">{pref.emoji}</span>
+                        <h3 className="text-sm font-medium mb-1" style={{color: 'var(--text-primary)'}}>
+                            {pref.title.includes('*') ? (
+                                <>
+                                    {pref.title.replace('*', '')}
+                                    <sup style={{color: 'var(--text-muted)'}}>*</sup>
+                                </>
+                            ) : pref.title}
+                        </h3>
+                        <p className="text-xs" style={{color: 'var(--text-muted)'}}>{pref.desc}</p>
+                    </div>
+                ))}
+            </div>
+
+            {/* Note about preferences */}
+        </div>
+    </section>
+);
+
+// ============================================
+// GALLERY SECTION - 📸 PHOTO ALBUM
+// ============================================
+const Gallery = () => {
+    const [lightbox, setLightbox] = React.useState(null);
+
+    return (
+        <section id="gallery" className="py-12 relative z-10">
+            <div className="max-w-5xl mx-auto px-6">
+                <SectionHeader
+                    emoji="📸"
+                    tag="Photo Album"
+                    title="Gallery"
+                    subtitle={`"${bioData.galleryQuote}"`}
+                />
+
+                {/* Photo Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+                    {bioData.gallery.map((item, i) => (
+                        <div
+                            key={i}
+                            className="gallery-item aspect-square cursor-pointer overflow-hidden rounded-xl"
+                            onClick={() => setLightbox(item.src)}
+                        >
+                            <img
+                                src={item.src}
+                                alt={item.title}
+                                className="gallery-img w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Lightbox */}
+            <div className={`lightbox ${lightbox ? 'active' : ''}`} onClick={() => setLightbox(null)}>
+                {lightbox && <img src={lightbox} alt="Full size" />}
+                <button
+                    className="absolute top-6 right-6 w-10 h-10 rounded-full bg-dark-800/80 text-white flex items-center justify-center hover:bg-dark-700 transition-all"
+                    onClick={() => setLightbox(null)}
+                >
+                    ✕
+                </button>
+            </div>
+        </section>
+    );
+};
+
+// ============================================
+// CONTACT SECTION
+// ============================================
+const Contact = () => {
+    const socialContacts = [
+        { logo: bioData.contact.instagram.logo, title: "Instagram", value: `@${bioData.contact.instagram.handle}`, link: `https://instagram.com/${bioData.contact.instagram.handle}` },
+        { logo: bioData.contact.linkedin.logo, title: "LinkedIn", value: bioData.contact.linkedin.handle, link: `https://linkedin.com/in/${bioData.contact.linkedin.handle}` },
+        { emoji: bioData.contact.location.emoji, title: "Location", value: bioData.contact.location.value }
+    ];
+
+    return (
+        <section id="contact" className="py-12 relative z-10">
+            <div className="max-w-4xl mx-auto px-6">
+                <SectionHeader emoji="📞" tag="Get in Touch" title="Contact" />
+
+                {/* Social & Location */}
+                <div className="grid md:grid-cols-3 gap-4 mb-8">
+                    {socialContacts.map((contact, i) => (
+                        <div key={i} className="p-5 rounded-xl text-center transition-colors" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)'}}>
+                            {contact.logo ? (
+                                <img src={contact.logo} alt={contact.title} className="w-10 h-10 mx-auto mb-3 opacity-80" />
+                            ) : (
+                                <span className="text-2xl mb-3 block">{contact.emoji}</span>
+                            )}
+                            <h3 className="text-sm font-medium mb-1" style={{color: 'var(--text-secondary)'}}>{contact.title}</h3>
+                            {contact.link ? (
+                                <a href={contact.link} target="_blank" className="text-sm transition-colors" style={{color: 'var(--text-muted)'}}>
+                                    {contact.value}
+                                </a>
+                            ) : (
+                                <p className="text-sm" style={{color: 'var(--text-muted)'}}>{contact.value}</p>
+                            )}
+                        </div>
+                    ))}
+                </div>
+
+                {/* Additional Contact Note */}
+                <div className="p-4 rounded-xl text-center max-w-lg mx-auto" style={{background: 'var(--bg-card)', border: '1px solid var(--border-color)'}}>
+                    <p className="text-sm font-description" style={{color: 'var(--text-muted)'}}>
+                        Feel free to contact via any other medium (phone, email, etc.) you want.
+                    </p>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+// ============================================
+// FOOTER
+// ============================================
+const Footer = () => {
+    const [likeCount, setLikeCount] = React.useState(0);
+    const [dislikeCount, setDislikeCount] = React.useState(0);
+
+    React.useEffect(() => {
+        if (typeof window === 'undefined' || window.location.protocol === 'file:') return;
+        const ns = 'sumit-biodata-2026';
+        Promise.all([
+            fetch(`https://api.counterapi.dev/v1/${ns}/simple-likes`).then(r => r.json()).then(d => d.count ?? d.value ?? 0).catch(() => 0),
+            fetch(`https://api.counterapi.dev/v1/${ns}/simple-dislikes`).then(r => r.json()).then(d => d.count ?? d.value ?? 0).catch(() => 0)
+        ]).then(([likes, dislikes]) => {
+            setLikeCount(likes);
+            setDislikeCount(dislikes);
+        });
+    }, []);
+
+    return (
+        <footer className="py-8 border-t relative z-10" style={{borderColor: 'var(--border-color)', background: 'var(--bg-primary)'}}>
+            <div className="max-w-4xl mx-auto px-6 text-center space-y-6">
+                {/* Feedback Button */}
+                <div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScf7iqqMNthodb98hQMQNc15fkq8yggGEZncGpU05v41FfRZw/viewform" className="inline-flex items-center gap-2 px-6 py-3 gradient-bg rounded-lg font-medium gradient-btn-text hover:opacity-90 transition-opacity text-sm">
+                        Share Your Feedback
+                    </a>
+                </div>
+
+                {/* Hit Counter */}
+                <HitCounter />
+
+                <div className="pt-4 space-y-2">
+                    <p className="text-sm" style={{color: 'var(--text-muted)'}}>Last Updated: 05-02-2026</p>
+                    <p className="text-sm" style={{color: 'var(--text-secondary)'}}>
+                        Made with <span className="animate-heartbeat text-red-500 text-2xl">❤️</span>
+                    </p>
+                    <p className="text-xs pt-2" style={{color: 'var(--text-muted)'}}>
+                        <a href="index.html" className="hover:underline" style={{color: 'var(--text-muted)'}}>Home</a>
+                        {' · '}
+                        <span style={{color: 'var(--text-muted)', opacity: 0.8}}>Simple</span>
+                        {' · '}
+                        <a href="fun.html" className="hover:underline" style={{color: 'var(--text-muted)'}}>Fun</a>
+                    </p>
+                    <p className="text-xs pt-1" style={{color: 'var(--text-muted)'}}>
+                        © 2026 Sumit. All Rights Reserved.
+                    </p>
+                    {/* Like / Dislike counts - barely visible */}
+                    <p className="text-sm mt-2 select-none" style={{ color: 'var(--text-muted)', opacity: 0.035 }}>
+                        👍 {likeCount} &nbsp; 👎 {dislikeCount}
+                    </p>
+                </div>
+            </div>
+        </footer>
+    );
+};
+
+// ============================================
+// MAIN APP
+// ============================================
+const App = () => (
+    <ThemeProvider>
+        <Navbar />
+        <Hero />
+        <MyStory />
+        <Qualities />
+        <About />
+        <Family />
+        <Hobbies />
+        <Preferences />
+        <Gallery />
+        <Contact />
+        <Footer />
+    </ThemeProvider>
+);
+
+// Render
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+    </script>
+</body>
+</html>

@@ -1525,13 +1525,10 @@ const LIKES_STORAGE_KEY = 'sumit-biodata-fun-likes';
 const DISLIKES_STORAGE_KEY = 'sumit-biodata-fun-dislikes';
 const getInitialCounts = () => {
     if (typeof window === 'undefined') return [0, 0];
-    if (window.location.protocol === 'file:') {
-        return [
-            parseInt(localStorage.getItem(LIKES_STORAGE_KEY) || '0', 10),
-            parseInt(localStorage.getItem(DISLIKES_STORAGE_KEY) || '0', 10)
-        ];
-    }
-    return [0, 0];
+    return [
+        parseInt(localStorage.getItem(LIKES_STORAGE_KEY) || '0', 10),
+        parseInt(localStorage.getItem(DISLIKES_STORAGE_KEY) || '0', 10)
+    ];
 };
 
 const Footer = () => {
@@ -1540,18 +1537,21 @@ const Footer = () => {
 
     const fetchCounts = React.useCallback(() => {
         if (typeof window === 'undefined') return;
-        const isLocal = window.location.protocol === 'file:';
         Promise.all([
             countApiGet(LIKES_KEY).then(parseCount).catch(() => 0),
             countApiGet(DISLIKES_KEY).then(parseCount).catch(() => 0)
         ]).then(([likes, dislikes]) => {
-            if (isLocal && likes === 0 && dislikes === 0) return;
+            const storedLikes = parseInt(localStorage.getItem(LIKES_STORAGE_KEY) || '0', 10);
+            const storedDislikes = parseInt(localStorage.getItem(DISLIKES_STORAGE_KEY) || '0', 10);
+            if (likes === 0 && dislikes === 0 && (storedLikes > 0 || storedDislikes > 0)) {
+                setLikeCount(storedLikes);
+                setDislikeCount(storedDislikes);
+                return;
+            }
             setLikeCount(likes);
             setDislikeCount(dislikes);
-            if (isLocal) {
-                localStorage.setItem(LIKES_STORAGE_KEY, String(likes));
-                localStorage.setItem(DISLIKES_STORAGE_KEY, String(dislikes));
-            }
+            localStorage.setItem(LIKES_STORAGE_KEY, String(likes));
+            localStorage.setItem(DISLIKES_STORAGE_KEY, String(dislikes));
         });
     }, []);
 

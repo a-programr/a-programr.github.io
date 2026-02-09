@@ -316,37 +316,6 @@
         .delay-500 { animation-delay: 0.5s; }
         .delay-600 { animation-delay: 0.6s; }
 
-        /* Timeline with glow */
-        .timeline-line {
-            position: absolute;
-            left: 7px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(135deg, #ffffff, #EC4899);
-            box-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
-            border-radius: 3px;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 0;
-            top: 6px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #334155, #1e293b);
-            border: 3px solid #0f172a;
-            transition: all 0.4s ease;
-            box-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
-        }
-
-        .timeline-item:hover .timeline-dot {
-            background: linear-gradient(135deg, #ffffff, #EC4899);
-            box-shadow: 0 0 25px #facc15, 0 0 50px rgba(250, 204, 21, 0.5);
-            transform: scale(1.4);
-        }
-
         /* Gallery with neon borders */
         .gallery-img {
             width: 100%;
@@ -683,45 +652,6 @@ const bioData = {
         { emoji: "🚫", label: "Drinking", value: "NO(Bheed ko follow nahi karta)" },
         { emoji: "📸", label: "Instagram", value: "jakharsumit2025", link: "https://instagram.com/jakharsumit2025" }
     ],
-    career: [
-        {
-            year: "2017",
-            title: "JEE Advanced 🎖️",
-            subtitle: "All India Rank 47 🏅",
-            description: "Cleared one of the toughest exams in the world with an exceptional rank.",
-            emoji: "🏅"
-        },
-        {
-            year: "2017",
-            title: "Schooling 🏫",
-            subtitle: "Class of 2017",
-            description: "Completed schooling in Jhajjar, Haryana.",
-            emoji: "🏫"
-        },
-        {
-            year: "2017-2021",
-            title: "IIT Bombay 🏛️",
-            subtitle: "B.Tech in Computer Science & Engineering 💻",
-            description: "Graduated from one of India's premier institutes with a degree in CSE.",
-            emoji: "🎓"
-        },
-        {
-            year: "Present",
-            title: "NVIDIA 💼",
-            subtitle: "System Software Engineer ⚙️",
-            description: "Working at one of the world's leading technology companies in Bangalore.",
-            emoji: "⚙️",
-            active: true
-        },
-        {
-            year: "Future",
-            title: "Entrepreneurial Dreams 🚀",
-            subtitle: "Own Company",
-            description: "To have my own company or something (highest priority will remain health and family though).",
-            emoji: "🚀",
-            future: true
-        }
-    ],
     family: {
         religion: "Hindu 🕉️",
         motherTongue: "Haryanvi",
@@ -833,15 +763,24 @@ const bioData = {
         { trait: "Empathetic", emoji: "💗" },
     ],
     myStory: [
-        { num: "01", title: "Haryanvi Roots", desc: "Born and raised in Jhajjar, Haryana. Deeply connected to cultural values, traditions, and the simplicity of small-town life. These roots shaped who I am today.", img: "images/echoPointPhoto.jpg" },
-        { num: "02", title: "Family Foundation", desc: "Raised as an only child by a Sub Inspector father and a school teacher mother. Discipline from Dad, education from Mom — the perfect balance that built my character.", img: "images/IMG-20241012-WA0025.jpg" },
-        { num: "03", title: "Academic Triumph", desc: "Secured All India Rank 47 in JEE Advanced 2017 — one of the world's toughest exams. Hard work and focus paid off, opening doors to India's best institutions.", img: "images/Screenshot 2025-12-26 134555.png" },
+        { num: "01", title: "Haryanvi Roots", desc: "Born and raised in Jhajjar, Haryana — where traditional values and small-town simplicity meet. Those roots keep me grounded as I navigate the modern world.", img: "images/echoPointPhoto.jpg" },
+        { num: "02", title: "Family Foundation", desc: "Only child of a Sub Inspector father and a school teacher mother. Discipline and a love for learning — a blend that shaped both my character and my outlook.", img: "images/IMG-20241012-WA0025.jpg" },
+        { num: "03", title: "Academic Triumph", desc: "All India Rank 47 in JEE Advanced 2017. Hard work and focus paid off, opening doors to India's best institutions.", img: "images/Screenshot 2025-12-26 134555.png" },
         { num: "04", title: "IIT Bombay Journey", desc: "Four transformative years at IIT Bombay pursuing Computer Science. Not just academics, but friendships, growth, and discovering my true potential.", img: "images/IMG_20241019_135442.jpg" },
         { num: "05", title: "Tech at NVIDIA", desc: "Now a System Software Engineer at NVIDIA, Bangalore. Working on cutting-edge technology while contributing to innovations that shape the future.", img: "images/IMG_20250612_103425.jpg" },
         { num: "06", title: "Sports & Fitness", desc: "Sports aren't just a hobby — they're a lifestyle. From badminton to swimming, martial arts to cricket, fitness is a non-negotiable priority.", img: "images/IMG_20250217_091950.jpg" },
-        { num: "07", title: "Grounded Values", desc: "No smoking, no drinking — not because of restrictions, but by choice. I believe in authenticity, intellectual depth, and staying true to oneself.", img: "images/1766732769845.jpg" },
+        { num: "07", title: "Grounded Values", desc: "No smoking, no drinking — by choice. I believe in authenticity and staying true to oneself.", img: "images/1766732769845.jpg" },
         { num: "08", title: "Future Vision", desc: "Entrepreneurial dreams with health and family as the highest priorities. Committed to building a meaningful life in India, not abroad.", img: "images/IMG_20240820_165703.jpg" }
     ]
+};
+
+// CORS proxy for CounterAPI when loaded from GitHub Pages (api.counterapi.dev does not send CORS headers)
+const counterApiUrl = (path) => {
+    const url = 'https://api.counterapi.dev/v1/' + path.replace(/^\//, '');
+    if (typeof window !== 'undefined' && window.location.protocol !== 'file:') {
+        return 'https://api.cors.lol/?' + new URLSearchParams({ url }).toString();
+    }
+    return url;
 };
 
 // ============================================
@@ -853,10 +792,10 @@ const HitCounter = () => {
 
     React.useEffect(() => {
         // Use CountAPI - a simple free counter service
-        fetch('https://api.counterapi.dev/v1/sumit-biodata-2026/visits-fun/up')
+        fetch(counterApiUrl('sumit-biodata-2026/visits-fun/up'))
             .then(res => res.json())
             .then(data => {
-                setCount(data.count);
+                setCount(data.count ?? data.value);
                 setLoading(false);
             })
             .catch(() => {
@@ -1051,13 +990,13 @@ const Navbar = () => {
 
     const incrementLike = () => {
         if (canCallCounterApi()) {
-            fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${LIKES_KEY}/up`).catch(() => {});
+            fetch(counterApiUrl(`${COUNTER_NAMESPACE}/${LIKES_KEY}/up`)).catch(() => {});
             window.dispatchEvent(new CustomEvent('counter-updated'));
         }
     };
     const incrementDislike = () => {
         if (canCallCounterApi()) {
-            fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${DISLIKES_KEY}/up`).catch(() => {});
+            fetch(counterApiUrl(`${COUNTER_NAMESPACE}/${DISLIKES_KEY}/up`)).catch(() => {});
             window.dispatchEvent(new CustomEvent('counter-updated'));
         }
     };
@@ -1283,7 +1222,7 @@ const Qualities = () => (
 );
 
 // ============================================
-// MY STORY SECTION - 📖 WHO I AM (Education & Career within)
+// MY STORY SECTION
 // ============================================
 const MyStory = () => (
     <section id="story" className="py-16 relative z-10">
@@ -1594,8 +1533,8 @@ const Footer = () => {
         if (typeof window === 'undefined' || window.location.protocol === 'file:') return;
         const ns = 'sumit-biodata-2026';
         Promise.all([
-            fetch(`https://api.counterapi.dev/v1/${ns}/fun-likes`).then(r => r.json()).then(parseCount).catch(() => 0),
-            fetch(`https://api.counterapi.dev/v1/${ns}/fun-dislikes`).then(r => r.json()).then(parseCount).catch(() => 0)
+            fetch(counterApiUrl(`${ns}/fun-likes`)).then(r => r.json()).then(parseCount).catch(() => 0),
+            fetch(counterApiUrl(`${ns}/fun-dislikes`)).then(r => r.json()).then(parseCount).catch(() => 0)
         ]).then(([likes, dislikes]) => {
             setLikeCount(likes);
             setDislikeCount(dislikes);
@@ -1622,7 +1561,7 @@ const Footer = () => {
                 {/* Hit Counter */}
                 <HitCounter />
 
-                <p className="text-gray-300">Last Updated: 05-02-2026</p>
+                <p className="text-gray-300">Last Updated: 09-02-2026</p>
                 <p className="text-2xl flex items-center justify-center gap-2 text-white">
                     Made with <span className="animate-heartbeat text-red-500 text-3xl">❤️</span>
                 </p>

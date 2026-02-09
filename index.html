@@ -17,8 +17,12 @@
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
-            background: linear-gradient(160deg, #faf8f5 0%, #f0ede8 50%, #e8e4de 100%);
-            color: #1c1917;
+            /* Warm stone: sandstone / limestone feel with subtle grain */
+            background-color: #ddd6cf;
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+                linear-gradient(165deg, #e8e2dc 0%, #ddd6cf 35%, #d2cac2 70%, #c9c0b8 100%);
+            color: #4a4039;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -26,17 +30,31 @@
             padding: 2rem;
             text-align: center;
         }
+        @keyframes entrance {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .name {
             font-family: 'Playfair Display', serif;
             font-size: clamp(2rem, 6vw, 3.5rem);
             font-weight: 700;
             margin-bottom: 0.5rem;
-            color: #1c1917;
+            color: #4a4039;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            opacity: 0;
+            transform: translateY(28px);
+            animation: entrance 0.95s ease-out forwards;
         }
         .tagline {
             font-size: 0.95rem;
-            color: #78716c;
+            color: #6b6158;
             margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(28px);
+            animation: entrance 0.8s ease-out 0.25s forwards;
         }
         .cards {
             display: flex;
@@ -50,17 +68,42 @@
             width: 100%;
             max-width: 260px;
             padding: 1.75rem 1.5rem;
-            background: #fff;
+            background: #f8f6f2;
             border-radius: 1rem;
-            border: 1px solid rgba(0,0,0,0.08);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid rgba(74, 64, 57, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.75);
+            /* Resting on stone: contact shadow + soft drop shadow */
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.7),
+                0 2px 4px rgba(50, 45, 40, 0.12),
+                0 8px 24px rgba(50, 45, 40, 0.15),
+                0 20px 40px rgba(40, 35, 30, 0.1);
             text-decoration: none;
             color: inherit;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.25s ease, box-shadow 0.25s, border-color 0.2s;
+            position: relative;
+            opacity: 0;
+            transform: translateY(28px);
+            animation: entrance 0.8s ease-out forwards;
         }
+        .card:nth-child(1) { animation-delay: 0.5s; }
+        .card:nth-child(2) { animation-delay: 0.7s; }
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+            transform: translateY(-4px) scale(1.02);
+            border-color: rgba(230, 180, 140, 0.4);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.7),
+                0 4px 12px rgba(50, 45, 40, 0.15),
+                0 16px 40px rgba(255, 200, 150, 0.18),
+                0 28px 50px rgba(40, 35, 30, 0.12);
+        }
+        .card-accent {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.75rem;
+            font-size: 0.9rem;
+            opacity: 0.45;
+            line-height: 1;
         }
         .card-emoji {
             font-size: 2.5rem;
@@ -71,37 +114,135 @@
             font-size: 1.35rem;
             font-weight: 600;
             margin-bottom: 0.35rem;
+            color: #4a4039;
         }
         .card-desc {
             font-size: 0.8rem;
-            color: #78716c;
+            color: #6b6158;
             line-height: 1.4;
         }
         .footer-note {
             margin-top: 2.5rem;
             font-size: 0.75rem;
-            color: #a8a29e;
+            color: #7a7269;
+        }
+
+        /* Moving leaves background */
+        .leaves-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .leaf {
+            display: block;
+            position: absolute;
+            width: 24px;
+            height: 40px;
+            background: rgba(139, 154, 125, 0.2);
+            border-radius: 50% 0 50% 50%;
+            transform-origin: center center;
+            animation: leaf-float 18s ease-in-out infinite;
+        }
+        .leaf:nth-child(1) { left: 8%; top: 15%; transform: rotate(-30deg); animation-duration: 20s; animation-delay: 0s; width: 20px; height: 34px; background: rgba(160, 152, 122, 0.18); }
+        .leaf:nth-child(2) { left: 25%; top: 70%; transform: rotate(40deg); animation-duration: 22s; animation-delay: -4s; width: 18px; height: 30px; background: rgba(139, 154, 125, 0.22); }
+        .leaf:nth-child(3) { left: 60%; top: 20%; transform: rotate(-60deg); animation-duration: 19s; animation-delay: -8s; width: 22px; height: 36px; background: rgba(180, 165, 130, 0.16); }
+        .leaf:nth-child(4) { left: 75%; top: 60%; transform: rotate(20deg); animation-duration: 24s; animation-delay: -2s; width: 16px; height: 28px; background: rgba(139, 154, 125, 0.2); }
+        .leaf:nth-child(5) { left: 15%; top: 45%; transform: rotate(55deg); animation-duration: 21s; animation-delay: -6s; width: 20px; height: 32px; background: rgba(160, 152, 122, 0.2); }
+        .leaf:nth-child(6) { left: 85%; top: 30%; transform: rotate(-45deg); animation-duration: 23s; animation-delay: -10s; width: 18px; height: 30px; background: rgba(139, 154, 125, 0.18); }
+        .leaf:nth-child(7) { left: 45%; top: 80%; transform: rotate(10deg); animation-duration: 20s; animation-delay: -5s; width: 22px; height: 38px; background: rgba(180, 165, 130, 0.14); }
+        .leaf:nth-child(8) { left: 92%; top: 75%; transform: rotate(-20deg); animation-duration: 25s; animation-delay: -12s; width: 16px; height: 26px; background: rgba(139, 154, 125, 0.2); }
+        .leaf:nth-child(9) { left: 5%; top: 85%; transform: rotate(35deg); animation-duration: 21s; animation-delay: -3s; width: 20px; height: 34px; background: rgba(160, 152, 122, 0.16); }
+        .leaf:nth-child(10) { left: 50%; top: 10%; transform: rotate(-50deg); animation-duration: 22s; animation-delay: -7s; width: 18px; height: 30px; background: rgba(139, 154, 125, 0.2); }
+        .leaf:nth-child(11) { left: 35%; top: 25%; transform: rotate(15deg); animation-duration: 21s; animation-delay: -1s; width: 17px; height: 29px; background: rgba(160, 152, 122, 0.19); }
+        .leaf:nth-child(12) { left: 70%; top: 45%; transform: rotate(-35deg); animation-duration: 23s; animation-delay: -9s; width: 21px; height: 35px; background: rgba(139, 154, 125, 0.21); }
+        .leaf:nth-child(13) { left: 12%; top: 28%; transform: rotate(50deg); animation-duration: 19s; animation-delay: -11s; width: 19px; height: 32px; background: rgba(180, 165, 130, 0.15); }
+        .leaf:nth-child(14) { left: 88%; top: 55%; transform: rotate(-15deg); animation-duration: 20s; animation-delay: -6s; width: 16px; height: 27px; background: rgba(139, 154, 125, 0.2); }
+        .leaf:nth-child(15) { left: 55%; top: 75%; transform: rotate(45deg); animation-duration: 24s; animation-delay: -13s; width: 20px; height: 33px; background: rgba(160, 152, 122, 0.17); }
+        .leaf:nth-child(16) { left: 3%; top: 55%; transform: rotate(-40deg); animation-duration: 22s; animation-delay: -4s; width: 18px; height: 31px; background: rgba(139, 154, 125, 0.22); }
+        .leaf:nth-child(17) { left: 38%; top: 5%; transform: rotate(25deg); animation-duration: 18s; animation-delay: -8s; width: 17px; height: 28px; background: rgba(180, 165, 130, 0.16); }
+        .leaf:nth-child(18) { left: 65%; top: 88%; transform: rotate(-55deg); animation-duration: 25s; animation-delay: -2s; width: 19px; height: 32px; background: rgba(139, 154, 125, 0.18); }
+        .leaf:nth-child(19) { left: 22%; top: 92%; transform: rotate(5deg); animation-duration: 21s; animation-delay: -14s; width: 21px; height: 36px; background: rgba(160, 152, 122, 0.2); }
+        .leaf:nth-child(20) { left: 78%; top: 12%; transform: rotate(60deg); animation-duration: 20s; animation-delay: -5s; width: 16px; height: 27px; background: rgba(139, 154, 125, 0.19); }
+        .leaf:nth-child(1) { --r: -30deg; }
+        .leaf:nth-child(2) { --r: 40deg; }
+        .leaf:nth-child(3) { --r: -60deg; }
+        .leaf:nth-child(4) { --r: 20deg; }
+        .leaf:nth-child(5) { --r: 55deg; }
+        .leaf:nth-child(6) { --r: -45deg; }
+        .leaf:nth-child(7) { --r: 10deg; }
+        .leaf:nth-child(8) { --r: -20deg; }
+        .leaf:nth-child(9) { --r: 35deg; }
+        .leaf:nth-child(10) { --r: -50deg; }
+        .leaf:nth-child(11) { --r: 15deg; }
+        .leaf:nth-child(12) { --r: -35deg; }
+        .leaf:nth-child(13) { --r: 50deg; }
+        .leaf:nth-child(14) { --r: -15deg; }
+        .leaf:nth-child(15) { --r: 45deg; }
+        .leaf:nth-child(16) { --r: -40deg; }
+        .leaf:nth-child(17) { --r: 25deg; }
+        .leaf:nth-child(18) { --r: -55deg; }
+        .leaf:nth-child(19) { --r: 5deg; }
+        .leaf:nth-child(20) { --r: 60deg; }
+        @keyframes leaf-float {
+            0%, 100% { transform: translate(0, 0) rotate(var(--r)); }
+            20% { transform: translate(15px, -15px) rotate(calc(var(--r) + 8deg)); }
+            40% { transform: translate(-10px, -25px) rotate(calc(var(--r) - 5deg)); }
+            60% { transform: translate(-18px, -10px) rotate(calc(var(--r) + 6deg)); }
+            80% { transform: translate(5px, -20px) rotate(calc(var(--r) - 4deg)); }
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
+    <div class="leaves-bg" aria-hidden="true">
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+        <span class="leaf"></span>
+    </div>
+    <div class="content">
     <h1 class="name">Hey There!</h1>
     <p class="tagline">Choose how you’d like to view the biodata</p>
 
     <div class="cards">
         <a href="simple.html" class="card">
+            <span class="card-accent" aria-hidden="true">🍃</span>
             <span class="card-emoji">📄</span>
             <div class="card-title">Simple</div>
             <div class="card-desc">Clean, minimal layout with light & dark mode</div>
         </a>
         <a href="fun.html" class="card">
+            <span class="card-accent" aria-hidden="true">🌿</span>
             <span class="card-emoji">🌹</span>
             <div class="card-title">Fun</div>
             <div class="card-desc">Vibrant style with extra flair</div>
         </a>
-            </div>
+    </div>
 
     <p class="footer-note">© 2026 Sumit. All Rights Reserved.</p>
     <p class="footer-note">Thanks to everyone who provided guidance/feedback; and cursor!</p>
+    </div>
 </body>
 </html>

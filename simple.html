@@ -812,24 +812,12 @@ const ThemeProvider = ({ children }) => {
 
 const useTheme = () => React.useContext(ThemeContext);
 
-// CORS proxy for CounterAPI when loaded from GitHub Pages (api.counterapi.dev does not send CORS headers)
-const counterApiUrl = (path) => {
-    const url = 'https://api.counterapi.dev/v1/' + path.replace(/^\//, '');
-    if (typeof window !== 'undefined' && window.location.protocol !== 'file:') {
-        return 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
-    }
-    return url;
-};
-
-// Fetch counter API and unwrap allorigins proxy response when on https (GitHub Pages)
-const fetchCounterJson = (path) => {
-    return fetch(counterApiUrl(path))
-        .then(r => r.json())
-        .then(data => {
-            if (data && typeof data.contents === 'string') return JSON.parse(data.contents);
-            return data;
-        });
-};
+// All counters use counterapi.dev (same as working commit 3/4 - CORS, no proxy)
+const COUNTAPI_NS = 'sumit-biodata-2026';
+const VISITOR_HIT_URL = 'https://api.counterapi.dev/v1/' + COUNTAPI_NS + '/visits-simple/up';
+const LIKES_HIT_URL = 'https://api.counterapi.dev/v1/' + COUNTAPI_NS + '/simple-likes/up';
+const DISLIKES_HIT_URL = 'https://api.counterapi.dev/v1/' + COUNTAPI_NS + '/simple-dislikes/up';
+const countApiGet = (key) => fetch('https://api.counterapi.dev/v1/' + COUNTAPI_NS + '/' + key).then(r => r.json());
 
 // ============================================
 // HIT COUNTER COMPONENT
@@ -839,19 +827,19 @@ const HitCounter = () => {
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
-        // Use CountAPI - a simple free counter service
-        fetchCounterJson('sumit-biodata-2026/visits-simple/up')
+        // Use CounterAPI (same as working commit 3/4)
+        fetch(VISITOR_HIT_URL)
+            .then(res => res.json())
             .then(data => {
-                setCount(data != null ? (data.count ?? data.value) : null);
+                setCount(data != null ? data.count : null);
                 setLoading(false);
             })
             .catch(() => {
-                // Fallback to localStorage if API fails (per-page)
-                const stored = localStorage.getItem('sumit-biodata-visits-simple') || '0';
-                let num = parseInt(stored);
+                const stored = localStorage.getItem('sumit-biodata-visits-simple') || '100';
+                let num = parseInt(stored, 10) || 0;
                 if (!sessionStorage.getItem('counted-simple')) {
                     num += 1;
-                    localStorage.setItem('sumit-biodata-visits-simple', num.toString());
+                    localStorage.setItem('sumit-biodata-visits-simple', String(num));
                     sessionStorage.setItem('counted-simple', 'true');
                 }
                 setCount(num);
@@ -875,7 +863,6 @@ const HitCounter = () => {
 // ============================================
 // NAVBAR
 // ============================================
-const COUNTER_NAMESPACE = 'sumit-biodata-2026';
 const LIKES_KEY = 'simple-likes';
 const DISLIKES_KEY = 'simple-dislikes';
 const canCallCounterApi = () => typeof window !== 'undefined';
@@ -887,13 +874,13 @@ const Navbar = () => {
 
     const incrementLike = () => {
         if (canCallCounterApi()) {
-            fetch(counterApiUrl(`${COUNTER_NAMESPACE}/${LIKES_KEY}/up`)).catch(() => {});
+            fetch(LIKES_HIT_URL).catch(() => {});
             window.dispatchEvent(new CustomEvent('counter-updated', { detail: { type: 'like' } }));
         }
     };
     const incrementDislike = () => {
         if (canCallCounterApi()) {
-            fetch(counterApiUrl(`${COUNTER_NAMESPACE}/${DISLIKES_KEY}/up`)).catch(() => {});
+            fetch(DISLIKES_HIT_URL).catch(() => {});
             window.dispatchEvent(new CustomEvent('counter-updated', { detail: { type: 'dislike' } }));
         }
     };
@@ -1468,11 +1455,10 @@ const Footer = () => {
 
     const fetchCounts = React.useCallback(() => {
         if (typeof window === 'undefined') return;
-        const ns = 'sumit-biodata-2026';
         const isLocal = window.location.protocol === 'file:';
         Promise.all([
-            fetchCounterJson(`${ns}/simple-likes`).then(parseCount).catch(() => 0),
-            fetchCounterJson(`${ns}/simple-dislikes`).then(parseCount).catch(() => 0)
+            countApiGet(LIKES_KEY).then(parseCount).catch(() => 0),
+            countApiGet(DISLIKES_KEY).then(parseCount).catch(() => 0)
         ]).then(([likes, dislikes]) => {
             if (isLocal && likes === 0 && dislikes === 0) return;
             setLikeCount(likes);

@@ -795,8 +795,7 @@ const HitCounter = () => {
         fetch(counterApiUrl('sumit-biodata-2026/visits-fun/up'))
             .then(res => res.json())
             .then(data => {
-                const d = data && typeof data.contents === 'string' ? JSON.parse(data.contents) : data;
-                setCount(d != null ? (d.count ?? d.value) : null);
+                setCount(data != null ? (data.count ?? data.value) : null);
                 setLoading(false);
             })
             .catch(() => {
@@ -983,7 +982,7 @@ const FloatingEmojis = () => {
 const COUNTER_NAMESPACE = 'sumit-biodata-2026';
 const LIKES_KEY = 'fun-likes';
 const DISLIKES_KEY = 'fun-dislikes';
-const canCallCounterApi = () => typeof window !== 'undefined' && window.location.protocol !== 'file:';
+const canCallCounterApi = () => typeof window !== 'undefined';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = React.useState(false);
@@ -1525,35 +1524,63 @@ const parseCount = (d) => {
     const n = d.count ?? d.value ?? d;
     return typeof n === 'number' && !Number.isNaN(n) ? n : 0;
 };
-const fetchOneCount = (url) =>
-    fetch(url).then((r) => r.json()).then((d) => (d && typeof d.contents === 'string' ? JSON.parse(d.contents) : d)).then(parseCount).catch(() => 0);
+
+const LIKES_STORAGE_KEY = 'sumit-biodata-fun-likes';
+const DISLIKES_STORAGE_KEY = 'sumit-biodata-fun-dislikes';
+const getInitialCounts = () => {
+    if (typeof window === 'undefined') return [0, 0];
+    if (window.location.protocol === 'file:') {
+        return [
+            parseInt(localStorage.getItem(LIKES_STORAGE_KEY) || '0', 10),
+            parseInt(localStorage.getItem(DISLIKES_STORAGE_KEY) || '0', 10)
+        ];
+    }
+    return [0, 0];
+};
 
 const Footer = () => {
-    const [likeCount, setLikeCount] = React.useState(0);
-    const [dislikeCount, setDislikeCount] = React.useState(0);
+    const [likeCount, setLikeCount] = React.useState(() => getInitialCounts()[0]);
+    const [dislikeCount, setDislikeCount] = React.useState(() => getInitialCounts()[1]);
 
     const fetchCounts = React.useCallback(() => {
-        if (typeof window === 'undefined' || window.location.protocol === 'file:') return;
+        if (typeof window === 'undefined') return;
         const ns = 'sumit-biodata-2026';
+        const isLocal = window.location.protocol === 'file:';
         Promise.all([
-            fetchOneCount(counterApiUrl(`${ns}/fun-likes`)),
-            fetchOneCount(counterApiUrl(`${ns}/fun-dislikes`))
+            fetch(counterApiUrl(`${ns}/fun-likes`)).then(r => r.json()).then(parseCount).catch(() => 0),
+            fetch(counterApiUrl(`${ns}/fun-dislikes`)).then(r => r.json()).then(parseCount).catch(() => 0)
         ]).then(([likes, dislikes]) => {
+            if (isLocal && likes === 0 && dislikes === 0) return;
             setLikeCount(likes);
             setDislikeCount(dislikes);
+            if (isLocal) {
+                localStorage.setItem(LIKES_STORAGE_KEY, String(likes));
+                localStorage.setItem(DISLIKES_STORAGE_KEY, String(dislikes));
+            }
         });
     }, []);
 
     React.useEffect(() => {
         fetchCounts();
-        const t = setTimeout(() => { fetchCounts(); }, 1000);
         const onUpdate = (e) => {
             const d = e.detail;
-            if (d && d.type === 'like') setLikeCount((c) => c + 1);
-            else if (d && d.type === 'dislike') setDislikeCount((c) => c + 1);
+            const isLocal = typeof window !== 'undefined' && window.location.protocol === 'file:';
+            if (d && d.type === 'like') {
+                setLikeCount((c) => {
+                    const n = c + 1;
+                    if (isLocal) localStorage.setItem(LIKES_STORAGE_KEY, String(n));
+                    return n;
+                });
+            } else if (d && d.type === 'dislike') {
+                setDislikeCount((c) => {
+                    const n = c + 1;
+                    if (isLocal) localStorage.setItem(DISLIKES_STORAGE_KEY, String(n));
+                    return n;
+                });
+            }
         };
         window.addEventListener('counter-updated', onUpdate);
-        return () => { clearTimeout(t); window.removeEventListener('counter-updated', onUpdate); };
+        return () => window.removeEventListener('counter-updated', onUpdate);
     }, [fetchCounts]);
 
     return (

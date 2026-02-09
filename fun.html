@@ -778,9 +778,19 @@ const bioData = {
 const counterApiUrl = (path) => {
     const url = 'https://api.counterapi.dev/v1/' + path.replace(/^\//, '');
     if (typeof window !== 'undefined' && window.location.protocol !== 'file:') {
-        return 'https://corsproxy.io/?' + new URLSearchParams({ url }).toString();
+        return 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
     }
     return url;
+};
+
+// Fetch counter API and unwrap allorigins proxy response when on https (GitHub Pages)
+const fetchCounterJson = (path) => {
+    return fetch(counterApiUrl(path))
+        .then(r => r.json())
+        .then(data => {
+            if (data && typeof data.contents === 'string') return JSON.parse(data.contents);
+            return data;
+        });
 };
 
 // ============================================
@@ -792,8 +802,7 @@ const HitCounter = () => {
 
     React.useEffect(() => {
         // Use CountAPI - a simple free counter service
-        fetch(counterApiUrl('sumit-biodata-2026/visits-fun/up'))
-            .then(res => res.json())
+        fetchCounterJson('sumit-biodata-2026/visits-fun/up')
             .then(data => {
                 setCount(data != null ? (data.count ?? data.value) : null);
                 setLoading(false);
@@ -1547,8 +1556,8 @@ const Footer = () => {
         const ns = 'sumit-biodata-2026';
         const isLocal = window.location.protocol === 'file:';
         Promise.all([
-            fetch(counterApiUrl(`${ns}/fun-likes`)).then(r => r.json()).then(parseCount).catch(() => 0),
-            fetch(counterApiUrl(`${ns}/fun-dislikes`)).then(r => r.json()).then(parseCount).catch(() => 0)
+            fetchCounterJson(`${ns}/fun-likes`).then(parseCount).catch(() => 0),
+            fetchCounterJson(`${ns}/fun-dislikes`).then(parseCount).catch(() => 0)
         ]).then(([likes, dislikes]) => {
             if (isLocal && likes === 0 && dislikes === 0) return;
             setLikeCount(likes);

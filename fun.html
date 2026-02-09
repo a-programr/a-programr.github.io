@@ -1050,10 +1050,16 @@ const Navbar = () => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const incrementLike = () => {
-        if (canCallCounterApi()) fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${LIKES_KEY}/up`).catch(() => {});
+        if (canCallCounterApi()) {
+            fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${LIKES_KEY}/up`).catch(() => {});
+            window.dispatchEvent(new CustomEvent('counter-updated'));
+        }
     };
     const incrementDislike = () => {
-        if (canCallCounterApi()) fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${DISLIKES_KEY}/up`).catch(() => {});
+        if (canCallCounterApi()) {
+            fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${DISLIKES_KEY}/up`).catch(() => {});
+            window.dispatchEvent(new CustomEvent('counter-updated'));
+        }
     };
 
     React.useEffect(() => {
@@ -1574,21 +1580,34 @@ const Contact = () => {
 // ============================================
 // FOOTER
 // ============================================
+const parseCount = (d) => {
+    if (d == null) return 0;
+    const n = d.count ?? d.value ?? d;
+    return typeof n === 'number' && !Number.isNaN(n) ? n : 0;
+};
+
 const Footer = () => {
     const [likeCount, setLikeCount] = React.useState(0);
     const [dislikeCount, setDislikeCount] = React.useState(0);
 
-    React.useEffect(() => {
+    const fetchCounts = React.useCallback(() => {
         if (typeof window === 'undefined' || window.location.protocol === 'file:') return;
         const ns = 'sumit-biodata-2026';
         Promise.all([
-            fetch(`https://api.counterapi.dev/v1/${ns}/fun-likes`).then(r => r.json()).then(d => d.count ?? d.value ?? 0).catch(() => 0),
-            fetch(`https://api.counterapi.dev/v1/${ns}/fun-dislikes`).then(r => r.json()).then(d => d.count ?? d.value ?? 0).catch(() => 0)
+            fetch(`https://api.counterapi.dev/v1/${ns}/fun-likes`).then(r => r.json()).then(parseCount).catch(() => 0),
+            fetch(`https://api.counterapi.dev/v1/${ns}/fun-dislikes`).then(r => r.json()).then(parseCount).catch(() => 0)
         ]).then(([likes, dislikes]) => {
             setLikeCount(likes);
             setDislikeCount(dislikes);
         });
     }, []);
+
+    React.useEffect(() => {
+        fetchCounts();
+        const onUpdate = () => setTimeout(fetchCounts, 400);
+        window.addEventListener('counter-updated', onUpdate);
+        return () => window.removeEventListener('counter-updated', onUpdate);
+    }, [fetchCounts]);
 
     return (
         <footer className="py-10 border-t border-dark-700 relative z-10 bg-dark-900">
@@ -1619,6 +1638,9 @@ const Footer = () => {
                 </p>
                 <p className="text-gray-300 text-sm mt-4">
                     © 2026 Sumit. All Rights Reserved.
+                </p>
+                <p className="text-gray-300 text-sm mt-2">
+                    Thanks to everyone who provided guidance/feedback; and cursor!
                 </p>
                 {/* Like / Dislike counts - barely visible */}
                 <p className="text-sm mt-2 select-none" style={{ color: 'rgba(148, 163, 184, 0.04)' }}>

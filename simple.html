@@ -936,10 +936,16 @@ const Navbar = () => {
     const { isDark, toggleTheme } = useTheme();
 
     const incrementLike = () => {
-        if (canCallCounterApi()) fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${LIKES_KEY}/up`).catch(() => {});
+        if (canCallCounterApi()) {
+            fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${LIKES_KEY}/up`).catch(() => {});
+            window.dispatchEvent(new CustomEvent('counter-updated'));
+        }
     };
     const incrementDislike = () => {
-        if (canCallCounterApi()) fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${DISLIKES_KEY}/up`).catch(() => {});
+        if (canCallCounterApi()) {
+            fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${DISLIKES_KEY}/up`).catch(() => {});
+            window.dispatchEvent(new CustomEvent('counter-updated'));
+        }
     };
 
     React.useEffect(() => {
@@ -1397,6 +1403,13 @@ const Gallery = () => {
                     subtitle={`"${bioData.galleryQuote}"`}
                 />
 
+                {/* Fashion Note */}
+                <div className="mb-8 p-6 rounded-xl max-w-2xl mx-auto text-center" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
+                    <p className="text-base font-description leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                        I'm simple but doesn't mean I hate fashion. Just not interested in clothes... more interested in thoughts.
+                    </p>
+                </div>
+
                 {/* Photo Grid */}
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
                     {bioData.gallery.map((item, i) => (
@@ -1480,21 +1493,34 @@ const Contact = () => {
 // ============================================
 // FOOTER
 // ============================================
+const parseCount = (d) => {
+    if (d == null) return 0;
+    const n = d.count ?? d.value ?? d;
+    return typeof n === 'number' && !Number.isNaN(n) ? n : 0;
+};
+
 const Footer = () => {
     const [likeCount, setLikeCount] = React.useState(0);
     const [dislikeCount, setDislikeCount] = React.useState(0);
 
-    React.useEffect(() => {
+    const fetchCounts = React.useCallback(() => {
         if (typeof window === 'undefined' || window.location.protocol === 'file:') return;
         const ns = 'sumit-biodata-2026';
         Promise.all([
-            fetch(`https://api.counterapi.dev/v1/${ns}/simple-likes`).then(r => r.json()).then(d => d.count ?? d.value ?? 0).catch(() => 0),
-            fetch(`https://api.counterapi.dev/v1/${ns}/simple-dislikes`).then(r => r.json()).then(d => d.count ?? d.value ?? 0).catch(() => 0)
+            fetch(`https://api.counterapi.dev/v1/${ns}/simple-likes`).then(r => r.json()).then(parseCount).catch(() => 0),
+            fetch(`https://api.counterapi.dev/v1/${ns}/simple-dislikes`).then(r => r.json()).then(parseCount).catch(() => 0)
         ]).then(([likes, dislikes]) => {
             setLikeCount(likes);
             setDislikeCount(dislikes);
         });
     }, []);
+
+    React.useEffect(() => {
+        fetchCounts();
+        const onUpdate = () => setTimeout(fetchCounts, 400);
+        window.addEventListener('counter-updated', onUpdate);
+        return () => window.removeEventListener('counter-updated', onUpdate);
+    }, [fetchCounts]);
 
     return (
         <footer className="py-8 border-t relative z-10" style={{borderColor: 'var(--border-color)', background: 'var(--bg-primary)'}}>
@@ -1523,6 +1549,9 @@ const Footer = () => {
                     </p>
                     <p className="text-xs pt-1" style={{color: 'var(--text-muted)'}}>
                         © 2026 Sumit. All Rights Reserved.
+                    </p>
+                    <p className="text-xs pt-1" style={{color: 'var(--text-muted)'}}>
+                        Thanks to everyone who provided guidance/feedback; and cursor!
                     </p>
                     {/* Like / Dislike counts - barely visible */}
                     <p className="text-sm mt-2 select-none" style={{ color: 'var(--text-muted)', opacity: 0.035 }}>

@@ -1466,7 +1466,8 @@ const Footer = () => {
     const [likeCount, setLikeCount] = React.useState(() => getInitialCounts()[0]);
     const [dislikeCount, setDislikeCount] = React.useState(() => getInitialCounts()[1]);
 
-    const fetchCounts = React.useCallback(() => {
+    // Fetch like/dislike counts from API when the page loads (not only on click)
+    React.useEffect(() => {
         if (typeof window === 'undefined') return;
         Promise.all([
             countApiGet(LIKES_KEY).then(parseCount).catch(() => 0),
@@ -1487,7 +1488,6 @@ const Footer = () => {
     }, []);
 
     React.useEffect(() => {
-        fetchCounts();
         const onUpdate = (e) => {
             const d = e.detail;
             if (d && d.type === 'like') {
@@ -1506,7 +1506,7 @@ const Footer = () => {
         };
         window.addEventListener('counter-updated', onUpdate);
         return () => window.removeEventListener('counter-updated', onUpdate);
-    }, [fetchCounts]);
+    }, []);
 
     return (
         <footer className="py-8 border-t relative z-10" style={{borderColor: 'var(--border-color)', background: 'var(--bg-primary)'}}>
@@ -1539,8 +1539,8 @@ const Footer = () => {
                     <p className="text-xs pt-1" style={{color: 'var(--text-muted)'}}>
                         Thanks to everyone who provided guidance/feedback; and cursor!
                     </p>
-                    {/* Like / Dislike counts - barely visible */}
-                    <p className="text-sm mt-2 select-none" style={{ color: 'var(--text-muted)', opacity: 0.035 }}>
+                    {/* Like / Dislike counts - subtle but visible */}
+                    <p className="text-sm mt-2 select-none" style={{ color: 'var(--text-muted)' }}>
                         👍 {likeCount} &nbsp; 👎 {dislikeCount}
                     </p>
                 </div>

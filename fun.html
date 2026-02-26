@@ -709,12 +709,12 @@ const bioData = {
         {
             emoji: "🚭",
             title: "Smoking",
-            desc: "NO(Don't find it cool! Sorry!)"
+            desc: "NO(Don't find it cool, Sorry!)"
         },
         {
             emoji: "🚫",
             title: "Drinking",
-            desc: "NO(Don't find it cool! Sorry!)"
+            desc: "NO(Don't find it cool, Sorry!)"
         },
         {
             emoji: "🍽️",
@@ -1026,6 +1026,9 @@ const Navbar = () => {
                 <div className="flex items-center gap-2 flex-1 min-w-0">
                     <a href="#" className="font-display text-2xl font-bold gradient-text animate-pulse-slow shrink-0">
                         Sumit
+                    </a>
+                    <a href="index.html" className="shrink-0 w-12 h-10 rounded-full flex items-center justify-center text-base bg-white/10 border border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all" title="Home (simple version)">
+                        ☀️🌙
                     </a>
                     <span style={{fontSize: '28px', zIndex: 99999, position: 'relative'}} className="shrink-0">🌹</span>
                     {/* Like/Dislike visible on phone without opening menu */}
@@ -1600,8 +1603,6 @@ const Footer = () => {
                 </p>
                 <p className="text-gray-300 text-sm mt-3">
                     <a href="index.html" className="hover:text-yellow-400 transition-colors">Home</a>
-                    {' · '}
-                    <a href="simple.html" className="hover:text-yellow-400 transition-colors">Simple</a>
                     {' · '}
                     <span className="text-gray-500">Fun</span>
                 </p>

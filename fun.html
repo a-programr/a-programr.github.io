@@ -740,7 +740,7 @@ const bioData = {
     },
     profilePhoto: "images/rimcrichsrauy.jpg",
     gallery: [
-        "images/fgujfgiu.jpeg",
+        "images/fgujfgiu.jpg",
         "images/ghfghjfhj.jpeg",
         "images/ghfjghjk.jpeg",
         "images/jtyhjgf.jpeg",
@@ -751,9 +751,9 @@ const bioData = {
         "images/rijcrlzai.jpg",
         "images/riomvrcrsa.jpg",
         "images/safsfe.jpeg",
-        "images/tryhfgh.jpeg",
+        "images/tryhfgh.jpg",
         "images/tyhjdfsg.jpeg",
-        "images/tyujghuijfgui.jpeg",
+        "images/tyujghuijfgui.jpg",
         "images/oiuejrlkjnv.jpg"
     ],
     galleryQuote: "Simplicity is the ultimate sophistication : Leonardo Da Vinci",
@@ -769,12 +769,12 @@ const bioData = {
     ],
     myStory: [
         { num: "01", title: "Haryanvi Roots", desc: "Born and raised in Jhajjar, Haryana — where traditional values and small-town simplicity meet. Those roots keep me grounded as I navigate the modern world.", img: "images/uyjghj.png" },
-        { num: "02", title: "Family Foundation", desc: "Only child of a Sub Inspector father and a school teacher mother. Discipline and a love for learning — a blend that shaped both my character and my outlook.", img: "images/tfghhgj.jpeg" },
+        { num: "02", title: "Family Foundation", desc: "Only child of a Sub Inspector father and a school teacher mother. Discipline and a love for learning — a blend that shaped both my character and my outlook.", img: "images/tfghhgj.jpg" },
         { num: "03", title: "Academic Triumph", desc: "All India Rank 47 in JEE Advanced 2017. Hard work and focus paid off, opening doors to India's best institutions.", img: "images/eroilj.png" },
-        { num: "04", title: "IIT Bombay Journey", desc: "Four transformative years at IIT Bombay pursuing Computer Science. Not just academics, but friendships, growth, and discovering my true potential.", img: "images/fghgfjhl.jpeg" },
-        { num: "05", title: "Tech at NVIDIA", desc: "Now a System Software Engineer at NVIDIA, Bangalore. Working on cutting-edge technology while contributing to innovations that shape the future.", img: "images/ertruih.jpg" },
+        { num: "04", title: "IIT Bombay Journey", desc: "Four transformative years at IIT Bombay pursuing Computer Science. Not just academics, but friendships, growth, and discovering my true potential.", img: "images/fghgfjhl.jpg" },
+        { num: "05", title: "Tech at NVIDIA", desc: "Now a System Software Engineer at NVIDIA, Bangalore. Working on cutting-edge technology while contributing to innovations that shape the future.", img: "images/ertruih.png" },
         { num: "06", title: "Sports & Fitness", desc: "Sports aren't just a hobby — they're a lifestyle. From badminton to swimming, martial arts to cricket, fitness is a non-negotiable priority.", img: "images/ugfygth.jpg" },
-        { num: "07", title: "Grounded Values", desc: "No smoking, no drinking — by choice. I believe in authenticity and staying true to oneself.", img: "images/tyvew.jpeg" },
+        { num: "07", title: "Grounded Values", desc: "No smoking, no drinking — by choice. I believe in authenticity and staying true to oneself.", img: "images/tyvew.jpg" },
         { num: "08", title: "Future Vision", desc: "Entrepreneurial dreams with health and family as the highest priorities. Committed to building a meaningful life in India, not abroad.", img: "images/dfthtygikl.jpeg" }
     ]
 };
@@ -1435,8 +1435,6 @@ const Preferences = () => (
 // GALLERY SECTION - 📸 PHOTO ALBUM
 // ============================================
 const Gallery = () => {
-    const [lightbox, setLightbox] = React.useState(null);
-
     return (
         <section id="gallery" className="py-16 relative z-10">
             <div className="max-w-7xl mx-auto px-6">
@@ -1458,23 +1456,11 @@ const Gallery = () => {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
                     {bioData.gallery.map((img, i) => (
-                        <div
-                            key={i}
-                            className="gallery-item aspect-[4/5] cursor-pointer"
-                            onClick={() => setLightbox(img)}
-                        >
+                        <div key={i} className="gallery-item aspect-[4/5]">
                             <img src={img} alt={`Photo ${i+1}`} className="gallery-img rounded-xl object-cover" style={img.includes('remcreu') ? { objectPosition: '50% 25%' } : undefined} loading="lazy" />
                         </div>
                     ))}
                 </div>
-            </div>
-
-            {/* Lightbox */}
-            <div className={`lightbox ${lightbox ? 'active' : ''}`} onClick={() => setLightbox(null)}>
-                {lightbox && <img src={lightbox} alt="Full size" />}
-                <button className="absolute top-6 right-6 w-12 h-12 rounded-full glass text-white flex items-center justify-center hover:neon-red transition-all text-2xl" onClick={() => setLightbox(null)}>
-                    ✖️
-                </button>
             </div>
         </section>
     );

@@ -574,6 +574,39 @@
         .theme-bg-card { background: var(--bg-card); }
         .theme-bg-secondary { background: var(--bg-secondary); }
         .theme-border { border-color: var(--border-color); }
+
+        /* Print: keep cards and blocks from splitting across pages */
+        @media print {
+            body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            /* Keep each card / content block on one page */
+            div[class*="rounded-xl"],
+            div[class*="rounded-lg"] {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            /* Keep section headers with the next content */
+            section { page-break-inside: auto; }
+            section h2 { page-break-after: avoid; }
+            section h3 { page-break-after: avoid; }
+            /* Slight top margin so first block on a page doesn’t get cut */
+            section { padding-top: 0.25rem !important; padding-bottom: 0.25rem !important; }
+            [class*="gap-4"], [class*="gap-6"], [class*="gap-8"], [class*="gap-12"] { gap: 0.25rem !important; }
+            [class*="space-y-2"] > * + * { margin-top: 0.125rem !important; }
+            [class*="space-y-3"] > * + * { margin-top: 0.25rem !important; }
+            [class*="space-y-4"] > * + * { margin-top: 0.25rem !important; }
+            [class*="space-y-8"] > * + * { margin-top: 0.375rem !important; }
+            [class*="space-y-16"] > * + * { margin-top: 0.5rem !important; }
+            div[class*="p-4"][class*="rounded"], div[class*="p-5"][class*="rounded"], div[class*="p-6"][class*="rounded"] { padding: 0.375rem !important; }
+            [class*="mb-6"], [class*="mb-8"], [class*="mb-10"], [class*="mt-8"], [class*="mt-10"] { margin-top: 0.25rem !important; margin-bottom: 0.25rem !important; }
+            /* Start these sections on a new page when printing */
+            section#about { page-break-before: always; }
+            section#more-qualities { page-break-before: always; }
+            section#family { page-break-before: always; }
+            section#hobbies { page-break-before: always; }
+            section#preferences { page-break-before: always; }
+            section#gallery { page-break-before: always; }
+            section#contact { page-break-before: always; }
+        }
     </style>
 </head>
 <body class="font-sans">
@@ -590,7 +623,7 @@
 // ============================================
 const bioData = {
     name: "Sumit",
-    personalEssence: "I am a grounded, open-minded, cheerful 😊, self-driven individual who balances a high-performance professional life with a deep passion for sports and fitness. An IIT Bombay alumnus and AIR 47 holder, I value authenticity and intellectual depth. I am deeply connected to my Haryanvi roots and am committed to building a life and career within India 🇮🇳.",
+    personalEssence: "I am a grounded, open-minded, cheerful 😊, self-driven individual who balances a high-performance professional life with a deep passion for sports and fitness. A proud IIT Bombay alumnus and AIR 47 holder, I value authenticity and intellectual depth. I am deeply connected to my Haryanvi roots and am committed to building a life and career within India 🇮🇳.",
     highlights: [
         { emoji: "🎓", text: "CSE IIT Bombay" },
         { emoji: "🏅", text: "AIR 47 JEE Advanced" },
@@ -607,6 +640,8 @@ const bioData = {
         { emoji: "🍛", label: "Cuisine", value: "Haryanvi" },
         { emoji: "🚭", label: "Smoking", value: "NO(Bheed ko follow nahi karta)" },
         { emoji: "🚫", label: "Drinking", value: "NO(Bheed ko follow nahi karta)" },
+        { emoji: "🏛️", label: "Caste", value: "Jat" },
+        { emoji: "🌳", label: "Gotra", value: "Jakhar, Sehrawat, Lor Khatri, Phogat" },
         { emoji: "📸", label: "Instagram", value: "jakharsumit2025", link: "https://instagram.com/jakharsumit2025" }
     ],
     family: {
@@ -679,9 +714,9 @@ const bioData = {
             desc: "Any"
         },
         {
-            emoji: "🌍",
-            title: "Background",
-            desc: "Open to all Religions, Castes, and Mother Tongues"
+            emoji: "📏",
+            title: "Preferred Height",
+            desc: ">= 5' 4\" (162 cm)"
         },
         {
             emoji: "🚫",
@@ -693,7 +728,8 @@ const bioData = {
     contact: {
         instagram: { handle: "jakharsumit2025", logo: "images/instagramLogo.png" },
         linkedin: { handle: "sumit-12890b171", logo: "images/linkedinLogo.png" },
-        location: { value: "Mahadevpura, Bangalore, Karnataka", emoji: "📍" }
+        location: { value: "Mahadevpura, Bangalore, Karnataka", emoji: "📍" },
+        phoneFather: { value: "9466624858", emoji: "📞" }
     },
     profilePhoto: "images/rimcrichsrauy.jpg",
     gallery: [
@@ -721,7 +757,7 @@ const bioData = {
         { trait: "Loyal", emoji: "🤝" },
         { trait: "Fun Loving", emoji: "🎉" },
         { trait: "Mature", emoji: "🌳" },
-        { trait: "Feminist", emoji: "♀️" },
+        { trait: "Amicable", emoji: "😊" },
         { trait: "Empathetic", emoji: "💗" },
 
     ],
@@ -1389,7 +1425,8 @@ const Contact = () => {
     const socialContacts = [
         { logo: bioData.contact.instagram.logo, title: "Instagram", value: `@${bioData.contact.instagram.handle}`, link: `https://instagram.com/${bioData.contact.instagram.handle}` },
         { logo: bioData.contact.linkedin.logo, title: "LinkedIn", value: bioData.contact.linkedin.handle, link: `https://linkedin.com/in/${bioData.contact.linkedin.handle}` },
-        { emoji: bioData.contact.location.emoji, title: "Location", value: bioData.contact.location.value }
+        { emoji: bioData.contact.location.emoji, title: "Location", value: bioData.contact.location.value },
+        { emoji: bioData.contact.phoneFather.emoji, title: "Phone (Father)", value: bioData.contact.phoneFather.value, link: `tel:${bioData.contact.phoneFather.value}` }
     ];
 
     return (
@@ -1508,7 +1545,7 @@ const Footer = () => {
                 <HitCounter />
 
                 <div className="pt-4 space-y-2">
-                    <p className="text-sm" style={{color: 'var(--text-muted)'}}>Last Updated: 26-03-2026</p>
+                    <p className="text-sm" style={{color: 'var(--text-muted)'}}>Last Updated: 26-02-2026</p>
                     <p className="text-sm" style={{color: 'var(--text-secondary)'}}>
                         Made with <span className="animate-heartbeat text-red-500 text-2xl">❤️</span>
                     </p>
@@ -1538,7 +1575,6 @@ const Footer = () => {
 // ============================================
 const App = () => (
     <ThemeProvider>
-        <Navbar />
         <Hero />
         <MyStory />
         <Qualities />
@@ -1548,7 +1584,6 @@ const App = () => (
         <Preferences />
         <Gallery />
         <Contact />
-        <Footer />
     </ThemeProvider>
 );
 
